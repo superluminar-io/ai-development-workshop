@@ -129,7 +129,6 @@ dist/
 - [ ] **Step 5: Install dependencies**
 
 ```bash
-cd /Users/rebecca/Documents/Projects/superluminar/workshops/ai-development-ws
 npm install
 ```
 
