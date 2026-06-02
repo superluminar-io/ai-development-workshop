@@ -178,6 +178,22 @@ docs/module-2/
 
 ---
 
+## Repo Clarity Requirement
+
+Participants work across two repos in Module 2. Every exercise file, the participant guide, and the facilitator guide must make it unambiguous which repo each action targets. Use a consistent visual convention:
+
+- **Workshop repo** (`ai-development-workshop`) — where participants run commands, write files, configure MCP, and commit their work
+- **Demo repo** (`ai-development-ws-ticket-demo`) — the repo they are *reviewing*, accessed read-only via GitHub MCP
+
+Each exercise step that involves a terminal command or a file action must be prefixed with a clear label:
+
+> **In the workshop repo:** `git add .claude/commands/review-pr.md`  
+> **Via GitHub MCP (demo repo):** ask Claude to fetch the open PR
+
+The participant guide introduction must explain both repos upfront, before any exercises begin, with a diagram or table showing which repo is which and what participants do in each.
+
+---
+
 ## Assumptions
 
 - Participants have a GitHub account and `gh` CLI authenticated
