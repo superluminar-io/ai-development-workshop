@@ -2,14 +2,15 @@
 
 **Date:** 2026-06-02  
 **Status:** Approved  
-**Target directory:** `/Users/rebecca/Documents/Projects/superluminar/workshops/ai-development-ws-ticket-demo`  
-**Remote:** `superluminar-io/ai-development-ws-ticket-demo`
+**Repo:** `superluminar-io/ai-development-ws-ticket-demo`
+
+> **All implementation work happens in the demo repo (`ai-development-ws-ticket-demo`).** This spec is stored in the workshop repo for reference, but every file created, every commit made, and the GitHub issue/PR setup all target the demo repo. Nothing in the workshop repo (`ai-development-ws`) changes during implementation.
 
 ---
 
 ## Purpose
 
-This repo is the read-only review target for Module 2 of the AI Development Workshop. Participants review a PR on it via GitHub MCP — they never clone or commit to it. It must look like a realistic TypeScript product repo with meaningful history, open issues, and a carefully constructed PR containing three planted teaching issues.
+This repo is the read-only review target for Module 2 of the AI Development Workshop. It extends the workshop by providing the realistic product codebase that participants review via GitHub MCP — they never clone or commit to it themselves. It must look like a genuine TypeScript product repo with meaningful history, open issues, and a carefully constructed PR containing three planted teaching issues.
 
 ---
 
@@ -225,16 +226,16 @@ The bug is only visible if you know from Issue #1 that `priorityOverride: 'urgen
 
 ## Automation
 
-Everything is created programmatically:
-- Git repo initialised locally at the target directory
-- 5 commits made locally on `main`
+Everything is created programmatically inside the demo repo (`ai-development-ws-ticket-demo`):
+- Git repo initialised locally
+- 5 commits made on `main`
 - Pushed to `superluminar-io/ai-development-ws-ticket-demo`
 - Issue #1 created via `gh issue create`
 - Issue #2 created via `gh issue create`
-- Feature branch created locally, pushed
+- Feature branch created locally and pushed
 - PR created via `gh pr create` linking to Issue #1
 
-No manual GitHub steps required after running the plan.
+The workshop repo (`ai-development-ws`) is not touched during any of these steps. No manual GitHub steps required after running the plan.
 
 ---
 
