@@ -72,7 +72,7 @@ Read the review carefully.
 
 ## Step 5 — Compare the two reviews (~6 min)
 
-Put your Exercise 1 review and the Exercise 2 review side by side.
+**[workshop repo]** Put your Exercise 1 review and the Exercise 2 review side by side.
 
 Answer these questions:
 1. What did the MCP-enabled review find that the diff-only review missed?

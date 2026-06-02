@@ -52,7 +52,7 @@ Then paste the diff content.
 
 ## Step 3 — Note what Claude cannot answer (~5 min)
 
-Read Claude's review. Then ask:
+**[workshop repo]** Read Claude's review. Then ask:
 
 > "What questions do you still have that the diff alone could not answer?"
 
@@ -67,7 +67,7 @@ Keep this list — you will compare it to the Exercise 2 review.
 
 ## Step 4 — Try to answer the gaps yourself (~5 min)
 
-Without any tools, try to answer Claude's unanswered questions using only:
+**[workshop repo]** Without any tools, try to answer Claude's unanswered questions using only:
 - The PR title and description you read in Step 1
 - The diff
 

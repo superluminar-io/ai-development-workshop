@@ -54,7 +54,7 @@ Save the file. The command is now yours.
 /review-pr
 ```
 
-When Claude asks which PR to review, provide:
+**[demo repo via MCP]** When Claude asks which PR to review, provide:
 
 > "PR #<number> in `superluminar-io/ai-development-ws-ticket-demo`"
 
