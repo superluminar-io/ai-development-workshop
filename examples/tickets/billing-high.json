@@ -1,0 +1,9 @@
+{
+  "id": "T-003",
+  "subject": "Unexplained $2,400 charge — urgent",
+  "body": "We have been charged $2,400 this month with no explanation or prior notification. This is significantly above our normal spend and requires immediate attention.",
+  "category": "billing",
+  "customerId": "C-003",
+  "amount": 2400,
+  "createdAt": "2026-06-01T11:00:00Z"
+}

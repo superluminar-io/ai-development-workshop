@@ -1,0 +1,8 @@
+{
+  "id": "T-004",
+  "subject": "Production database unreachable",
+  "body": "All write operations to the primary database are failing with connection timeout errors. Multiple services are degraded. Started approximately 08:45 UTC.",
+  "category": "incident",
+  "customerId": "C-004",
+  "createdAt": "2026-06-01T08:50:00Z"
+}

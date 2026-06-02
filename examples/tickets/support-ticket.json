@@ -1,0 +1,8 @@
+{
+  "id": "T-001",
+  "subject": "Cannot log in to portal",
+  "body": "I have been trying to log in since this morning but keep getting a 401 error. This is blocking my whole team.",
+  "category": "support",
+  "customerId": "C-001",
+  "createdAt": "2026-06-01T09:00:00Z"
+}

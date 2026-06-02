@@ -1,0 +1,9 @@
+{
+  "id": "T-002",
+  "subject": "Incorrect charge on last invoice",
+  "body": "We were charged $85 for a feature we did not activate. Please review invoice INV-2026-05.",
+  "category": "billing",
+  "customerId": "C-002",
+  "amount": 85,
+  "createdAt": "2026-06-01T10:00:00Z"
+}
