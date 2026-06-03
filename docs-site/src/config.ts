@@ -107,4 +107,30 @@ export const modules: Module[] = [
       },
     ],
   },
+  {
+    id: 'module-4',
+    number: '04',
+    title: 'The AI Harness — Claude Code for Teams and Organisations',
+    description:
+      'Configure team governance, permissions, and hooks. Build a reusable org template for Claude Code standards.',
+    status: 'ready',
+    participantGuide: '/docs/module-4/participant-guide.md',
+    exercises: [
+      {
+        slug: 'exercise-1-team-harness',
+        title: 'Team Lead: Establish the Team Harness',
+        file: '/docs/module-4/exercises/exercise-1-team-harness.md',
+      },
+      {
+        slug: 'exercise-2-hooks',
+        title: 'Team Lead: Automate the Enforcement',
+        file: '/docs/module-4/exercises/exercise-2-hooks.md',
+      },
+      {
+        slug: 'exercise-3-org-template',
+        title: 'Head of AI Engineering Practices: Build the Org Template',
+        file: '/docs/module-4/exercises/exercise-3-org-template.md',
+      },
+    ],
+  },
 ]
