@@ -1,6 +1,6 @@
 # AI Development Workshop
 
-A hands-on workshop by [superluminar](https://superluminar.io) on using Claude Code as a real engineering tool — not a chatbot. Participants work with a realistic TypeScript service, run exercises inside a disciplined review loop, and build habits around AI-assisted development that hold up in production codebases.
+A hands-on workshop by [superluminar](https://superluminar.io) on using Claude Code as an engineering tool, and not just a chatbot. Participants work with a realistic TypeScript service, run exercises inside a disciplined review loop, and build habits around AI-assisted development that hold up in production codebases.
 
 The workshop is structured as self-contained modules, each ~60 minutes. Content is served through a local web frontend so participants never have to navigate raw markdown files.
 

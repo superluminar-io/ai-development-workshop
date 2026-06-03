@@ -5,3 +5,4 @@ dist/
 coverage/
 .env
 .claude/settings.local.json
+.superpowers/
