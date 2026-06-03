@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import rehypeRaw from 'rehype-raw'
 
 interface MarkdownViewProps {
   file: string // Vite-served URL path, e.g. /docs/module-1/participant-guide.md
@@ -31,7 +32,7 @@ export function MarkdownView({ file }: MarkdownViewProps) {
 
   return (
     <div className="prose">
-      <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
+      <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>{content}</ReactMarkdown>
     </div>
   )
 }
