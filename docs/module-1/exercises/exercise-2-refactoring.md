@@ -21,110 +21,128 @@ Expected: all tests passing, 0 TypeScript errors.
 
 ## Step 1 — Ask for a plan first (~3 min)
 
-In Claude Code, describe what you want to improve. Then run:
+Before touching any files, describe what you want to improve in the Claude Code terminal:
+
+> "I want to introduce stronger TypeScript types in the Ticket domain model, add Zod validation to the handler input, and separate input parsing from domain logic."
+
+Then run:
 
 ```
 /propose-change
 ```
 
-Or describe your intent first:
-> "I want to introduce stronger TypeScript types in the Ticket domain model, add Zod validation to the handler input, and separate input parsing from domain logic."
+Claude will read the codebase and produce a step-by-step plan: which files it intends to touch, what it will change in each, and what it will leave alone. Read the plan before you let Claude proceed.
 
-Read Claude's plan. Check:
+Check:
 - Are the files it plans to touch reasonable?
 - Does it mention what it will NOT change?
 - Does it describe which tests it will add or update?
 
-Do not let Claude proceed until you have reviewed the plan.
+Do not let Claude proceed until you have reviewed the plan and it looks right.
 
-> If Claude proposes to rewrite everything at once, that is a signal to scope it down. Ask it to start with just the types.
+> If Claude proposes to rewrite everything at once, that is a signal to scope it down. Reply: "Start with just the types in `src/domain/ticket.ts`. Nothing else yet."
 
 ---
 
 ## Step 2 — Introduce TypeScript union types (~5 min)
 
-Ask Claude to update `src/domain/ticket.ts`:
+Tell Claude in the chat what you want:
 
-1. Change `category: string` to `category: 'support' | 'billing' | 'incident' | 'security'`
-2. Remove `priority?: string` from the `Ticket` type (it is a computed output, not an input)
-3. Change `createdAt: string` to `createdAt: Date`
+> "Update `src/domain/ticket.ts` to make these changes: change `category: string` to the union type `'support' | 'billing' | 'incident' | 'security'`, remove the `priority` field from the Ticket type entirely (it is a computed output, not an input), and change `createdAt: string` to `createdAt: Date`."
 
-After Claude makes changes:
+After Claude makes the changes, review them before doing anything else:
 
 ```bash
 git diff
 ```
 
-Review the diff. Does it match what you asked for? Did Claude touch anything else?
+Read the diff line by line. Does it match exactly what you asked for? Did Claude touch any other files?
 
 ```bash
 npm run typecheck
 ```
 
-Expected: TypeScript will now flag places that pass a raw string where the union type is expected. Fix any errors Claude did not catch.
+TypeScript will now flag every place in the codebase that passes a raw string where the union type is expected. These are real errors — read each one and fix it (Claude can help if you paste the error message).
 
 ```bash
 npm test
 ```
 
-Expected: tests still passing.
+Expected: tests still passing. Then commit:
 
 ```bash
 git add src/domain/ticket.ts
 git commit -m "refactor: strengthen Ticket domain types"
 ```
 
+<details>
+<summary>Hint: TypeScript is showing errors I don't understand</summary>
+
+This is expected. When you change `category: string` to a union type, TypeScript finds every place in the codebase that passes an arbitrary string as `category`. Those places now need to pass one of the valid values.
+
+Paste the full error message into Claude: "I'm getting this TypeScript error — what does it mean and how do I fix it?" Work through errors one at a time.
+
+</details>
+
 ---
 
 ## Step 3 — Add Zod validation (~7 min)
 
-`zod` is already installed. Ask Claude to add input validation to `src/handlers/processTicket.ts`.
+`zod` is already installed in this project. Tell Claude what you want:
 
-The validation should:
-- Define a Zod schema for the ticket input
-- Parse and validate the raw input at the top of `processTicket`
-- Throw a descriptive error (not return `undefined`) if validation fails
+> "Add Zod input validation to `src/handlers/processTicket.ts`. Define a Zod schema for the raw ticket input, parse and validate it at the top of the `processTicket` function, and throw a descriptive error if validation fails — do not return `undefined`."
 
-After Claude makes changes, review the diff:
+After Claude makes the changes, review the diff:
 
 ```bash
 git diff
 ```
 
 Check:
-- Is the Zod schema imported correctly?
-- Does the error message describe what is missing?
-- Did Claude remove the `| undefined` from the return type?
+- Is the Zod import at the top of the file?
+- Does the error message describe what is actually wrong with the input?
+- Has Claude removed the `| undefined` from the return type?
 
 ```bash
 npm test
 ```
 
-If tests fail, read the failure messages. Update the tests to match the new error-throwing behaviour (the handler now throws instead of returning `undefined`).
+Some tests may now fail — the handler throws instead of returning `undefined`, and the existing tests may not expect that. Read the failure messages and update the tests to match the new behaviour.
 
 ```bash
 git add src/handlers/processTicket.ts test/handlers/processTicket.test.ts
 git commit -m "refactor: add Zod validation to processTicket handler"
 ```
 
+<details>
+<summary>Hint: Claude changed more files than I asked for</summary>
+
+This is a common pattern. Claude may try to update related files proactively. You do not have to accept everything it changed.
+
+Run `git diff` and look at which files appear in the output. If Claude changed something you did not ask for, you can:
+- Tell it: "Revert your changes to `[filename]`. I only wanted changes in `src/handlers/processTicket.ts`."
+- Or use `git checkout -- [filename]` to restore a specific file to its previous state.
+
+Reference `CLAUDE.md` — it explicitly says to prefer small, reviewable changes and not to touch files unrelated to the task.
+
+</details>
+
 ---
 
 ## Step 4 — Separate domain from handler (~5 min)
 
-Ask Claude to extract input parsing into its own function, separate from the domain logic.
+Tell Claude:
 
-The goal:
-- A `parseTicketInput` function in the handler file (or a new `src/handlers/parseInput.ts`) that converts raw input into a typed `Ticket`
-- `processTicket` calls `parseTicketInput`, then calls the classifier
+> "Extract input parsing into its own function, separate from the domain logic in `processTicket`. The goal is a `parseTicketInput` function that converts raw input into a typed `Ticket`, and a `processTicket` function that only calls `parseTicketInput` and then the classifier."
 
-After Claude makes changes:
+After Claude makes the changes:
 
 ```bash
 git diff
 npm test
 ```
 
-If tests pass and the diff looks right:
+If tests pass and the diff looks right, commit:
 
 ```bash
 git add src/handlers/

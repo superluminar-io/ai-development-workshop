@@ -19,29 +19,32 @@ npm test && npm run typecheck
 
 ## Step 1 — Find missing test coverage (~5 min)
 
-Run:
+In the Claude Code terminal, run:
 
 ```
 /generate-tests
 ```
 
-Read Claude's output. It should identify:
-- Which behaviours are currently tested
-- Which edge cases are missing
-- Proposed test code for each gap
+Claude will read the test files and the source files, identify which behaviours are currently tested, and propose tests for gaps it finds. Read its output and look carefully at what it says about the billing category — specifically which `amount` values are and are not covered.
 
-Look carefully at the billing category tests. What amount values are currently tested?
+If Claude does not mention the `amount` field, ask it directly in the chat:
 
-**Checkpoint:** Did Claude identify any edge cases involving the `amount` field and high-value billing tickets?
+> "What happens to a billing ticket with `amount: 2400`? Is that case tested?"
 
-If not, ask directly:
-> "What happens to a billing ticket with amount: 2400? Is that case tested?"
+**Checkpoint:** Did Claude identify any edge cases involving high-value billing tickets?
+
+<details>
+<summary>Hint: I don't understand what "edge case" means here</summary>
+
+The routing table in `docs/module-1/README.md` shows that billing tickets with `amount > 1000` should be treated differently from billing tickets with `amount ≤ 1000`. Look at the test file `test/domain/classifier.test.ts` — what billing amounts are currently tested? Is the high-value case (`amount: 2400`) covered?
+
+</details>
 
 ---
 
-## Step 2 — Write the missing test (~3 min)
+## Step 2 — Write the missing tests (~3 min)
 
-Add the following tests to `test/domain/classifier.test.ts`:
+Open `test/domain/classifier.test.ts` in your editor and add these two tests inside the relevant `describe` block:
 
 ```typescript
 it('returns escalate for high-value billing tickets', () => {
@@ -55,31 +58,47 @@ it('routes high-value billing tickets to escalation-queue', () => {
 })
 ```
 
-Run the tests:
+Save the file, then run:
 
 ```bash
 npm test
 ```
 
-Expected: **2 tests fail.** This is correct — the tests are exposing a real bug.
+Expected: **2 tests fail.** This is correct — the tests are exposing a real bug in the starter code. Read the failure output carefully:
 
-Read the failure output carefully. What is the service actually returning for a high-value billing ticket?
+```
+Expected: "escalate"
+Received: "high"
+```
+
+This tells you what the service is currently returning versus what the routing table says it should return.
+
+<details>
+<summary>Hint: I'm not sure where to add the tests in the file</summary>
+
+Open `test/domain/classifier.test.ts`. You will see `describe` blocks grouping tests by category. Find the block for `'billing'` — it already has some tests for low-value billing tickets. Add the two new tests at the end of that block, before the closing `})`.
+
+If you are not sure about the `base` fixture, look at how the existing billing tests construct their `Ticket` objects — your tests follow the same pattern.
+
+</details>
 
 ---
 
 ## Step 3 — Fix the bug (~3 min)
 
-Open `src/domain/classifier.ts`. Find the billing priority classification.
+Open `src/domain/classifier.ts` in your editor. Find the section that classifies billing ticket priority.
 
-Look at what priority high-value billing tickets currently receive. Compare it to the routing table in `docs/module-1/README.md`.
+Compare what the code does for high-value billing tickets against the routing table in `docs/module-1/README.md`. The fix is a single word — the wrong priority value.
 
-Fix the bug. The change is one word.
+Make the change directly in your editor, then run:
 
 ```bash
 npm test
 ```
 
 Expected: all tests passing.
+
+Commit with a message that explains the bug and the fix:
 
 ```bash
 git add src/domain/classifier.ts test/domain/classifier.test.ts
@@ -100,14 +119,11 @@ Run:
 /review-diff
 ```
 
-Claude will run `git diff HEAD` and review the full changeset from this session as if it were a pull request.
+Claude will run `git diff` across your full session and review the changeset as if it were a pull request — looking for risks, missing cases, and anything worth calling out.
 
-Read the review. Check:
-- Are there risks Claude identified that you agree with?
-- Are there findings that seem wrong or overstated?
-- Did Claude miss anything important?
+Read the review. For each finding, decide: do you agree? Is it something to fix now or track as a follow-up?
 
-Note: Claude's review is input to your judgement, not a replacement for it.
+> Claude's review is input to your judgement, not a replacement for it. It will sometimes flag things that are not problems, and occasionally miss things that are. Your job is to evaluate the output, not accept it wholesale.
 
 ---
 
@@ -119,9 +135,7 @@ Run:
 /prepare-pr-summary
 ```
 
-Claude will read the diff and test output, then produce a PR summary.
-
-Review it. Edit it if it is inaccurate or missing something important.
+Claude will read the diff and produce a PR description. Review what it writes — is the summary accurate? Does it explain the *why* of the billing bug, not just the *what*? Edit it if anything is missing or wrong.
 
 ---
 
