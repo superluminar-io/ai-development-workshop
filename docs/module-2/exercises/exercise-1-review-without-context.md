@@ -1,6 +1,6 @@
 # Exercise 1: Review Without Context
 
-**Goal:** Use the review workflow from Module 1 on a real PR — and discover what it cannot tell you.
+**Goal:** Use the review approach from Module 1 on a real PR — and discover what it cannot tell you.
 
 **Duration:** ~15 minutes  
 **Repo guide:** This exercise uses the **[demo repo via MCP]** as the target, but you run all commands from the **[workshop repo]**.

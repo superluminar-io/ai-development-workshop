@@ -1,6 +1,6 @@
 # Exercise 3: Build a Reusable Command
 
-**Goal:** Complete the `/review-pr` command skeleton and encode the best review workflow you practised in Exercises 1 and 2.
+**Goal:** Complete the `/review-pr` command skeleton and encode the best review process you practised in Exercises 1 and 2.
 
 **Duration:** ~18 minutes
 
@@ -85,7 +85,7 @@ If the output is vague or misses the planted issues, refine your Step 3 instruct
 
 ```bash
 git add .claude/commands/review-pr.md
-git commit -m "feat: complete review-pr command with GitHub MCP workflow"
+git commit -m "feat: complete review-pr command with GitHub MCP"
 ```
 
 Then discuss with the group:
@@ -108,4 +108,4 @@ By the end of Exercise 3 you should have:
 
 - The command skeleton gave you the structure — what did writing the prompts yourself teach you?
 - How does a well-specified command compare to asking Claude the same thing conversationally?
-- What other commands from your daily workflow could be encoded this way?
+- What other commands from your daily work could be encoded this way?

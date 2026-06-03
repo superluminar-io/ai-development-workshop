@@ -10,7 +10,7 @@ export function HomePage() {
         <div className="hero__label">superluminar workshops</div>
         <h1 className="hero__title">AI Development Workshop</h1>
         <p className="hero__subtitle">
-          Hands-on exercises for using Claude Code in real engineering workflows.
+          Hands-on exercises for using Claude Code in real engineering work.
         </p>
       </div>
       <div className="home__modules">

@@ -1,6 +1,6 @@
 # Module 2 Facilitator Guide
 
-**From Prompts to Repeatable AI Workflows**
+**Code Review, Context, and Commands**
 
 ---
 
@@ -12,7 +12,7 @@ By the end of this module participants should be able to:
 2. Configure GitHub MCP for a project using `.mcp.json`
 3. Use GitHub MCP to give Claude access to PR descriptions, linked issues, and commit history
 4. Compare the quality of reviews with and without external context
-5. Complete a command skeleton and encode a specific workflow as a reusable slash command
+5. Complete a command skeleton and encode a specific process as a reusable slash command
 6. Explain what makes a command "team-ready" vs personal
 
 **The meta-skill:** understanding that Claude's output quality is bounded by the context it has access to — and that MCP is a way to expand that context systematically.
@@ -173,7 +173,7 @@ Push back gently: "Read the third planted issue again — is that handled in eit
 - At least one person iterated the command after a vague first output
 - Discussion about what "team-ready" means: agreed prompt language, specific repo name replaced with a variable or prompt, shared in a team repo
 
-**Teaching point:** Reusable commands are the unit of shareable workflow. The difference between a personal scratch command and a team-ready one is specificity and shared understanding of what good output looks like.
+**Teaching point:** Reusable commands are the unit of shareable process. The difference between a personal scratch command and a team-ready one is specificity and shared understanding of what good output looks like.
 
 ---
 
@@ -182,11 +182,11 @@ Push back gently: "Read the third planted issue again — is that handled in eit
 **"You now have two layers of Claude Code usage."**
 
 - Layer 1 (Module 1): Claude Code reads your local files and helps you explore, refactor, test, and review your own work
-- Layer 2 (Module 2): Claude Code connects to external systems via MCP and brings that context into your workflow
+- Layer 2 (Module 2): Claude Code connects to external systems via MCP and brings that context into your process
 
 Module 3 adds the third layer: deploying the ticket processor as a real AWS Lambda, and using Claude to help with the infrastructure code and operational review.
 
-A future module will cover how to establish, store, and distribute these commands as team standards — so the workflow you practised today becomes a convention your whole team shares automatically.
+A future module will cover how to establish, store, and distribute these commands as team standards — so the process you practised today becomes a convention your whole team shares automatically.
 
 ---
 

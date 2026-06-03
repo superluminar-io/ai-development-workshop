@@ -1,6 +1,6 @@
 # Module 2 Participant Guide
 
-**From Prompts to Repeatable AI Workflows**
+**Code Review, Context, and Commands**
 
 ---
 
@@ -12,13 +12,13 @@ A colleague has opened a PR on a shared service. The diff looks reasonable — n
 
 ## Overview
 
-In this module you will experience a concrete limitation of the Module 1 review workflow — then solve it with GitHub MCP. You will finish by encoding the improved workflow into a reusable command that you can take to your own projects.
+In this module you will experience a concrete limitation of doing code review with only a diff — then solve it with GitHub MCP. You will finish by encoding the improved approach into a reusable command you can take to your own projects.
 
 By the end you will have:
 - reviewed a real PR with and without external context
 - configured GitHub MCP in a project
 - understood why context changes what Claude can find
-- written a command that encodes the full review workflow
+- written a command that encodes the full review process
 
 ---
 

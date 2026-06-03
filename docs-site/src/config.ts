@@ -53,7 +53,7 @@ export const modules: Module[] = [
   {
     id: 'module-2',
     number: '02',
-    title: 'From Prompts to Repeatable AI Workflows',
+    title: 'Code Review, Context, and Commands',
     description:
       'Configure GitHub MCP, review PRs with full context, and build reusable slash commands.',
     status: 'ready',

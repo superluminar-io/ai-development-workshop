@@ -31,7 +31,7 @@ Open **http://localhost:5173** in your browser. Start with the **Setup** module.
 Each module has a facilitator guide with learning goals, timing, and common participant issues:
 
 - [Module 1 Facilitator Guide](docs/module-1/facilitator-guide.md) — Claude Code in the Engineering Loop
-- [Module 2 Facilitator Guide](docs/module-2/facilitator-guide.md) — From Prompts to Repeatable AI Workflows
+- [Module 2 Facilitator Guide](docs/module-2/facilitator-guide.md) — Code Review, Context, and Commands
 
 The participant-facing workshop frontend is started with `npm run docs` from the repo root. Participants run it locally on their own machines — there is nothing to host or deploy.
 

@@ -1,4 +1,4 @@
-# Module 2: From Prompts to Repeatable AI Workflows
+# Module 2: Code Review, Context, and Commands
 
 **Duration:** ~60 minutes  
 **Type:** Hands-on exercises  
@@ -11,7 +11,7 @@
 - Reviewing a pull request using only a diff — and experiencing its limits
 - Configuring GitHub MCP to give Claude access to PR descriptions, issues, and commit history
 - Comparing reviews with and without external context
-- Writing a reusable `/review-pr` command that encodes the full workflow
+- Writing a reusable `/review-pr` command that encodes the full process
 
 ---
 
