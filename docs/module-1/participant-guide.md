@@ -6,6 +6,14 @@
 
 ---
 
+## The scenario
+
+It's your first week at a new company. You've been handed a codebase that processes support tickets and told there's a bug affecting billing customers — no handover, no context, just the repo and a vague description of the problem. Your task is to understand the code quickly, improve what you find, and ship a clean change without breaking anything.
+
+This is also the situation when a colleague goes off sick and you're covering with no time for a handover, or when you inherit a service from a team that no longer exists. Claude Code can compress the orientation phase dramatically — but only if you use it as a disciplined engineering tool, not just a search engine.
+
+---
+
 ## Overview
 
 In this module you will use Claude Code to work with a realistic TypeScript backend service that has intentional imperfections. You will not be using Claude as a chatbot. You will be using it as a repo-aware engineering tool — one that reads your files, proposes changes, and operates inside a disciplined review loop.

@@ -4,6 +4,14 @@
 
 ---
 
+## The scenario
+
+A colleague has opened a PR on a shared service. The diff looks reasonable — no obvious bugs, tests pass — but you know there was a feature request last week that introduced edge cases the author may not have considered. The PR description doesn't mention it. How do you review confidently when the diff alone doesn't tell the whole story?
+
+And once you've figured out the right process, how do you stop reinventing it every time? You're a senior engineer. Your team opens dozens of PRs a month. A review workflow that lives only in your head doesn't scale — but one that lives in a slash command does.
+
+---
+
 ## Overview
 
 In this module you will experience a concrete limitation of the Module 1 review workflow — then solve it with GitHub MCP. You will finish by encoding the improved workflow into a reusable command that you can take to your own projects.
