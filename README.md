@@ -50,6 +50,8 @@ docs/
   setup/                      # Setup module shown first in the frontend
   module-1/                   # Module 1 content (exercises, guides)
   module-2/                   # Module 2 content
+  module-3/                   # Module 3 content
+  module-4/                   # Module 4 content
 docs-site/                    # Vite + React frontend that renders the docs
 examples/tickets/             # Sample input files for the service
 ```

@@ -130,7 +130,7 @@ Adapt both lists to your project's tooling.
 **Hooks:** The `PostToolUse` hook runs `npm test` after every file write.
 If your test suite is slow, replace with a faster check:
 - Linter only: `npm run lint 2>&1 | tail -5`
-- Jest watch: `npx jest --passWithNoTests 2>&1 | tail -10`
+- Vitest fast run: `npx vitest run --reporter=dot 2>&1 | tail -10`
 
 ## What this doesn't cover
 

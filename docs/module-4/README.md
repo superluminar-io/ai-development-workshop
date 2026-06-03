@@ -21,7 +21,7 @@
 2. [Exercise 2: Team Lead — Automate the Enforcement](exercises/exercise-2-hooks.md)
 3. [Exercise 3: Head of AI Engineering Practices — Build the Org Template](exercises/exercise-3-org-template.md)
 
-Or follow the [Participant Guide](participant-guide.md) for the full walkthrough.
+Or follow the [Participant Guide](participant-guide.md) for the scenario overview and troubleshooting reference.
 
 ---
 
