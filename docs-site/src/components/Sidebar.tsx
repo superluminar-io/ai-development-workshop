@@ -17,13 +17,16 @@ export function Sidebar({ module }: SidebarProps) {
         Participant Guide
       </NavLink>
 
-      <div className="sidebar__section-header">Exercises</div>
-
-      {module.exercises.map((ex, i) => (
-        <NavLink key={ex.slug} to={`/module/${module.id}/${ex.slug}`} className={linkClass}>
-          {i + 1} · {ex.title}
-        </NavLink>
-      ))}
+      {module.exercises.length > 0 && (
+        <>
+          <div className="sidebar__section-header">Exercises</div>
+          {module.exercises.map((ex, i) => (
+            <NavLink key={ex.slug} to={`/module/${module.id}/${ex.slug}`} className={linkClass}>
+              {i + 1} · {ex.title}
+            </NavLink>
+          ))}
+        </>
+      )}
     </aside>
   )
 }
