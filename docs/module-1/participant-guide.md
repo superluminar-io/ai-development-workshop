@@ -27,16 +27,21 @@ By the end you will have:
 
 ## How Claude Code slash commands work
 
-Claude Code reads `.claude/commands/` in the project root. Each `.md` file in that directory becomes a slash command. The filename (without `.md`) is the command name.
+A slash command is a prompt file stored in `.claude/commands/`. Each `.md` file in that directory becomes a command — the filename (without `.md`) is the command name. Running `/explain-codebase` is equivalent to pasting the contents of `.claude/commands/explain-codebase.md` into Claude, but repeatable and consistent every time.
 
-To run a command:
 ```
-/explain-codebase
-/propose-change
-/generate-tests
+/explain-codebase      # understand the codebase structure
+/propose-change        # plan a change before touching any files
+/generate-tests        # find missing test coverage
+/review-diff           # review everything you've changed
+/prepare-pr-summary    # produce a PR description
 ```
 
-These commands are prompt files. Open any of them in `.claude/commands/` to see exactly what Claude is being asked to do.
+**When to use them:** Whenever you find yourself typing the same instructions to Claude more than once — "read these files, don't edit anything, give me X" — that's a command waiting to be written. Commands also make workflows shareable: anyone on the team who clones the repo gets the same starting point.
+
+**Scope:** Commands in `.claude/commands/` are project-level — they're checked into the repo and apply to everyone who works in it. You can also have personal commands in `~/.claude/commands/` that follow you across all projects. Project commands take precedence when there's a name collision.
+
+**They're just markdown:** Open any command file in your editor. There's no special syntax. The prompt is exactly what Claude reads — you can read it, edit it, and understand precisely what you're asking Claude to do. This transparency is intentional. You should never run a command you haven't read.
 
 ---
 
@@ -50,6 +55,8 @@ Full instructions: [exercises/exercise-1-orientation.md](exercises/exercise-1-or
 3. Open `.claude/commands/explain-codebase.md` — see how commands are structured
 4. Write `.claude/commands/find-weaknesses.md` — your own command
 5. Run `/find-weaknesses` and produce a list of suspected issues
+
+> **In the scenario:** This is day one. Before you touch anything, you need a map. `/explain-codebase` gives you one in minutes. Writing your own `/find-weaknesses` command is your first act of initiative — you've been told there's a billing bug, so you're actively looking for where things go wrong before anyone asks you to.
 
 **Checkpoint after Exercise 1:**
 - [ ] I can describe what `processTicket` does in one sentence
@@ -71,6 +78,8 @@ Full instructions: [exercises/exercise-2-refactoring.md](exercises/exercise-2-re
 5. Run `npm test` after each change
 6. Run `git diff` before accepting each change
 
+> **In the scenario:** You've found issues in a codebase you don't fully understand yet. The `/propose-change` command forces a written plan before any code moves — exactly the discipline you want when working in unfamiliar territory with a production service. Running `npm test` and `git diff` after each step means you stay in control even if Claude surprises you.
+
 **Checkpoint after Exercise 2:**
 - [ ] `category` is a union type, not `string`
 - [ ] `priority` is removed from the `Ticket` input type
@@ -91,6 +100,8 @@ Full instructions: [exercises/exercise-3-tests-and-review.md](exercises/exercise
 3. Fix the bug
 4. Run `/review-diff` — review the full changeset
 5. Run `/prepare-pr-summary` — produce a PR summary
+
+> **In the scenario:** You've made changes to a codebase you've owned for less than a week. Your first PR at the new company needs to show that the work is sound — not just that it runs. `/generate-tests` closes coverage gaps before your reviewer finds them. `/prepare-pr-summary` means your PR description explains the *why*, not just the *what*, so your new colleagues can review it properly.
 
 **Checkpoint after Exercise 3:**
 - [ ] Two new tests added for high-value billing tickets
