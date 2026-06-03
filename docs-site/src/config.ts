@@ -17,7 +17,7 @@ export interface Module {
 export const modules: Module[] = [
   {
     id: 'setup',
-    number: 'Setup',
+    number: '00',
     title: 'Environment Setup',
     description: 'Install Node.js, Claude Code, and verify the service runs before starting the exercises.',
     status: 'ready',
