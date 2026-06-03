@@ -22,30 +22,6 @@ Superpowers is an official plugin that adds a library of structured skills for c
 
 ---
 
-## Exercise 1 — Plugins and Superpowers (~20 min)
-
-Install the Superpowers plugin, explore what it adds, and understand how its skills relate to the skill you wrote in Module 1. [Full instructions →](exercises/exercise-1-plugins-and-superpowers.md)
-
-> **In the scenario:** You've heard about Superpowers from a colleague. Before you use it, you want to understand what it actually is — not just install it blindly. You read a skill file, compare it to your own, and understand exactly what Claude is being given access to.
-
----
-
-## Exercise 2 — Spec-Driven Development (~25 min)
-
-Use the `brainstorming` and `writing-plans` skills to take a feature from idea to committed implementation plan — without writing a line of code. [Full instructions →](exercises/exercise-2-spec-driven-development.md)
-
-> **In the scenario:** Your manager asks you to add a `feedback` category to the ticket processor. Your instinct is to open the code immediately. Instead, you use Superpowers to explore the idea first — and discover that the five minutes of upfront thinking saves you from implementing the wrong thing.
-
----
-
-## Exercise 3 — Build a Feature on the Workshop Website (~30 min)
-
-Use the full Superpowers spec-driven process — brainstorm, spec, plan, execute — to add exercise completion tracking to the workshop website you are using right now. [Full instructions →](exercises/exercise-3-superpowers-skill.md)
-
-> **In the scenario:** You have now seen the full process: brainstorm a problem, write a spec, create a plan, implement it. This time you apply it to something you own — the workshop website — and you take it all the way from idea to working feature.
-
----
-
 ## Troubleshooting
 
 **`/plugin install` command not found**  
