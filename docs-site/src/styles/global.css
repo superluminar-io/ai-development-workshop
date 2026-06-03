@@ -16,8 +16,10 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 10;
 }
 .nav-logo {
@@ -59,7 +61,7 @@ body {
 .nav-back:hover { color: var(--ac); }
 
 /* ── Home page ── */
-.home { display: flex; flex-direction: column; min-height: 100vh; }
+.home { display: flex; flex-direction: column; min-height: 100vh; padding-top: 56px; }
 
 .home__hero {
   max-width: 720px;
@@ -180,7 +182,7 @@ body {
 .exercise-chip::before { content: '→ '; color: var(--ac); }
 
 /* ── Module page ── */
-.module-page { display: flex; flex-direction: column; min-height: 100vh; }
+.module-page { display: flex; flex-direction: column; min-height: 100vh; padding-top: 56px; }
 .module-page__body { display: flex; flex: 1; overflow: hidden; height: calc(100vh - 56px); }
 .module-page__content { flex: 1; padding: 40px 48px; overflow-y: auto; }
 
