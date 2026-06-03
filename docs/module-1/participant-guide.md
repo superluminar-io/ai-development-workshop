@@ -47,68 +47,25 @@ A slash command is a prompt file stored in `.claude/commands/`. Each `.md` file 
 
 ## Exercise 1 — Codebase Orientation (~18 min)
 
-Full instructions: [exercises/exercise-1-orientation.md](exercises/exercise-1-orientation.md)
-
-**Quick summary:**
-1. Read `CLAUDE.md` and understand what it constrains
-2. Run `/explain-codebase` and verify two of Claude's claims against the source files
-3. Open `.claude/commands/explain-codebase.md` — see how commands are structured
-4. Write `.claude/commands/find-weaknesses.md` — your own command
-5. Run `/find-weaknesses` and produce a list of suspected issues
+Explore the service with Claude, understand how slash commands work, and write your first custom command. [Full instructions →](exercises/exercise-1-orientation.md)
 
 > **In the scenario:** This is day one. Before you touch anything, you need a map. `/explain-codebase` gives you one in minutes. Writing your own `/find-weaknesses` command is your first act of initiative — you've been told there's a billing bug, so you're actively looking for where things go wrong before anyone asks you to.
-
-**Checkpoint after Exercise 1:**
-- [ ] I can describe what `processTicket` does in one sentence
-- [ ] I have a list of 3–5 suspected improvement areas
-- [ ] I have written and run a custom slash command
-- [ ] I have not changed any source or test files
 
 ---
 
 ## Exercise 2 — Safe Refactoring (~22 min)
 
-Full instructions: [exercises/exercise-2-refactoring.md](exercises/exercise-2-refactoring.md)
-
-**Quick summary:**
-1. Run `/propose-change` before touching anything
-2. Strengthen TypeScript types in `src/domain/ticket.ts`
-3. Add Zod validation to `src/handlers/processTicket.ts`
-4. Separate parsing from domain logic
-5. Run `npm test` after each change
-6. Run `git diff` before accepting each change
+Improve the starter code in small steps — stronger types, Zod validation, cleaner separation — with Claude proposing and you reviewing. [Full instructions →](exercises/exercise-2-refactoring.md)
 
 > **In the scenario:** You've found issues in a codebase you don't fully understand yet. The `/propose-change` command forces a written plan before any code moves — exactly the discipline you want when working in unfamiliar territory with a production service. Running `npm test` and `git diff` after each step means you stay in control even if Claude surprises you.
-
-**Checkpoint after Exercise 2:**
-- [ ] `category` is a union type, not `string`
-- [ ] `priority` is removed from the `Ticket` input type
-- [ ] The handler throws an explicit error instead of returning `undefined`
-- [ ] Parsing and domain logic are in separate functions
-- [ ] All tests are passing
-- [ ] `git log` shows 3 focused commits
 
 ---
 
 ## Exercise 3 — Tests, Review, and PR Prep (~18 min)
 
-Full instructions: [exercises/exercise-3-tests-and-review.md](exercises/exercise-3-tests-and-review.md)
-
-**Quick summary:**
-1. Run `/generate-tests` — find missing edge cases
-2. Write and run the test that exposes a real bug
-3. Fix the bug
-4. Run `/review-diff` — review the full changeset
-5. Run `/prepare-pr-summary` — produce a PR summary
+Use Claude to find missing test coverage, expose and fix a real bug, then produce a review and PR summary. [Full instructions →](exercises/exercise-3-tests-and-review.md)
 
 > **In the scenario:** You've made changes to a codebase you've owned for less than a week. Your first PR at the new company needs to show that the work is sound — not just that it runs. `/generate-tests` closes coverage gaps before your reviewer finds them. `/prepare-pr-summary` means your PR description explains the *why*, not just the *what*, so your new colleagues can review it properly.
-
-**Checkpoint after Exercise 3:**
-- [ ] Two new tests added for high-value billing tickets
-- [ ] The billing escalation bug is fixed
-- [ ] All tests are passing
-- [ ] I have a review note and a PR summary
-- [ ] I have a list of remaining risks or follow-up tasks
 
 ---
 
