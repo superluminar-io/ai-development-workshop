@@ -2,6 +2,8 @@
 
 **Claude Code in the Engineering Loop**
 
+> Complete the **Setup** module before starting here.
+
 ---
 
 ## Overview
@@ -14,31 +16,6 @@ By the end you will have:
 - refactored code with Claude in small, reviewable steps
 - found and fixed a real bug through test generation
 - produced a PR-style review and summary
-
----
-
-## Prerequisites
-
-- Node.js 20+ installed
-- Claude Code CLI installed (`claude --version` should work)
-- A code editor open on this repository
-- A terminal in the repository root
-
-If you have not used Claude Code before, run `claude` in your terminal and follow the authentication prompts.
-
----
-
-## Setup
-
-```bash
-# in the repo root
-npm install
-npm test          # should show 14 tests passing
-npm run typecheck # should show 0 errors
-npm run process:example  # processes examples/tickets/billing-high.json
-```
-
-If any of these fail, ask for help before starting.
 
 ---
 
