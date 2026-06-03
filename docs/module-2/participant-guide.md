@@ -73,7 +73,7 @@ Configure GitHub MCP, re-run the same review with full context, and compare what
 
 ## Exercise 3 — Build a Reusable Command (~18 min)
 
-Encode the full review workflow into a `/review-pr` command you can take to your own projects. [Full instructions →](exercises/exercise-3-reusable-command.md)
+You built a simple command in Module 1. This one is different — complete a structured skeleton to produce a team-ready `/review-pr` command that orchestrates GitHub MCP across two repos. [Full instructions →](exercises/exercise-3-reusable-command.md)
 
 ---
 

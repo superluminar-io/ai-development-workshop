@@ -10,6 +10,18 @@
 
 ---
 
+## This is not the same as Module 1
+
+In Module 1 you wrote `/find-weaknesses` — a simple command that reads local files and lists what it finds. That taught you the mechanics: create a markdown file, give Claude specific instructions, run it.
+
+This exercise is different in three ways:
+
+1. **You're completing a skeleton, not starting from scratch.** The structure of a good PR review command is already there. Your job is to write the specific instructions inside it — which requires judgement, not just knowledge of the format.
+2. **The command orchestrates external tools.** `/find-weaknesses` reads files. `/review-pr` fetches a PR from GitHub, follows linked issues, cross-references context across two repos, and produces a structured output. It is a workflow, not a lookup.
+3. **The quality bar is team-ready.** A `/find-weaknesses` command is useful to you personally. A `/review-pr` command is something you would share with colleagues and run on every PR. That changes what "good enough" means.
+
+---
+
 ## Step 1 — Read the skeleton (~3 min)
 
 **[workshop repo]** Open `.claude/commands/review-pr.md` in your editor.
