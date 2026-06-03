@@ -1,11 +1,9 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { modules } from '../config'
 
-interface NavProps {
-  backLink?: boolean
-}
-
-export function Nav({ backLink }: NavProps) {
+export function Nav() {
+  const { pathname } = useLocation()
+  const isModulePage = pathname.startsWith('/module/')
   const readyCount = modules.filter((m) => m.status === 'ready').length
 
   return (
@@ -14,7 +12,7 @@ export function Nav({ backLink }: NavProps) {
         <span className="nav-logo-mark">S</span>
         AI Development Workshop
       </Link>
-      {backLink ? (
+      {isModulePage ? (
         <Link to="/" className="nav-back">
           ← All modules
         </Link>

@@ -1,11 +1,18 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+html, body { height: 100%; }
+
 body {
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-body);
-  min-height: 100vh;
 }
+
+#root { height: 100%; display: flex; flex-direction: column; }
+
+.app-shell { display: flex; flex-direction: column; height: 100%; }
+
+.app-content { flex: 1; overflow-y: auto; min-height: 0; }
 
 /* ── Nav ── */
 .nav {
@@ -16,11 +23,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 10;
+  flex-shrink: 0;
 }
 .nav-logo {
   font-family: var(--font-headline);
@@ -61,7 +64,7 @@ body {
 .nav-back:hover { color: var(--ac); }
 
 /* ── Home page ── */
-.home { display: flex; flex-direction: column; min-height: 100vh; padding-top: 56px; }
+.home { display: flex; flex-direction: column; }
 
 .home__hero {
   max-width: 720px;
@@ -182,9 +185,8 @@ body {
 .exercise-chip::before { content: '→ '; color: var(--ac); }
 
 /* ── Module page ── */
-.module-page { display: flex; flex-direction: column; min-height: 100vh; padding-top: 56px; }
-.module-page__body { display: flex; flex: 1; overflow: hidden; height: calc(100vh - 56px); }
-.module-page__content { flex: 1; padding: 40px 48px; overflow-y: auto; }
+.module-page { display: flex; flex: 1; min-height: 0; }
+.module-page__content { flex: 1; padding: 40px 48px; overflow-y: auto; min-height: 0; }
 
 /* ── Sidebar ── */
 .sidebar {

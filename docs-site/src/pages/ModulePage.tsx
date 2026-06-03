@@ -1,7 +1,6 @@
 import { Navigate, useParams } from 'react-router-dom'
 import { modules } from '../config'
 import { resolvePageFile } from '../utils/resolvePageFile'
-import { Nav } from '../components/Nav'
 import { Sidebar } from '../components/Sidebar'
 import { MarkdownView } from '../components/MarkdownView'
 
@@ -24,13 +23,10 @@ export function ModulePage() {
 
   return (
     <div className="module-page">
-      <Nav backLink />
-      <div className="module-page__body">
-        <Sidebar module={module} />
-        <main className="module-page__content">
-          <MarkdownView file={file} />
-        </main>
-      </div>
+      <Sidebar module={module} />
+      <main className="module-page__content">
+        <MarkdownView file={file} />
+      </main>
     </div>
   )
 }
