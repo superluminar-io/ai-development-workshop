@@ -11,6 +11,7 @@ export function MarkdownView({ file }: MarkdownViewProps) {
   const [error, setError] = useState(false)
 
   useEffect(() => {
+    let cancelled = false
     setContent(null)
     setError(false)
 
@@ -19,8 +20,10 @@ export function MarkdownView({ file }: MarkdownViewProps) {
         if (!res.ok) throw new Error(`${res.status}`)
         return res.text()
       })
-      .then(setContent)
-      .catch(() => setError(true))
+      .then((text) => { if (!cancelled) setContent(text) })
+      .catch(() => { if (!cancelled) setError(true) })
+
+    return () => { cancelled = true }
   }, [file])
 
   if (error) return <p className="markdown-error">Could not load content ({file})</p>
