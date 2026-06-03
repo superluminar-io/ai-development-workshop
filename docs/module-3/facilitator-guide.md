@@ -29,9 +29,9 @@ By the end of this module participants should be able to:
 | Debrief Exercise 1 | 5 min |
 | Exercise 2 | 25 min |
 | Debrief Exercise 2 | 5 min |
-| Exercise 3 | 15 min |
+| Exercise 3 | 30 min |
 | Debrief + wrap-up | 5 min |
-| **Total** | **~80 min** |
+| **Total** | **~95 min** |
 
 ---
 
@@ -71,9 +71,13 @@ Run this yourself and confirm it installs cleanly. If the registry is unavailabl
 
 ## Exercise 3 facilitation notes
 
-This is the lightest exercise. Its purpose is to close the loop from Module 1 (simple skills) to Superpowers (richer skills) and to plant the idea of skill distribution.
+This is the capstone exercise — the full spec-driven process applied to a real codebase participants own. It is longer than exercises 1 and 2 (~30 min) and involves actual implementation.
 
-**The distribution hierarchy** (personal → project → plugin) mirrors how most organisational knowledge works: individual → team → company. Draw that parallel explicitly if time allows.
+**The brainstorming will surface real design decisions.** Where does state live? What counts as "complete"? Can you un-mark? These are not trick questions — they are genuine decisions, and the fact that the brainstorming skill surfaces them before a line of code is written is the point.
+
+**Watch for scope creep.** Participants may want to add animations, server-side persistence, or user accounts. Redirect firmly: localStorage + sidebar checkmarks + home page progress count is the scope. The goal is to experience the full cycle, not to ship a perfect feature.
+
+**The execution step will vary.** Some participants will have a smooth implementation; others will hit test failures or CSS issues. Both are valid outcomes — the exercise is about the process, not just the result. If time is short, participants can stop after the plan is written and the first task is implemented.
 
 ---
 

@@ -38,11 +38,11 @@ Use the `brainstorming` and `writing-plans` skills to take a feature from idea t
 
 ---
 
-## Exercise 3 — Write a Superpowers-Compatible Skill (~15 min)
+## Exercise 3 — Build a Feature on the Workshop Website (~30 min)
 
-Upgrade the `safe-refactoring.md` skill from Module 1 to the full Superpowers format, and understand how skills are distributed across projects and teams. [Full instructions →](exercises/exercise-3-superpowers-skill.md)
+Use the full Superpowers spec-driven process — brainstorm, spec, plan, execute — to add exercise completion tracking to the workshop website you are using right now. [Full instructions →](exercises/exercise-3-superpowers-skill.md)
 
-> **In the scenario:** Your refactoring skill from week one has been useful. Now you want to share it with your team through the project repo, and understand how it would eventually become part of a shared plugin if the practice spread across the organisation.
+> **In the scenario:** You have now seen the full process: brainstorm a problem, write a spec, create a plan, implement it. This time you apply it to something you own — the workshop website — and you take it all the way from idea to working feature.
 
 ---
 

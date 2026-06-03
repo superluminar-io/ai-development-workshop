@@ -1,99 +1,114 @@
-# Exercise 3: Write a Superpowers-Compatible Skill
+# Exercise 3: Build a Feature on the Workshop Website
 
-**Goal:** Upgrade your `safe-refactoring.md` skill from Module 1 to the full Superpowers frontmatter format, and understand how skills are distributed across projects and teams.
+**Goal:** Use the full Superpowers spec-driven process — brainstorm, spec, plan, execute — to add exercise completion tracking to the workshop website you are using right now.
 
-**Duration:** ~15 minutes  
-**Prerequisites:** Exercise 1 complete, `.claude/skills/safe-refactoring.md` from Module 1
-
----
-
-## Skills evolve
-
-In Module 1 you wrote a skill with two frontmatter fields — `name` and `description`. That was enough to make Claude apply it contextually. Superpowers skills use a richer format that makes the skill more precise, more readable, and compatible with the Superpowers plugin ecosystem.
-
-The upgrade is small. The concept is identical.
+**Duration:** ~30 minutes  
+**Prerequisites:** Exercises 1 and 2 complete
 
 ---
 
-## Step 1 — Read a Superpowers skill's frontmatter (~5 min)
+## The feature
 
-Ask Claude:
+The workshop website currently has no way to track your progress. You cannot mark an exercise as done, and the home page shows no indication of how far through each module you are.
 
-> "Show me the frontmatter of the `systematic-debugging` Superpowers skill."
+You are going to fix that. By the end of this exercise, participants will be able to mark exercises complete and see their progress on the home page.
 
-Read the frontmatter fields. A Superpowers skill typically uses:
-
-```yaml
----
-name: skill-name
-description: One-line description of what this skill does
-when_to_use: A specific, situational description of the circumstances that call for this skill
----
-```
-
-The key addition is `when_to_use`. This is more explicit than `description` — it describes the *trigger condition*, not just what the skill does.
-
-Notice how specific it is. A vague `when_to_use` like "when writing code" would never be useful — it matches everything. A precise one like "when you encounter an unexpected test failure and do not know what caused it" matches a specific situation and nothing else.
+This time you will not stop at the plan — you will implement it.
 
 ---
 
-## Step 2 — Upgrade your skill (~7 min)
+## Step 1 — Brainstorm the feature (~8 min)
 
-Open `.claude/skills/safe-refactoring.md` in your editor.
+You know this codebase. You have been using the website throughout the workshop, and you understand how it is built. That context will make your brainstorming sharper than it was for the ticket processor.
 
-Add a `when_to_use` field to the frontmatter. Write it to be:
-- A complete sentence describing a specific situation
-- Specific enough that it would not trigger on unrelated tasks
-- Broad enough to cover the situations where you actually want it to apply
+In Claude Code, invoke the brainstorming skill:
 
-For example:
+> "I want to use the brainstorming skill to design an exercise completion tracking feature for the workshop website. Participants should be able to mark exercises as done and see their progress."
 
-```yaml
+The brainstorming skill will ask questions. Keep your answers focused — you want a spec, not an open-ended discussion. Things worth thinking through:
+
+- What does "complete" mean? Does the participant mark it manually, or does something trigger it automatically?
+- Where does the state live? (There is no backend — think browser.)
+- What UI shows completion? In the sidebar? On the home page module cards? Both?
+- Can you un-mark an exercise? What happens if you clear your browser data?
+- Does progress need to carry across sessions?
+
+When the skill produces a spec, review it. Correct anything that does not match your intent.
+
+<details>
+<summary>Hint: The brainstorming is going too deep</summary>
+
+Keep scope tight. You do not need animations, server sync, or user accounts. A minimal but complete feature: participants click something to mark an exercise done, the state persists in localStorage, and the sidebar shows which exercises are complete. That is enough to spec and plan in this session.
+
+</details>
+
 ---
-name: safe-refactoring
-description: Use when asked to modify or improve existing TypeScript code in a codebase you did not write
-when_to_use: When asked to refactor, restructure, or improve code that belongs to a system you are unfamiliar with and did not write — especially where tests exist that document the expected behaviour
+
+## Step 2 — Create the implementation plan (~5 min)
+
+Once you have a spec, invoke the `writing-plans` skill:
+
+> "Use the writing-plans skill to create an implementation plan for the exercise completion tracking spec."
+
+The skill will read the spec and produce a step-by-step plan. Expect it to touch:
+- A new hook or utility for reading and writing progress state
+- `Sidebar.tsx` — to show completion indicators next to exercises
+- `ModuleCard.tsx` — to show a progress count or progress bar on the home page
+- Possibly some CSS changes in `global.css`
+
+Read the plan. Make sure each step is concrete enough that you could follow it without guessing.
+
 ---
-```
 
-You do not need to copy this exactly. Write what fits your skill.
+## Step 3 — Execute the plan (~15 min)
 
-Save the file and commit it:
+Invoke the `executing-plans` skill:
+
+> "Use the executing-plans skill to implement this plan."
+
+Follow the skill's process. It will work through the plan task by task, running tests and checking in between steps.
+
+Watch what it does. If it goes off-track or makes a change you did not expect, stop it and redirect — just as you did in Module 1 with refactoring. The discipline of reviewing each step applies here exactly as it did there.
+
+<details>
+<summary>Hint: The implementation is failing tests</summary>
+
+The workshop website uses Vitest. Run `cd docs-site && npm test` to see what is failing. If a component test breaks because of a new prop or changed behaviour, read the failure carefully — it usually tells you exactly what needs updating.
+
+</details>
+
+---
+
+## Step 4 — Verify it in the browser (~2 min)
+
+Start the workshop frontend if it is not already running:
 
 ```bash
-git add .claude/skills/safe-refactoring.md
-git commit -m "refactor: upgrade safe-refactoring skill to Superpowers format"
+npm run docs
 ```
 
----
+Open `http://localhost:5173`. Navigate to a module and mark an exercise complete. Then:
+- Reload the page — does the completion state persist?
+- Go back to the home page — does the module card show your progress?
 
-## Step 3 — Understand how skills are distributed (~3 min)
-
-Skills can live in three places, each with a different scope:
-
-| Location | Scope | Who sees it |
-|---|---|---|
-| `~/.claude/skills/` | Personal | Only you, across all projects |
-| `.claude/skills/` | Project | Anyone who clones the repo |
-| Plugin (e.g. Superpowers) | Installed | Anyone who installs the plugin |
-
-Your `safe-refactoring.md` is in `.claude/skills/` — it is checked into the workshop repo, so your whole team gets it automatically. That is the right level for a project-specific practice.
-
-If a skill is so generally useful that every TypeScript project should have it, it belongs in a plugin. If it is specific to your team's way of working, it belongs in a shared project config or team repo. If it is experimental or personal, it belongs in `~/.claude/skills/`.
+If something is not working, check the browser console for errors.
 
 ---
 
 ## Deliverable
 
 By the end of Exercise 3 you should have:
-- [ ] `safe-refactoring.md` upgraded with a `when_to_use` field
-- [ ] The upgraded skill committed to the workshop repo
-- [ ] A clear mental model of the three levels of skill distribution
+- [ ] A spec for the completion tracking feature
+- [ ] An implementation plan
+- [ ] A working implementation in the `docs-site/` frontend
+- [ ] Progress visible in both the sidebar and the home page
+- [ ] State persisting across page reloads
 
 ---
 
 ## Reflection questions
 
-- What is the difference between `description` and `when_to_use`? Why have both?
-- Which of your current team processes would be worth encoding as a shared project skill?
-- At what point does a project skill deserve to become a plugin? What would that decision look like?
+- How did having a spec change the way you approached the implementation?
+- Did the plan match what actually needed to happen, or did you need to deviate? Why?
+- You used Superpowers on a codebase you built in this workshop. How would the brainstorming have been different if you were new to the codebase?
+- What would you do differently if you were building this for a production application instead of a workshop tool?

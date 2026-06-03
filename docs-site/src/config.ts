@@ -102,7 +102,7 @@ export const modules: Module[] = [
       },
       {
         slug: 'exercise-3-superpowers-skill',
-        title: 'Write a Superpowers-Compatible Skill',
+        title: 'Build a Feature on the Workshop Website',
         file: '/docs/module-3/exercises/exercise-3-superpowers-skill.md',
       },
     ],
