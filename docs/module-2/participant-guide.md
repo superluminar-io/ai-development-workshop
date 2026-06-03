@@ -61,55 +61,19 @@ Ask the facilitator to confirm your GitHub account has read access to `superlumi
 
 ## Exercise 1 — Review Without Context (~15 min)
 
-Full instructions: [exercises/exercise-1-review-without-context.md](exercises/exercise-1-review-without-context.md)
-
-**Quick summary:**
-1. **[demo repo via MCP]** Get the open PR URL from the facilitator. Read the title and description in your browser.
-2. **[workshop repo]** Run `/review-diff` with the pasted diff — no GitHub MCP yet
-3. **[workshop repo]** Note what Claude cannot answer from the diff alone
-4. **[workshop repo]** Try to fill those gaps from the PR description — note what remains unanswered
-
-**Checkpoint after Exercise 1:**
-- [ ] I have a review produced by `/review-diff`
-- [ ] I have a list of unanswered questions
-- [ ] I understand what context the diff does not provide
-- [ ] I have not changed any files
+Review a real PR using only the diff — and experience first-hand what Claude cannot tell you without broader context. [Full instructions →](exercises/exercise-1-review-without-context.md)
 
 ---
 
 ## Exercise 2 — GitHub MCP Setup and Re-review (~25 min)
 
-Full instructions: [exercises/exercise-2-github-mcp.md](exercises/exercise-2-github-mcp.md)
-
-**Quick summary:**
-1. **[workshop repo]** Set `GITHUB_PERSONAL_ACCESS_TOKEN` and restart Claude Code if needed
-2. **[workshop repo]** Read `.mcp.json` — understand what it configures
-3. **[workshop repo]** Verify GitHub MCP is active by asking Claude what it can see
-4. **[demo repo via MCP]** Re-run the PR review with full GitHub context
-5. **[workshop repo]** Compare the two reviews — what did MCP reveal?
-
-**Checkpoint after Exercise 2:**
-- [ ] GitHub MCP is configured and verified working
-- [ ] I have a second review using full GitHub context
-- [ ] I can name something the linked issue revealed that the diff did not
-- [ ] I understand why the third planted issue was invisible without MCP
+Configure GitHub MCP, re-run the same review with full context, and compare what changes. [Full instructions →](exercises/exercise-2-github-mcp.md)
 
 ---
 
 ## Exercise 3 — Build a Reusable Command (~18 min)
 
-Full instructions: [exercises/exercise-3-reusable-command.md](exercises/exercise-3-reusable-command.md)
-
-**Quick summary:**
-1. **[workshop repo]** Open `.claude/commands/review-pr.md` — read the skeleton
-2. **[workshop repo]** Complete the four prompt sections with your own instructions
-3. **[workshop repo]** Run `/review-pr` — Claude will read the **[demo repo via MCP]** PR
-4. **[workshop repo]** Commit your completed command
-
-**Checkpoint after Exercise 3:**
-- [ ] `.claude/commands/review-pr.md` is complete and committed to the workshop repo
-- [ ] `/review-pr` found at least the first two planted issues in the demo PR
-- [ ] I have a list of refinements I would make before using this on my own team's repos
+Encode the full review workflow into a `/review-pr` command you can take to your own projects. [Full instructions →](exercises/exercise-3-reusable-command.md)
 
 ---
 
