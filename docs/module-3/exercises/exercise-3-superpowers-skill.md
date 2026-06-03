@@ -21,9 +21,11 @@ This time you will not stop at the plan — you will implement it.
 
 You know this codebase. You have been using the website throughout the workshop, and you understand how it is built. That context will make your brainstorming sharper than it was for the ticket processor.
 
-In Claude Code, invoke the brainstorming skill:
+In Claude Code, describe what you want to build:
 
-> "I want to use the brainstorming skill to design an exercise completion tracking feature for the workshop website. Participants should be able to mark exercises as done and see their progress."
+> "I want to add exercise completion tracking to the workshop website. Participants should be able to mark exercises as done and see their progress. Let's think through how this should work before touching any code."
+
+That description matches the brainstorming skill — Claude will apply it automatically. You do not need to name the skill.
 
 The brainstorming skill will ask questions. Keep your answers focused — you want a spec, not an open-ended discussion. Things worth thinking through:
 
@@ -44,13 +46,11 @@ Keep scope tight. You do not need animations, server sync, or user accounts. A m
 
 ---
 
-## Step 2 — Create the implementation plan (~5 min)
+## Step 2 — Review the implementation plan (~5 min)
 
-Once you have a spec, invoke the `writing-plans` skill:
+Once the spec is written and you approve it, Claude will ask if it can proceed to create an implementation plan. Say yes — the writing-plans skill runs automatically from there.
 
-> "Use the writing-plans skill to create an implementation plan for the exercise completion tracking spec."
-
-The skill will read the spec and produce a step-by-step plan. Expect it to touch:
+The plan will be produced without you needing to ask for it. Expect it to touch:
 - A new hook or utility for reading and writing progress state
 - `Sidebar.tsx` — to show completion indicators next to exercises
 - `ModuleCard.tsx` — to show a progress count or progress bar on the home page
@@ -62,11 +62,9 @@ Read the plan. Make sure each step is concrete enough that you could follow it w
 
 ## Step 3 — Execute the plan (~15 min)
 
-Invoke the `executing-plans` skill:
+Once the plan is written, Claude will offer to begin executing it. Say yes and follow along.
 
-> "Use the executing-plans skill to implement this plan."
-
-Follow the skill's process. It will work through the plan task by task, running tests and checking in between steps.
+The executing-plans skill runs automatically from the plan — you do not need to trigger it separately. Follow the skill's process. It will work through the plan task by task, running tests and checking in between steps.
 
 Watch what it does. If it goes off-track or makes a change you did not expect, stop it and redirect — just as you did in Module 1 with refactoring. The discipline of reviewing each step applies here exactly as it did there.
 

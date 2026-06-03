@@ -79,19 +79,17 @@ The concept you learned in Module 1 — a markdown file that tells Claude how to
 
 ---
 
-## Step 4 — Understand how skills are invoked (~4 min)
+## Step 4 — Understand how skills trigger (~4 min)
 
-In Module 1, CLAUDE.md told Claude to scan `.claude/skills/` and apply matching skills based on their `description`. Superpowers skills work differently: they are invoked explicitly using the `Skill` tool inside Claude Code.
+Superpowers skills work exactly the same way as the skill you wrote in Module 1. Claude reads the `description` field in the frontmatter and applies the skill automatically when your message matches it — you do not invoke skills explicitly. You just describe what you need in natural language.
 
-Ask Claude:
+Look at the brainstorming skill's description again:
 
-> "How do I invoke a Superpowers skill?"
+> *"You MUST use this before any creative work — creating features, building components, adding functionality, or modifying behavior."*
 
-The key distinction:
-- **Your skills** (`.claude/skills/`) — Claude recognises and applies them automatically based on context
-- **Superpowers skills** — you invoke them deliberately when you decide the task warrants a structured approach
+If you send Claude a message like "I want to add a new feature to this service," that matches the brainstorming description and Claude will apply the skill. You do not need to name the skill. You do not need to ask for it. You just say what you want to do.
 
-Neither is better. They serve different purposes. Your skills encode how Claude should approach tasks in your specific project. Superpowers skills encode how to run a structured engineering process.
+This is identical to how your `safe-refactoring.md` works. When you tell Claude "I want to refactor this handler," it matches the description and applies the skill. The only difference between your skill and a Superpowers skill is where the file lives and how carefully it was written.
 
 ---
 
@@ -101,7 +99,7 @@ By the end of Exercise 1 you should have:
 - [ ] Superpowers installed and verified
 - [ ] A list of available skills from the plugin
 - [ ] A side-by-side comparison of your Module 1 skill and a Superpowers skill
-- [ ] A clear understanding of when to use each invocation style
+- [ ] A clear understanding that all skills — yours and Superpowers — trigger the same way: through natural language, not explicit invocation
 
 ---
 

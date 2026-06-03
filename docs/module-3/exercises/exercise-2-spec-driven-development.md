@@ -26,9 +26,11 @@ Do not open the code yet.
 
 ## Step 1 — Brainstorm the feature (~12 min)
 
-In Claude Code, invoke the brainstorming skill:
+In Claude Code, describe what you want to do in plain language:
 
-> "I want to use the brainstorming skill to explore adding a `feedback` category to this ticket processor."
+> "I want to add a `feedback` category to this ticket processor. Before I start changing anything, can we think through what this should do?"
+
+That description matches the brainstorming skill's trigger — Claude will automatically apply it and start exploring the feature with you. You do not need to name the skill or ask for it explicitly.
 
 The brainstorming skill will ask you questions. Answer them — but keep your answers focused and concise. The goal is a written spec, not an open-ended discussion.
 
@@ -61,13 +63,11 @@ A good spec should be specific enough that two different engineers, reading it i
 
 ---
 
-## Step 3 — Create an implementation plan (~8 min)
+## Step 3 — Review the implementation plan (~8 min)
 
-Now invoke the `writing-plans` skill:
+Once the spec is written and you approve it, Claude will ask if it can proceed to create an implementation plan. Say yes.
 
-> "Use the writing-plans skill to create an implementation plan for the feedback ticket category spec we just produced."
-
-The skill will read the spec and produce a step-by-step plan: which files to touch, what changes to make in each, what tests to write, and in what order.
+The writing-plans skill will run automatically — you do not need to trigger it. It reads the spec and produces a step-by-step plan: which files to touch, what changes to make in each, what tests to write, and in what order.
 
 Read the plan. Notice:
 - Each step is concrete — not "add validation" but "add `'feedback'` to the `category` union type in `src/domain/ticket.ts`"
