@@ -6,7 +6,7 @@ The workshop is structured as self-contained modules, each ~60 minutes. Content 
 
 ---
 
-## For participants
+## For workshop participants
 
 ### Before you start
 
