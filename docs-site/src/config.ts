@@ -81,4 +81,30 @@ export const modules: Module[] = [
       },
     ],
   },
+  {
+    id: 'module-3',
+    number: '03',
+    title: 'Plugins, Superpowers, and Spec-Driven Development',
+    description:
+      'Install the Superpowers plugin, explore community-built skills, and use spec-driven development to take a feature from idea to implementation plan.',
+    status: 'ready',
+    participantGuide: '/docs/module-3/participant-guide.md',
+    exercises: [
+      {
+        slug: 'exercise-1-plugins-and-superpowers',
+        title: 'Plugins and Superpowers',
+        file: '/docs/module-3/exercises/exercise-1-plugins-and-superpowers.md',
+      },
+      {
+        slug: 'exercise-2-spec-driven-development',
+        title: 'Spec-Driven Development',
+        file: '/docs/module-3/exercises/exercise-2-spec-driven-development.md',
+      },
+      {
+        slug: 'exercise-3-superpowers-skill',
+        title: 'Write a Superpowers-Compatible Skill',
+        file: '/docs/module-3/exercises/exercise-3-superpowers-skill.md',
+      },
+    ],
+  },
 ]

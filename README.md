@@ -32,6 +32,7 @@ Each module has a facilitator guide with learning goals, timing, and common part
 
 - [Module 1 Facilitator Guide](docs/module-1/facilitator-guide.md) — Claude Code in the Engineering Loop
 - [Module 2 Facilitator Guide](docs/module-2/facilitator-guide.md) — Code Review, Context, and Commands
+- [Module 3 Facilitator Guide](docs/module-3/facilitator-guide.md) — Plugins, Superpowers, and Spec-Driven Development
 
 The participant-facing workshop frontend is started with `npm run docs` from the repo root. Participants run it locally on their own machines — there is nothing to host or deploy.
 
