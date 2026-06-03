@@ -10,6 +10,20 @@ A colleague has opened a PR on a shared service. The diff looks reasonable — n
 
 ---
 
+## What is MCP?
+
+MCP stands for **Model Context Protocol** — an open standard that lets Claude connect to external tools and data sources beyond your local files.
+
+By default, Claude Code can read and edit files in your repository. That is enough for most coding tasks. But some tasks require context that lives somewhere else: a GitHub PR description, a linked issue, a Jira ticket, a Confluence page, a database. Without access to those, Claude is working with an incomplete picture.
+
+MCP is how you give Claude that access. You configure an MCP server for a specific tool — GitHub, in this module — and Claude can then query it directly: fetch a PR, read linked issues, check commit history. Claude does not scrape websites or guess. It calls the tool the same way you would, using your credentials.
+
+**When to use it:** Any time the context Claude needs is not in your local repository. For code review, that means PR descriptions, linked issues, and the intent behind a change. For other tasks, it might mean support tickets, internal documentation, or deployment logs. MCP turns Claude from a local file reader into a tool that can reach the same systems you work with every day.
+
+In this module you will see exactly what changes — and what Claude finds — when you give it GitHub access compared to reviewing from a diff alone.
+
+---
+
 ## Overview
 
 In this module you will experience a concrete limitation of doing code review with only a diff — then solve it with GitHub MCP. You will finish by encoding the improved approach into a reusable command you can take to your own projects.
