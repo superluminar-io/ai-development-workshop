@@ -41,6 +41,10 @@ Always run tests after making changes, not before reporting the change as done.
 - Shared utilities: `src/utils/`
 - Tests mirror source structure: `test/domain/`, `test/handlers/`
 
+## Skills
+
+Skills are in `.claude/skills/`. At the start of each task, read the skill files in that directory. If a skill's `description` field matches the current situation, follow it as your working approach for that task.
+
 ## Example input
 
 To process an example ticket locally:
