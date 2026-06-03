@@ -83,6 +83,18 @@ Answer these questions:
 
 ---
 
+## MCP beyond GitHub
+
+The same pattern works for any tool that has an MCP server. A few common ones:
+
+- **Slack** — Claude can read channel history and thread replies. Useful when you need to understand a decision that was made in conversation before it made it into a ticket.
+- **Linear / Jira** — Claude can fetch issues and epics directly. Instead of copy-pasting ticket descriptions into the chat, it reads them itself.
+- **PostgreSQL** — Claude can query your schema and sample data. Useful when you need to understand the data model before writing a migration.
+
+Each one follows the same pattern as this exercise: add a server entry to `.mcp.json`, set a token, and Claude gains access to that system's context.
+
+---
+
 ## Deliverable
 
 By the end of Exercise 2 you should have:
