@@ -2,7 +2,7 @@
 
 **Goal:** Use Claude Code to explore an unfamiliar codebase, understand how Claude Code works as a configured tool, and write your first custom slash command.
 
-**Duration:** ~18 minutes  
+**Duration:** ~18 minutes
 **Code changes:** None required (optional at the end)
 
 ---
@@ -92,9 +92,10 @@ The more specific your prompt, the more specific Claude's output. Vague instruct
 <details>
 <summary>Hint: My command isn't showing up when I type /find-weaknesses</summary>
 
-Check two things:
+Check/try the following:
 1. The file is saved at exactly `.claude/commands/find-weaknesses.md` — not in a subdirectory, and with the `.md` extension
-2. You are running Claude Code from the repository root (the same directory that contains `CLAUDE.md`)
+1. You may need to refresh the Claude Code terminal after creating the file. Try closing and reopening it.
+1. You are running Claude Code from the repository root (the same directory that contains `CLAUDE.md`)
 
 You can confirm commands are loading by running `/explain-codebase` — if that works, Claude Code is reading the commands directory correctly.
 
