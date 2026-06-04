@@ -1,9 +1,29 @@
-# Exercise 3: Tests, Review, and PR Preparation
+# Exercise 4: Tests, Review, and PR Preparation
 
 **Goal:** Use Claude Code to find a real bug through test generation, complete a PR-style review cycle, and produce a PR summary.
 
 **Duration:** ~18 minutes  
-**Prerequisites:** Exercise 2 complete, all tests passing
+**Prerequisites:** Exercise 3 complete, all tests passing
+
+---
+
+## The system you are working with
+
+The ticket processor receives customer support requests and routes them to the right team. A ticket has a category (`support`, `billing`, `incident`, `security`) and optionally an `amount` for billing disputes. The classifier assigns a priority, and the router sends the ticket to a queue.
+
+The routing rules are:
+
+| Category | Condition | Priority | Queue |
+|---|---|---|---|
+| `incident` | any | `high` | `escalation-queue` |
+| `security` | any | `escalate` | `escalation-queue` |
+| `billing` | `amount > 1000` | `escalate` | `escalation-queue` |
+| `billing` | `amount ≤ 1000` | `medium` | `billing-queue` |
+| `support` | any | `medium` | `standard-queue` |
+
+**Why this matters:** imagine a customer contacts you about a $2,400 billing error. That ticket should be escalated immediately — large disputes need senior attention and fast resolution. If the classifier gets this wrong, the ticket lands in the standard billing queue and waits its turn alongside a $40 invoice question. The customer with the $2,400 problem has no idea why nobody is calling them back.
+
+That is the bug you are going to find in this exercise.
 
 ---
 
@@ -141,7 +161,7 @@ Claude will read the diff and produce a PR description. Review what it writes �
 
 ## Deliverable
 
-By the end of Exercise 3 you should have:
+By the end of Exercise 4 you should have:
 - [ ] Two new tests in `test/domain/classifier.test.ts`
 - [ ] The billing escalation bug fixed in `src/domain/classifier.ts`
 - [ ] All tests passing
