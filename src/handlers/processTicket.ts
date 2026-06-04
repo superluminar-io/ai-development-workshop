@@ -15,6 +15,7 @@ export function processTicket(input: Record<string, unknown>): TicketResult | un
     amount: typeof input.amount === 'number' ? input.amount : undefined,
     createdAt: String(input.createdAt ?? new Date().toISOString()),
     priority: input.priority !== undefined ? String(input.priority) : undefined,
+    vipTier: typeof input.vipTier === 'string' ? input.vipTier : undefined,
   }
 
   const priority = classifyPriority(ticket)

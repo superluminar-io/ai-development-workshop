@@ -17,6 +17,10 @@ export function classifyPriority(ticket: Ticket): string {
 }
 
 export function routeTicket(ticket: Ticket): string {
+  if (ticket.vipTier) {
+    return 'vip-queue'
+  }
+
   const priority = classifyPriority(ticket)
 
   if (priority === 'escalate') {

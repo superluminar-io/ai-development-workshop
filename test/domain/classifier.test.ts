@@ -32,6 +32,13 @@ describe('classifyPriority', () => {
   })
 })
 
+describe('routeTicket (VIP)', () => {
+  it('routes platinum VIP tickets to vip-queue', () => {
+    const ticket: Ticket = { ...base, category: 'billing', vipTier: 'platinum' }
+    expect(routeTicket(ticket)).toBe('vip-queue')
+  })
+})
+
 describe('routeTicket', () => {
   it('routes incident tickets to escalation-queue', () => {
     const ticket: Ticket = { ...base, category: 'incident' }
