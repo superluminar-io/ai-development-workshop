@@ -84,6 +84,36 @@ If the description would also match unrelated tasks — like "review this PR" or
 
 </details>
 
+<details>
+<summary>Solution: A complete safe-refactoring skill</summary>
+
+```markdown
+---
+name: safe-refactoring
+description: Use when asked to modify, improve, refactor, or tighten types in existing code you did not write, or when the user says they want to be careful about a change. Do not apply when the task is read-only (explaining, reviewing, searching).
+---
+
+Before writing any code:
+
+1. State your assumptions — which files you will touch and why, before starting
+2. Read the relevant test files first — tests document intended behaviour, not just what the code happens to do
+3. Run `npm test` to confirm a passing baseline — do not make any changes until you have seen a green run
+
+When making changes:
+
+4. Change one thing at a time — never modify types and runtime behaviour in the same step
+5. Run `npm test` after each individual change
+6. If a test fails unexpectedly, stop — read the failure fully before continuing, do not stack more changes on top of a failure
+7. Do not touch code outside the current task scope, even if you notice something worth improving
+
+When the task is complete:
+
+8. Run `npm run typecheck` to confirm no TypeScript errors were introduced
+9. Summarise which files changed, which tests were run, and what risks remain
+```
+
+</details>
+
 ---
 
 ## Step 2 — Test whether the skill triggers (~4 min)
