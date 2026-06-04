@@ -31,7 +31,7 @@ This module uses two repositories. Read this before starting.
 ## Exercises
 
 1. [Exercise 1: Configure GitHub MCP and Review a PR](exercises/exercise-1-review-without-context.md)
-2. [Exercise 2: Build a Reusable Command](exercises/exercise-2-github-mcp.md)
+2. [Exercise 2: Upgrade the review-pr Command](exercises/exercise-2-github-mcp.md)
 
 Or follow the [Participant Guide](participant-guide.md) for the full step-by-step walkthrough.
 

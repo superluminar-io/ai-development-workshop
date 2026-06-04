@@ -66,18 +66,13 @@ export const modules: Module[] = [
     exercises: [
       {
         slug: 'exercise-1-review-without-context',
-        title: 'Review Without Context',
+        title: 'Configure GitHub MCP and Review a PR',
         file: '/docs/module-2/exercises/exercise-1-review-without-context.md',
       },
       {
         slug: 'exercise-2-github-mcp',
-        title: 'GitHub MCP Setup',
+        title: 'Upgrade the review-pr Command',
         file: '/docs/module-2/exercises/exercise-2-github-mcp.md',
-      },
-      {
-        slug: 'exercise-3-reusable-command',
-        title: 'Build a Reusable Command',
-        file: '/docs/module-2/exercises/exercise-3-reusable-command.md',
       },
     ],
   },
