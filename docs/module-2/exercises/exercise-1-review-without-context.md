@@ -1,93 +1,129 @@
-# Exercise 1: Review Without Context
+# Exercise 1: Configure GitHub MCP and Review a PR
 
-**Goal:** Use the review approach from Module 1 on a real PR — and discover what it cannot tell you.
+**Goal:** Configure the GitHub MCP server yourself, verify it works, and run a PR review that uses full GitHub context — PR description, linked issue, and all.
 
-**Duration:** ~15 minutes  
+**Duration:** ~25 minutes  
 **Repo guide:** This exercise uses the **[demo repo via MCP]** as the target, but you run all commands from the **[workshop repo]**.
 
 ---
 
 ## Before you start
 
-**[workshop repo]** Confirm your baseline is clean:
+**Quick check — GitHub CLI (should be set up from the module introduction):**
 
 ```bash
-npm test
+gh --version
+gh auth status
 ```
 
-Expected: 14 tests passing.
+Expected: a version string, then `Logged in to github.com as <your username>`. If either command fails or shows unauthenticated, you may have missed the prerequisite setup — follow the [GitHub CLI setup instructions in the module participant guide](../participant-guide.md#prerequisites) before continuing.
 
 ---
 
-## Step 1 — Find the open PR (~2 min)
+## Step 1 — Create the MCP configuration (~5 min)
 
-Ask the facilitator for the URL of the open PR on the demo repo:
+**[workshop repo]** Create a file named `.mcp.json` at the root of the repository with this content:
 
-`https://github.com/superluminar-io/ai-development-ws-ticket-demo/pull/<number>`
-
-Open it in your browser. Read the PR title and description. Do not look at the code yet.
-
-**Note:** You are looking at the **[demo repo]** in the browser. You will review it using Claude Code running in the **[workshop repo]**.
-
----
-
-## Step 2 — Copy the diff into Claude (~3 min)
-
-In your browser, open the PR's **Files changed** tab. This is the diff.
-
-**[workshop repo]** In Claude Code, paste the diff and run:
-
-```
-/review-diff
+```json
+{
+  "mcpServers": {
+    "github": {
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/",
+      "headers": {
+        "Authorization": "Bearer ${GITHUB_PERSONAL_ACCESS_TOKEN}"
+      }
+    }
+  }
+}
 ```
 
-If `/review-diff` asks for a git diff, tell Claude:
-> "I am pasting a diff from a GitHub PR. Please review it as if you were a pull request reviewer."
+What each field does:
+- `"type": "http"` — connects to a remote server over HTTP rather than running a local process
+- `"url"` — GitHub's hosted MCP server, maintained by GitHub
+- `"headers"` — the Bearer token Claude passes with every request; `${GITHUB_PERSONAL_ACCESS_TOKEN}` is expanded from your environment at startup
 
-Then paste the diff content.
-
-> **Note:** `/review-diff` was built in Module 1. It runs `git diff HEAD` on the workshop repo — which won't see the demo repo's PR. For this exercise, paste the diff manually. In Exercise 2, GitHub MCP solves this.
-
----
-
-## Step 3 — Note what Claude cannot answer (~5 min)
-
-**[workshop repo]** Read Claude's review. Then ask:
-
-> "What questions do you still have that the diff alone could not answer?"
-
-Write down Claude's unanswered questions. You should see gaps like:
-- Why was this change made?
-- Does the implementation match what was requested?
-- Are there business rules being violated that are not visible in the code?
-
-Keep this list — you will compare it to the Exercise 2 review.
+This is how any MCP server is configured for a project. The file is version-controlled — commit it and your team gets the same setup automatically.
 
 ---
 
-## Step 4 — Try to answer the gaps yourself (~5 min)
+## Step 2 — Set your GitHub token (~2 min)
 
-**[workshop repo]** Without any tools, try to answer Claude's unanswered questions using only:
-- The PR title and description you read in Step 1
-- The diff
+**[workshop repo]** In your terminal:
 
-Note which questions you can answer and which you cannot.
+```bash
+export GITHUB_PERSONAL_ACCESS_TOKEN=$(gh auth token)
+```
+
+Verify it worked:
+
+```bash
+echo $GITHUB_PERSONAL_ACCESS_TOKEN | head -c 10
+```
+
+Expected: a non-empty string starting with `gh` or `ghu`.
+
+> This variable must be set **before** launching Claude Code. If Claude Code is already running, set the variable and **restart Claude Code** so it picks up the new `.mcp.json` and token.
+
+---
+
+## Step 3 — Verify GitHub MCP is active (~3 min)
+
+**[workshop repo]** In Claude Code, ask:
+
+> "What MCP servers do you have access to?"
+
+Expected: Claude confirms the `github` MCP server is available.
+
+Then ask:
+
+> "Using GitHub MCP, what open pull requests exist in the repo `superluminar-io/ai-development-ws-ticket-demo`?"
+
+Expected: Claude lists the open PR(s) by number and title. If it cannot find the repo, check that your token has read access (ask the facilitator).
+
+---
+
+## Step 4 — Review the PR with full GitHub context (~10 min)
+
+**[demo repo via MCP]** Ask Claude to review the open PR:
+
+> "Using GitHub MCP, please review PR #3 in `superluminar-io/ai-development-ws-ticket-demo`. Before reviewing the code, fetch the PR description and all linked issues. Then review the diff against what the PR and linked issue say the change is supposed to do."
+
+Read the review carefully. Notice what Claude includes without you having to provide it:
+- The PR description and what it claims the change does
+- Any constraints or edge cases mentioned in the linked issue
+- Whether the implementation matches the stated intent
+
+---
+
+## Step 5 — Commit your configuration (~2 min)
+
+**[workshop repo]** Commit `.mcp.json` so your team can use the same setup:
+
+```bash
+git add .mcp.json
+git commit -m "feat: add GitHub MCP server configuration"
+```
+
+---
+
+## Step 6 — Reflect (~3 min)
+
+Think about what you would have had to do manually to give Claude the same context:
+- Open the PR, copy the description
+- Follow any linked issues, copy those too
+- Paste all of it into your chat alongside the diff
+
+With GitHub MCP, Claude fetched all of that itself. And this configuration works for any GitHub repository your token can access — not just the demo repo.
+
+**Consider:** this is one MCP server. The same pattern works for Slack, Linear, Jira, your database. Each one is an integration you did not have to build or maintain yourself.
 
 ---
 
 ## Deliverable
 
 By the end of Exercise 1 you should have:
-- [ ] A review of the sample PR produced by `/review-diff`
-- [ ] A list of unanswered questions from Claude
-- [ ] A note on which questions the PR description answered and which it did not
-
-You have not changed any files. No commits yet.
-
----
-
-## Reflection questions
-
-- Which gaps surprised you? Which did you expect?
-- If you were the PR author, what would you add to the PR description to help a reviewer?
-- What would a reviewer need to see that neither the diff nor the description provided?
+- [ ] `.mcp.json` created and committed to the workshop repo
+- [ ] GitHub MCP verified working
+- [ ] A PR review that used the linked issue — not just the diff
+- [ ] A clear example of something Claude found by reading the linked issue that was not visible in the diff
