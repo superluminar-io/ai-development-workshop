@@ -9,19 +9,27 @@
 
 ## Skills vs commands
 
-You have already used slash commands — you invoke them explicitly when you decide you need them. A skill is different: Claude decides when to apply it, based on what you are asking it to do.
+In Exercise 1 you wrote a **command** — a prompt in `.claude/commands/` that you invoke explicitly by typing `/find-weaknesses`. You decide when to run it.
 
-Skills live in `.claude/skills/`. Each skill is a markdown file with frontmatter that tells Claude two things: what the skill is called, and — crucially — **when to use it**. Claude reads the `description` field and decides whether the current task is a match.
+A **skill** is different. Skills live in `.claude/skills/`, and Claude decides when to apply them, based on what you are asking it to do. Each skill is a **directory** containing a `SKILL.md` file:
 
-Claude Code discovers skills in `.claude/skills/` automatically — no configuration in `CLAUDE.md` is needed. The skill loads into context only when Claude decides it is relevant, which means long skills cost almost nothing until they are actually used.
+```
+.claude/skills/
+└── safe-refactoring/
+    └── SKILL.md
+```
+
+Claude Code discovers skills automatically — no configuration in `CLAUDE.md` is needed. When you describe a task, Claude reads the `description` field of every skill and decides whether the current situation is a match. If it is, the skill's instructions are loaded and Claude follows them.
 
 This means the `description` is the trigger. Write it too vaguely and Claude will either never apply the skill or apply it when it shouldn't. Write it with a clear, specific situation and Claude will apply it reliably and automatically.
+
+> **Reference:** Open `.claude/skills/example-skill/SKILL.md` to see a complete skill with all frontmatter fields annotated.
 
 ---
 
 ## Step 1 — Create your first skill (~8 min)
 
-Create a new file: `.claude/skills/safe-refactoring.md`
+Create the directory and file: `.claude/skills/safe-refactoring/SKILL.md`
 
 You are about to refactor a TypeScript codebase you have only just met. Write a skill that encodes how Claude should approach that — the caution, the order of operations, the constraints — so you do not have to repeat them every time you ask for a change.
 
@@ -93,7 +101,7 @@ If the skill did not trigger, read your `description` again. Is it specific enou
 ## Deliverable
 
 By the end of Exercise 2 you should have:
-- [ ] `.claude/skills/safe-refactoring.md` with frontmatter and numbered steps
+- [ ] `.claude/skills/safe-refactoring/SKILL.md` with frontmatter and numbered steps
 - [ ] Observed Claude applying the skill automatically — or iterated on the description until it does
 
 You have not changed any source or test files.
@@ -102,7 +110,7 @@ You have not changed any source or test files.
 
 ## Reflection questions
 
-- What is the difference between a skill and a slash command? When would you choose one over the other?
+- What is the difference between a skill and a command? When would you choose one over the other?
 - How specific does the `description` need to be before Claude applies the skill reliably?
 - What other situations in your daily work might benefit from a skill?
 - In Module 3 you will install skills written by others. What would you need to trust before using a skill you didn't write?
