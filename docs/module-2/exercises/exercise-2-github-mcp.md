@@ -59,6 +59,63 @@ You have just seen exactly what GitHub MCP can do. You cannot go back.
 
 While you are in there, tighten up the four review criteria too. Vague instructions produce vague output.
 
+<details>
+<summary>Hints</summary>
+
+**Where to start:** The command jumps straight to reviewing the diff. What should happen before that?
+
+**The hardcoded repo:** The command has a repo name baked in. That will break for anyone using their own fork — the command should detect the repo from the project's git remote instead.
+
+**The four criteria:** Each one is a question Claude will answer as specifically as the question is asked.
+- *Intent match* — currently checks the PR title. What else describes intent?
+- *Type safety* — fine as-is.
+- *Test coverage* — fine as-is.
+- *Edge cases* — where did you find the constraint Claude missed in Exercise 1?
+
+</details>
+
+<details>
+<summary>Solution</summary>
+
+```markdown
+You are reviewing a pull request. Do not approve or merge anything. Produce a structured review only.
+
+The repo is this project's GitHub repository. Determine it from the git remote if needed. If no PR number was provided, use GitHub MCP to list open PRs and ask the user to choose one.
+
+---
+
+## Step 1: Fetch GitHub context
+
+Using GitHub MCP, fetch:
+- The PR title and description
+- All issues linked in the PR description
+- The PR diff
+
+Read all of this before reviewing any code.
+
+---
+
+## Step 2: Review the diff
+
+For each of the following, be specific — quote file names and line numbers:
+
+1. **Intent match** — does the implementation do what the PR description says it should? Does it satisfy the requirements and constraints in any linked issues?
+2. **Type safety** — are new types as precise as they should be?
+3. **Test coverage** — what new behaviour is untested?
+4. **Edge cases** — are there constraints or scenarios mentioned in linked issues that the implementation does not handle?
+
+---
+
+## Step 3: Produce a structured review
+
+- **Summary:** what the PR does (one sentence)
+- **Issues found:** list each issue, noting whether it was visible in the diff, the PR description, or only in a linked issue
+- **Risk:** Low / Medium / High — and why
+- **Recommendation:** Approve / Request changes / Needs discussion
+```
+
+</details>
+
 ---
 
 ## Step 4 — Run it again and compare (~5 min)
