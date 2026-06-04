@@ -1,9 +1,0 @@
----
-name: safe-refactoring
-description: ...
----
-
-When this skill applies:
-
-1. ...
-2. ...
