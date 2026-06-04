@@ -2,7 +2,7 @@
 
 **Goal:** Write a skill that Claude recognises and applies automatically when the situation calls for it — without you having to ask.
 
-**Duration:** ~15 minutes  
+**Duration:** ~12 minutes  
 **Prerequisites:** Exercise 1 complete
 
 ---
@@ -13,25 +13,13 @@ You have already used slash commands — you invoke them explicitly when you dec
 
 Skills live in `.claude/skills/`. Each skill is a markdown file with frontmatter that tells Claude two things: what the skill is called, and — crucially — **when to use it**. Claude reads the `description` field and decides whether the current task is a match.
 
+Claude Code discovers skills in `.claude/skills/` automatically — no configuration in `CLAUDE.md` is needed. The skill loads into context only when Claude decides it is relevant, which means long skills cost almost nothing until they are actually used.
+
 This means the `description` is the trigger. Write it too vaguely and Claude will either never apply the skill or apply it when it shouldn't. Write it with a clear, specific situation and Claude will apply it reliably and automatically.
 
 ---
 
-## Step 1 — Add skills support to CLAUDE.md (~3 min)
-
-Open `CLAUDE.md` in your editor and add this section at the end:
-
-```markdown
-## Skills
-
-Skills are in `.claude/skills/`. At the start of each task, read the skill files in that directory. If a skill's `description` field matches the current situation, follow it as your working approach for that task.
-```
-
-Save the file. This instruction tells Claude to check for skills at the start of every task in this project.
-
----
-
-## Step 2 — Create your first skill (~8 min)
+## Step 1 — Create your first skill (~8 min)
 
 Create a new file: `.claude/skills/safe-refactoring.md`
 
@@ -90,7 +78,7 @@ If the description would also match unrelated tasks — like "review this PR" or
 
 ---
 
-## Step 3 — Test whether the skill triggers (~4 min)
+## Step 2 — Test whether the skill triggers (~4 min)
 
 Start a fresh Claude Code session (or run `/clear` to reset context). Then describe a task that should match your skill:
 
@@ -105,7 +93,6 @@ If the skill did not trigger, read your `description` again. Is it specific enou
 ## Deliverable
 
 By the end of Exercise 2 you should have:
-- [ ] A `## Skills` section added to `CLAUDE.md`
 - [ ] `.claude/skills/safe-refactoring.md` with frontmatter and numbered steps
 - [ ] Observed Claude applying the skill automatically — or iterated on the description until it does
 
