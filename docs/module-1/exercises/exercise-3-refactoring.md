@@ -88,6 +88,8 @@ Paste the full error message into Claude: "I'm getting this TypeScript error —
 
 ## Step 3 — Add Zod validation (~7 min)
 
+[Zod](https://zod.dev) is a TypeScript-first schema validation library. You describe the shape and types of your data once as a schema, and Zod validates incoming values against it at runtime — giving you both a type-safe result and a clear error message when the input is wrong. It is the standard way to validate data at a system boundary (an HTTP handler, a queue consumer, a CLI argument) without writing manual `if` checks for every field.
+
 `zod` is already installed in this project. Tell Claude what you want:
 
 > "Add Zod input validation to `src/handlers/processTicket.ts`. Define a Zod schema for the raw ticket input, parse and validate it at the top of the `processTicket` function, and throw a descriptive error if validation fails — do not return `undefined`."
