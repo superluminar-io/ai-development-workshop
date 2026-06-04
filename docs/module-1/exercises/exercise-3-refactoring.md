@@ -1,9 +1,9 @@
-# Exercise 2: Safe AI-Assisted Refactoring
+# Exercise 3: Safe AI-Assisted Refactoring
 
-**Goal:** Improve the starter code in small, reviewable steps using Claude Code. Plan before you change. Test after every meaningful change. Inspect the diff before accepting.
+**Goal:** Use the safe-refactoring skill you wrote in Exercise 2 to make three focused, independently committable improvements to a codebase you did not write.
 
 **Duration:** ~22 minutes  
-**Prerequisites:** Exercise 1 complete
+**Prerequisites:** Exercise 2 complete
 
 ---
 
@@ -19,28 +19,23 @@ Expected: all tests passing, 0 TypeScript errors.
 
 ---
 
-## Step 1 — Ask for a plan first (~3 min)
+## Step 1 — Describe the task, let the skill do its job (~3 min)
 
-Before touching any files, describe what you want to improve in the Claude Code terminal:
+Start a fresh Claude Code session (or run `/clear` to reset context). Then describe what you want in natural language — no slash command:
 
-> "I want to introduce stronger TypeScript types in the Ticket domain model, add Zod validation to the handler input, and separate input parsing from domain logic."
+> "I want to improve the TypeScript types in this codebase, add Zod validation to the handler input, and separate input parsing from domain logic. I didn't write this code and I want to be careful."
 
-Then run:
+Claude should recognise this as a refactoring task on unfamiliar code and apply your `safe-refactoring` skill automatically. Before suggesting any changes, you should see it:
 
-```
-/propose-change
-```
+- State which files it intends to touch and why
+- Read the relevant test files
+- Run `npm test` to confirm a passing baseline
 
-Claude will read the codebase and produce a step-by-step plan: which files it intends to touch, what it will change in each, and what it will leave alone. Read the plan before you let Claude proceed.
+Only once that baseline is established should Claude propose what to change.
 
-Check:
-- Are the files it plans to touch reasonable?
-- Does it mention what it will NOT change?
-- Does it describe which tests it will add or update?
+**If Claude skips straight to making changes,** the skill did not trigger. Check your `description` field — does it match the language you used? Adjust it and try again with `/clear`.
 
-Do not let Claude proceed until you have reviewed the plan and it looks right.
-
-> If Claude proposes to rewrite everything at once, that is a signal to scope it down. Reply: "Start with just the types in `src/domain/ticket.ts`. Nothing else yet."
+When the skill has established the baseline and scoped the work, proceed to the next steps one at a time.
 
 ---
 
@@ -155,7 +150,8 @@ git commit -m "refactor: separate input parsing from domain logic in handler"
 
 ## Deliverable
 
-By the end of Exercise 2 you should have:
+By the end of Exercise 3 you should have:
+- [ ] Observed your `safe-refactoring` skill trigger automatically before any code changed
 - [ ] Stronger TypeScript types in `src/domain/ticket.ts`
 - [ ] Zod validation in the handler with explicit error throwing
 - [ ] Cleaner separation between parsing and domain logic
@@ -166,7 +162,8 @@ By the end of Exercise 2 you should have:
 
 ## Reflection questions
 
+- Did your `safe-refactoring` skill trigger automatically, or did you have to nudge it? What does that tell you about the `description` field?
+- Did Claude run `npm test` between each change without being asked? Was that the skill or default behaviour?
 - Did Claude ever propose a change that was larger than you asked for? What did you do?
 - When you ran `git diff`, did Claude's changes match what you expected?
 - Were there any type errors TypeScript caught after the union type change that surprised you?
-- What does `CLAUDE.md` say about adding dependencies? Did Claude follow it?
