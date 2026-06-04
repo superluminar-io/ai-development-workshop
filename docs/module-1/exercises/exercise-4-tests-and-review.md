@@ -2,7 +2,7 @@
 
 **Goal:** Use Claude Code to find a real bug through test generation, complete a PR-style review cycle, and produce a PR summary.
 
-**Duration:** ~18 minutes  
+**Duration:** ~18 minutes
 **Prerequisites:** Exercise 3 complete, all tests passing
 
 ---
@@ -176,4 +176,4 @@ By the end of Exercise 4 you should have:
 - The bug existed in the starter code and all tests were passing. What does that tell you about test coverage?
 - Claude found the missing test cases — but did it also identify the bug? Or did the test failure do that?
 - How much of the review from `/review-diff` would you act on immediately versus track as follow-up?
-- What would you add to `CLAUDE.md` now that you have worked through all three exercises?
+- What would you add to `CLAUDE.md` now that you have worked through all four exercises?
