@@ -41,11 +41,11 @@ When the skill has established the baseline and scoped the work, proceed to the 
 
 ## Step 2 — Introduce TypeScript union types (~5 min)
 
-Tell Claude in the chat what you want:
+> **How changes work in Claude Code:** Claude will ask for your permission before editing any file — either by proposing changes on its own and asking whether to proceed, or by waiting for you to describe what you want. Either way, read what it proposes before approving. If Claude waits for direction, the prompt below is a starting point:
 
 > "Update `src/domain/ticket.ts` to make these changes: change `category: string` to the union type `'support' | 'billing' | 'incident' | 'security'`, remove the `priority` field from the Ticket type entirely (it is a computed output, not an input), and change `createdAt: string` to `createdAt: Date`."
 
-After Claude makes the changes, review them before doing anything else:
+Once the changes are approved, review them before doing anything else:
 
 ```bash
 git diff
@@ -89,7 +89,7 @@ Paste the full error message into Claude: "I'm getting this TypeScript error —
 
 > "Add Zod input validation to `src/handlers/processTicket.ts`. Define a Zod schema for the raw ticket input, parse and validate it at the top of the `processTicket` function, and throw a descriptive error if validation fails — do not return `undefined`."
 
-After Claude makes the changes, review the diff:
+Once the changes are approved, review the diff:
 
 ```bash
 git diff
@@ -132,7 +132,7 @@ Tell Claude:
 
 > "Extract input parsing into its own function, separate from the domain logic in `processTicket`. The goal is a `parseTicketInput` function that converts raw input into a typed `Ticket`, and a `processTicket` function that only calls `parseTicketInput` and then the classifier."
 
-After Claude makes the changes:
+Once the changes are approved:
 
 ```bash
 git diff
@@ -157,6 +157,60 @@ By the end of Exercise 3 you should have:
 - [ ] Cleaner separation between parsing and domain logic
 - [ ] All tests passing (some updated to match new behaviour)
 - [ ] 3 focused commits in `git log`
+
+---
+
+## Verification
+
+Run these commands to confirm your implementation is complete. Every check should pass before you move on.
+
+**1. Tests pass and TypeScript is clean:**
+
+```bash
+npm test && npm run typecheck
+```
+
+Expected: all tests passing, 0 TypeScript errors.
+
+**2. `priority` has been removed from the `Ticket` input type:**
+
+```bash
+grep -A 10 "export type Ticket = {" src/domain/ticket.ts | grep "priority"
+```
+
+Expected: no output. (`priority` still appears in `TicketResult` — that is correct, it is a computed output field.)
+
+**3. `category` is a union type, not `string`:**
+
+```bash
+grep "category" src/domain/ticket.ts
+```
+
+Expected output includes `'support' | 'billing' | 'incident' | 'security'`.
+
+**4. Zod is used in the handler and `parseTicketInput` exists:**
+
+```bash
+grep -E "from 'zod'|parseTicketInput" src/handlers/processTicket.ts
+```
+
+Expected: two lines — one Zod import, one `parseTicketInput` definition.
+
+**5. Handler tests throw on invalid input rather than returning `undefined`:**
+
+```bash
+grep "toThrow" test/handlers/processTicket.test.ts
+```
+
+Expected: at least 3 lines.
+
+**6. Three focused commits:**
+
+```bash
+git log --oneline -3
+```
+
+Expected: three commits, each scoped to one change.
 
 ---
 
