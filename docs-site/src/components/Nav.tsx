@@ -1,10 +1,8 @@
-import { Link, useLocation } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { modules } from '../config'
 
 export function Nav() {
-  const { pathname } = useLocation()
-  const isModulePage = pathname.startsWith('/module/')
-  const readyCount = modules.filter((m) => m.status === 'ready').length
+  const readyModules = modules.filter((m) => m.status === 'ready')
 
   return (
     <nav className="nav">
@@ -12,13 +10,19 @@ export function Nav() {
         <span className="nav-logo-mark">S</span>
         AI Development Workshop
       </Link>
-      {isModulePage ? (
-        <Link to="/" className="nav-back">
-          ← All modules
-        </Link>
-      ) : (
-        <span className="nav-badge">{readyCount} modules</span>
-      )}
+      <div className="nav-modules">
+        {readyModules.map((m) => (
+          <NavLink
+            key={m.id}
+            to={`/module/${m.id}`}
+            className={({ isActive }) =>
+              'nav-module-link' + (isActive ? ' nav-module-link--active' : '')
+            }
+          >
+            {m.number === '00' ? 'Setup' : `Module ${m.number}`}
+          </NavLink>
+        ))}
+      </div>
     </nav>
   )
 }

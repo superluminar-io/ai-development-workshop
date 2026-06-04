@@ -12,21 +12,24 @@ describe('Nav', () => {
     expect(screen.getByText('AI Development Workshop')).toBeInTheDocument()
   })
 
-  it('shows module count badge on home page', () => {
+  it('shows links for all ready modules', () => {
     render(
       <MemoryRouter initialEntries={['/']}>
         <Nav />
       </MemoryRouter>,
     )
-    expect(screen.getByText(/modules/)).toBeInTheDocument()
+    expect(screen.getByText('Setup')).toBeInTheDocument()
+    expect(screen.getByText('Module 01')).toBeInTheDocument()
+    expect(screen.getByText('Module 04')).toBeInTheDocument()
   })
 
-  it('shows back link on module pages', () => {
+  it('highlights the active module when on a module page', () => {
     render(
       <MemoryRouter initialEntries={['/module/module-1/participant-guide']}>
         <Nav />
       </MemoryRouter>,
     )
-    expect(screen.getByText('← All modules')).toBeInTheDocument()
+    const activeLink = screen.getByText('Module 01').closest('a')
+    expect(activeLink).toHaveClass('nav-module-link--active')
   })
 })

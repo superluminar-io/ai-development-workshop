@@ -1,32 +1,49 @@
-import { NavLink } from 'react-router-dom'
-import type { Module } from '../config'
+import { Link, NavLink, useParams } from 'react-router-dom'
+import { modules } from '../config'
 
-interface SidebarProps {
-  module: Module
-}
+export function Sidebar() {
+  const { moduleId } = useParams<{ moduleId: string }>()
+  const readyModules = modules.filter((m) => m.status === 'ready')
 
-export function Sidebar({ module }: SidebarProps) {
-  const linkClass = ({ isActive }: { isActive: boolean }) =>
+  const exerciseLinkClass = ({ isActive }: { isActive: boolean }) =>
     `sidebar__item${isActive ? ' sidebar__item--active' : ''}`
 
   return (
     <aside className="sidebar">
-      <div className="sidebar__module-label">Module {module.number}</div>
+      {readyModules.map((m) => {
+        const isExpanded = m.id === moduleId
 
-      <NavLink to={`/module/${module.id}/participant-guide`} className={linkClass}>
-        Participant Guide
-      </NavLink>
+        return (
+          <div key={m.id} className="sidebar__module">
+            <Link
+              to={`/module/${m.id}`}
+              className={`sidebar__module-header${isExpanded ? ' sidebar__module-header--active' : ''}`}
+            >
+              <span className="sidebar__module-number">Module {m.number}</span>
+            </Link>
 
-      {module.exercises.length > 0 && (
-        <>
-          <div className="sidebar__section-header">Exercises</div>
-          {module.exercises.map((ex, i) => (
-            <NavLink key={ex.slug} to={`/module/${module.id}/${ex.slug}`} className={linkClass}>
-              {i + 1} · {ex.title}
-            </NavLink>
-          ))}
-        </>
-      )}
+            {isExpanded && (
+              <div className="sidebar__exercises">
+                <NavLink
+                  to={`/module/${m.id}/participant-guide`}
+                  className={exerciseLinkClass}
+                >
+                  Participant Guide
+                </NavLink>
+                {m.exercises.map((ex, i) => (
+                  <NavLink
+                    key={ex.slug}
+                    to={`/module/${m.id}/${ex.slug}`}
+                    className={exerciseLinkClass}
+                  >
+                    {i + 1} · {ex.title}
+                  </NavLink>
+                ))}
+              </div>
+            )}
+          </div>
+        )
+      })}
     </aside>
   )
 }

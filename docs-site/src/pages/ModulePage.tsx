@@ -18,12 +18,12 @@ export function ModulePage() {
 
   const file = resolvePageFile(module, pageSlug)
   if (!file) {
-    return <Navigate to={`/module/${moduleId}/participant-guide`} replace />
+    return <Navigate to={`/module/${moduleId}`} replace />
   }
 
   return (
     <div className="module-page">
-      <Sidebar module={module} />
+      <Sidebar />
       <main className="module-page__content">
         <MarkdownView file={file} />
       </main>
