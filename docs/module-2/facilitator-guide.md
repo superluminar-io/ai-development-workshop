@@ -35,57 +35,28 @@ By the end of this module participants should be able to:
 
 ---
 
-## Before the session — demo repo setup
+## Before the session
 
-You must complete this before participants arrive. The demo repo is `superluminar-io/ai-development-ws-ticket-demo`.
+The demo scenario is built into the workshop repo itself — no separate repo to maintain. Participants push the workshop repo to their own GitHub account and run `scripts/setup-module-2.sh`, which creates the issue and PR they will review.
 
-### 1. The service
+### The scenario
 
-The repo should contain a realistic TypeScript service different from the ticket processor. A good example: a **notification preferences service** — users can set channel preferences (email, SMS, push) and quiet hours. This is familiar enough (straightforward CRUD-like logic) but clearly different from ticket routing.
+The `demo/vip-routing` branch adds VIP customer routing to the ticket processor. The PR and linked issue contain three planted bugs at increasing depth:
 
-The repo needs:
-- 3–5 commits of realistic history (not just one initial commit)
-- 1–2 open GitHub issues with realistic titles and descriptions
-- One open PR (not merged)
+| Tier | What is planted | How participants find it |
+|------|----------------|--------------------------|
+| 1 — Diff | `vipTier` typed as `string` instead of `'gold' \| 'platinum'` | Visible in the diff |
+| 2 — PR description | PR says "platinum tier" but code routes any non-null `vipTier` — gold tier customers get fast-tracked too | Requires reading the PR description against the code |
+| 3 — Linked issue | Issue says incident/security tickets must still escalate; code sends them to `vip-queue` regardless | Requires reading the linked issue |
 
-### 2. The sample PR
+This three-tier structure is essential. Tiers 1–2 are findable without the linked issue. Tier 3 is invisible without it. Without this structure, the value of GitHub MCP does not land.
 
-Create a branch (e.g. `feature/add-priority-override`) with a realistic change — for example, adding the ability for admin users to override the notification priority for a specific channel.
+### Pre-session checklist
 
-**PR description must:**
-- State clearly what the change is supposed to do
-- Be specific enough that a reviewer can check the implementation against it
-- Example: "Adds `priorityOverride` field to `NotificationPreference`. When set, this overrides the channel's default priority. Used by admin tools to force urgent delivery for compliance notifications."
-
-**Linked issue must:**
-- Explain why the feature was requested
-- Include at least one edge case or constraint that is not obvious from the PR description
-- Example issue body: "When `priorityOverride` is set to `urgent`, quiet hours should be ignored — urgent compliance notifications must go through regardless of user preferences. Also, `priorityOverride` should not be settable by regular users, only admins."
-
-### 3. The three planted issues
-
-Plant exactly these three issues in the PR's code changes:
-
-| Tier | What to plant | How participants find it |
-|------|--------------|--------------------------|
-| 1 — Diff | `priorityOverride` typed as `string` instead of `'low' \| 'medium' \| 'urgent'` | Visible in the diff |
-| 2 — PR description | The implementation allows `priorityOverride` to be set even when the priority is already `urgent` — the description says it "overrides the channel's default priority" implying it should only activate when not already urgent | Requires reading the PR description |
-| 3 — Linked issue | `priorityOverride: 'urgent'` does not bypass quiet hours — the issue explicitly says it should | Requires reading the linked issue |
-
-This three-tier structure is essential. Issues 1–2 are findable without reading the linked issue. Issue 3 is invisible without it. Without this structure, the value of GitHub MCP does not land.
-
-### 4. Participant access
-
-Grant all participant GitHub accounts read access to `superluminar-io/ai-development-ws-ticket-demo` before the session.
-
-### 5. Pre-session checklist
-
-- [ ] Demo repo has commit history and at least one open issue
-- [ ] Sample PR is open (not merged or draft)
-- [ ] PR has a clear description and is linked to the GitHub issue
-- [ ] All three planted issues are present in the code
-- [ ] All participant GitHub accounts have read access to the demo repo
+- [ ] Run `scripts/setup-module-2.sh` against your own fork to verify it works end-to-end
+- [ ] Confirm the PR is open, linked to the issue, and the three-tier bugs are present
 - [ ] Your own `GITHUB_PERSONAL_ACCESS_TOKEN` is set for the live demo
+- [ ] Participants have push access to their own GitHub accounts (no special permissions needed)
 
 ---
 
@@ -103,7 +74,7 @@ Then say: "MCP servers are the alternative. Pre-built connectors — you configu
 
 Open `.mcp.json` briefly: "This is the whole configuration. One JSON file, checked into the repo. The team gets it automatically."
 
-Then show Claude reviewing the PR live — with GitHub MCP active. Let the output speak for itself.
+Then show Claude reviewing the open PR in your fork live — with GitHub MCP active. Let the output speak for itself.
 
 ### Before Exercise 2 (~1 min)
 
@@ -119,7 +90,7 @@ Open `.claude/commands/review-pr.md` on screen. Show the skeleton structure. Poi
 `GITHUB_PERSONAL_ACCESS_TOKEN` must be present when Claude Code starts. If participants set it after launching, they need to restart. This is the most common setup failure.
 
 ### Asking Claude to "review the PR" without specifying the repo
-Claude cannot guess which repo to query. Participants must say "in `superluminar-io/ai-development-ws-ticket-demo`" explicitly. Coach them to be specific.
+Claude cannot guess which repo to query. Participants must say "in `<their-username>/<their-repo>`" explicitly. Coach them to be specific.
 
 ### Not asking Claude to fetch the linked issue
 Claude reviews the diff and PR description but skips the linked issue unless asked. The third planted issue requires the linked issue — if participants cannot find it, this is why. Ask them: "Did your prompt tell Claude to read the linked issue before reviewing the code?"
@@ -143,7 +114,7 @@ Participants should never clone or commit to `ai-development-ws-ticket-demo`. Ev
 - Participants can name at least one thing Claude surfaced from the linked issue
 - They understand that `.mcp.json` is what enabled it — and that it works for any repo their token can access
 
-**Teaching point:** The value is not just convenience. The integration is maintained by GitHub, not by you. Add `.mcp.json` to your own team's repo and everyone gets the same capability immediately.
+**Teaching point:** The value is not just convenience. The integration is maintained by GitHub, not by you. They configured it personally in `~/.claude.json` here; Exercise 2 shows how committing `.mcp.json` to the repo gives the whole team the same capability automatically.
 
 ---
 

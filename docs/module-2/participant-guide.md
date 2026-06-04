@@ -36,24 +36,11 @@ By the end you will have:
 
 ---
 
-## Two repos — read this first
-
-This module involves two repositories. Every step is labelled so you always know which one you are working in.
-
-| Label | Repo | Your relationship |
-|-------|------|-------------------|
-| **[workshop repo]** | `ai-development-workshop` | Owner — you run commands, write files, commit here |
-| **[demo repo via MCP]** | `ai-development-ws-ticket-demo` | Reviewer — Claude reads it via GitHub MCP, you do not clone it |
-
-**You never clone, edit, or commit to the demo repo.** It is read-only for participants. Every file you create or modify — including `.mcp.json` and `.claude/commands/review-pr.md` — goes in the workshop repo.
-
-> Think of it like another team's codebase: you review it, you don't work in it.
-
----
-
 ## Prerequisites
 
-**Install the GitHub CLI** if you have not already:
+### 1 — GitHub CLI
+
+Install if you have not already:
 
 ```bash
 # macOS
@@ -62,7 +49,7 @@ brew install gh
 # or download from https://cli.github.com
 ```
 
-Then authenticate:
+Authenticate:
 
 ```bash
 gh auth login
@@ -76,14 +63,29 @@ git remote get-url origin
 
 If the URL starts with `git@github.com:` choose SSH. If it starts with `https://github.com/` choose HTTPS.
 
-**[workshop repo]** Verify everything is in place:
+### 2 — Push the workshop repo to your own GitHub account
+
+The exercises in this module review a PR on a real GitHub repo. You will use your own fork so you can run the setup script independently.
+
+If you have not already done this, create a new repository on GitHub (any name, public or private) and push:
 
 ```bash
-npm test          # 14 tests passing
-gh auth status    # authenticated to GitHub
+git remote set-url origin git@github.com:<your-username>/<your-repo-name>.git
+git push -u origin main
+git push origin demo/vip-routing
 ```
 
-Then set your GitHub token:
+### 3 — Run the module setup script
+
+This creates the issue and PR you will review in the exercises:
+
+```bash
+bash scripts/setup-module-2.sh
+```
+
+Expected output: two URLs — one for the issue and one for the PR. The script prints your repo name at the end; note it down, you will use it in the exercises.
+
+### 4 — Set your GitHub token
 
 ```bash
 export GITHUB_PERSONAL_ACCESS_TOKEN=$(gh auth token)
@@ -92,7 +94,12 @@ echo $GITHUB_PERSONAL_ACCESS_TOKEN | head -c 10   # should be non-empty
 
 > This variable must be set **before** launching Claude Code. If Claude Code is already running when you set it, restart Claude Code.
 
-Ask the facilitator to confirm your GitHub account has read access to `superluminar-io/ai-development-ws-ticket-demo` before starting.
+### 5 — Verify
+
+```bash
+npm test          # 15 tests passing
+gh auth status    # authenticated to GitHub
+```
 
 ---
 
@@ -101,8 +108,8 @@ Ask the facilitator to confirm your GitHub account has read access to `superlumi
 **GitHub MCP is not activating**
 Check that `GITHUB_PERSONAL_ACCESS_TOKEN` is set in the terminal where you launch Claude Code: `echo $GITHUB_PERSONAL_ACCESS_TOKEN`. If empty, run `export GITHUB_PERSONAL_ACCESS_TOKEN=$(gh auth token)` then relaunch Claude Code.
 
-**Claude cannot find the demo repo**
-Ask the facilitator to confirm your GitHub account has read access to `superluminar-io/ai-development-ws-ticket-demo`. The token must belong to an account with access.
+**Claude cannot find your repo**
+Make sure you are using the correct repo name (the one printed at the end of `setup-module-2.sh`). Your token must belong to the same GitHub account that owns the repo.
 
 **`/review-pr` produces vague output**
 The command skeleton has placeholder instructions `[...]`. If you have not replaced them yet, do so in Exercise 2. Vague prompts produce vague output — be specific about what to look for.
@@ -110,5 +117,5 @@ The command skeleton has placeholder instructions `[...]`. If you have not repla
 **Claude does not fetch the linked issue**
 Add an explicit instruction to your command: "Fetch all GitHub issues linked in the PR description before reviewing any code." Claude will not fetch linked issues unless asked.
 
-**I accidentally tried to commit to the demo repo**
-You should not have cloned the demo repo at all. All commits go in the workshop repo. If you cloned the demo repo by mistake, delete the clone — you only need read access via GitHub MCP.
+**The setup script fails**
+Check that `gh auth status` shows you are authenticated and that you have pushed `demo/vip-routing` to your remote: `git push origin demo/vip-routing`.
