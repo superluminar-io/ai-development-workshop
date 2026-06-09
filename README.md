@@ -35,6 +35,18 @@ Each module has a facilitator guide with learning goals, timing, and common part
 - [Module 3 Facilitator Guide](docs/module-3/facilitator-guide.md) — Plugins, Superpowers, and Spec-Driven Development
 - [Module 4 Facilitator Guide](docs/module-4/facilitator-guide.md) — The AI Harness: Claude Code for Teams and Organisations
 
+### Configuring modules for a workshop
+
+Edit `workshop.json` at the repo root before participants clone the repo:
+
+```json
+{ "modules": ["setup", "module-1", "module-2"] }
+```
+
+List the module IDs you want to include. Participants who clone the repo will only see those modules in the docs site. The default includes all modules.
+
+Available module IDs: `setup`, `module-1`, `module-2`, `module-3`, `module-4`.
+
 The participant-facing workshop frontend is started with `npm run docs` from the repo root. Participants run it locally on their own machines — there is nothing to host or deploy.
 
 ---
