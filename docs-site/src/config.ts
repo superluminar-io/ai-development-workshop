@@ -1,3 +1,5 @@
+import workshopConfig from '../../workshop.json'
+
 export interface Exercise {
   slug: string
   title: string
@@ -18,7 +20,7 @@ export function filterModules(all: Module[], enabledIds: string[]): Module[] {
   return all.filter((m) => enabledIds.includes(m.id))
 }
 
-export const modules: Module[] = [
+const allModules: Module[] = [
   {
     id: 'setup',
     number: '00',
@@ -133,3 +135,5 @@ export const modules: Module[] = [
     ],
   },
 ]
+
+export const modules: Module[] = filterModules(allModules, workshopConfig.modules)
