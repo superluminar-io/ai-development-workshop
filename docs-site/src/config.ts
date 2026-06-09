@@ -14,6 +14,10 @@ export interface Module {
   exercises: Exercise[]
 }
 
+export function filterModules(all: Module[], enabledIds: string[]): Module[] {
+  return all.filter((m) => enabledIds.includes(m.id))
+}
+
 export const modules: Module[] = [
   {
     id: 'setup',
