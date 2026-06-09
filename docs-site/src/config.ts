@@ -20,6 +20,14 @@ export function filterModules(all: Module[], enabledIds: string[]): Module[] {
   return all.filter((m) => enabledIds.includes(m.id))
 }
 
+export function assignDisplayNumbers(mods: Module[]): Module[] {
+  let counter = 0
+  return mods.map((m) => ({
+    ...m,
+    number: m.id === 'setup' ? m.number : String(++counter).padStart(2, '0'),
+  }))
+}
+
 const allModules: Module[] = [
   {
     id: 'setup',
@@ -136,4 +144,6 @@ const allModules: Module[] = [
   },
 ]
 
-export const modules: Module[] = filterModules(allModules, workshopConfig.modules)
+export const modules: Module[] = assignDisplayNumbers(
+  filterModules(allModules, workshopConfig.modules)
+)
