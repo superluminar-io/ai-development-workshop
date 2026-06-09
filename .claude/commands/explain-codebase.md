@@ -3,6 +3,7 @@ Read the following files before answering. Do not edit any files.
 Files to read:
 - CLAUDE.md
 - package.json
+- src/index.ts
 - src/domain/ticket.ts
 - src/domain/classifier.ts
 - src/handlers/processTicket.ts
