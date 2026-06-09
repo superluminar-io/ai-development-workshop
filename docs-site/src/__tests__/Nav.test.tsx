@@ -20,7 +20,7 @@ describe('Nav', () => {
     )
     expect(screen.getByText('Setup')).toBeInTheDocument()
     expect(screen.getByText('Module 01')).toBeInTheDocument()
-    expect(screen.getByText('Module 03')).toBeInTheDocument()
+    expect(screen.getByText('Module 04')).toBeInTheDocument()
   })
 
   it('highlights the active module when on a module page', () => {
