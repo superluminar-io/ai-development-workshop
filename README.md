@@ -15,7 +15,14 @@ You need these installed:
 - **Node.js 20+** — `node --version`
 - **Claude Code CLI** — `npm install -g @anthropic-ai/claude-code`, then `claude` to authenticate
 
-Clone the repository, then from the repo root:
+Clone the repository, install docs-site dependencies:
+
+```bash
+cd docs-site
+npm install
+```
+
+Then from the repo root:
 
 ```bash
 npm install
