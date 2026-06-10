@@ -101,6 +101,15 @@ body {
   flex-direction: column;
   gap: 16px;
 }
+.home__section-heading {
+  font-family: var(--font-headline);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 8px 0 4px;
+}
 
 /* ── Module card ── */
 .module-card__link { text-decoration: none; display: block; }
