@@ -1,3 +1,5 @@
+import workshopConfig from '../../workshop.json'
+
 export interface Exercise {
   slug: string
   title: string
@@ -14,7 +16,19 @@ export interface Module {
   exercises: Exercise[]
 }
 
-export const modules: Module[] = [
+export function filterModules(all: Module[], enabledIds: string[]): Module[] {
+  return all.filter((m) => enabledIds.includes(m.id))
+}
+
+export function assignDisplayNumbers(mods: Module[]): Module[] {
+  let counter = 0
+  return mods.map((m) => ({
+    ...m,
+    number: m.id === 'setup' ? m.number : String(++counter).padStart(2, '0'),
+  }))
+}
+
+const allModules: Module[] = [
   {
     id: 'setup',
     number: '00',
@@ -129,3 +143,7 @@ export const modules: Module[] = [
     ],
   },
 ]
+
+export const modules: Module[] = assignDisplayNumbers(
+  filterModules(allModules, workshopConfig.modules)
+)
