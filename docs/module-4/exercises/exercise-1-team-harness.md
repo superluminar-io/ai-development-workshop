@@ -24,31 +24,45 @@
 
 Open `CLAUDE.md` at the repo root. You wrote parts of this in Module 1 to document the codebase structure and your personal review practices. Team governance is different: it defines what Claude must and must not do for *any* engineer working in this repo, regardless of what they ask.
 
+In a real team, this file would be committed with the project, reviewed like any other engineering change, and updated through pull requests when the team learns a better way of working. Every engineer who clones the repo gets the same project instructions when they run Claude Code from that repo.
+
+For a larger organisation, the same idea usually becomes a starter template. A platform or engineering-practices team might keep a `CLAUDE.md` template in a shared GitHub repository, copy it into new projects, and adapt the project-specific sections: architecture, test commands, protected files, release rules. Exercise 3 turns the harness you build here into exactly that kind of reusable template.
+
 Add a new section at the bottom of `CLAUDE.md`:
 
 ```markdown
-## Team standards
-
-These rules apply to every engineer working in this repo. They are not suggestions.
-
-### Scope
-- Do not refactor code unrelated to the current task. If you notice something worth improving outside the current scope, mention it but do not change it.
-- Do not modify files in `.github/`, `Dockerfile`, or any CI/CD configuration without explicit instruction.
+## Scope
+- Keep changes focused on the requested task.
+- Do not refactor unrelated code unless the user explicitly asks for it.
+- If you notice unrelated cleanup, mention it in the final summary instead of changing it.
+- Do not modify `.github/`, CI/CD configuration, deployment files, Dockerfiles, or infrastructure files unless the task explicitly requires it.
 
 ### Before making changes
-- List every file you intend to modify and explain why before touching anything.
-- If the change affects more than three files, stop and ask for confirmation.
+- For small, local changes, proceed directly.
+- If asked for a plan or approach, do not edit files. List the likely files or areas involved and wait for confirmation.
+- Before broad changes, list the files or areas you expect to touch and explain why.
+- Ask for confirmation before changing public APIs, data models, migrations, auth logic, billing logic, routing rules, or more than three files.
+
+### While making changes
+- Preserve existing style, naming, and architecture.
+- Prefer the smallest change that solves the problem.
+- Do not overwrite or revert user changes unless explicitly instructed.
+- Do not create commits, push branches, or open PRs unless asked.
 
 ### After making changes
-- Summarise what changed, which tests were run, and what risks remain.
-- Never report a change as complete before tests have passed.
+- Summarise what changed.
+- List the tests or checks you ran.
+- If tests were not run, say why.
+- Call out any remaining risks, follow-up work, or assumptions.
 ```
 
 Save the file. Open a fresh Claude Code session and ask Claude:
 
-> "What files would you touch if I asked you to add a new ticket category?"
+> "Plan how you would change security tickets so they route to the security queue instead of the escalation queue. Do not edit any files."
 
-Read the response. Claude should list files and ask for confirmation before proceeding — because the standard now says so. If it does not, check that you saved CLAUDE.md and started a new session.
+Read the response. Claude should describe the likely files or areas involved and wait for confirmation instead of editing anything. This is a simple way to verify that Claude has loaded the project instructions without asking it to change code.
+
+If Claude starts editing files, stop the session and check that you saved `CLAUDE.md` and started a fresh session. Then ask the same question again.
 
 <details>
 <summary>Hint: Claude isn't following the new rules</summary>
