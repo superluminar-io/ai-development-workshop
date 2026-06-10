@@ -9,7 +9,7 @@
 ## What you will practise
 
 - Extending a project CLAUDE.md with team-level governance rules that apply to every engineer in the repo
-- Configuring permissions — hard limits Claude cannot override — using `.claude/settings.json`
+- Configuring permissions — tool-level limits Claude cannot prompt its way around — using `.claude/settings.json`
 - Writing a `PostToolUse` hook that enforces standards automatically after every Claude edit
 - Extracting the harness into a reusable org template another team could adopt on day one
 

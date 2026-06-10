@@ -10,7 +10,7 @@ By the end of this module participants should be able to:
 
 1. Articulate the difference between individual Claude Code configuration and team-level governance
 2. Add team-facing governance rules to a project CLAUDE.md and explain why they differ from individual rules
-3. Configure a permissions allow/deny list in `.claude/settings.json` and explain the difference between CLAUDE.md guidance and hard permission limits
+3. Configure a permissions allow/deny list in `.claude/settings.json` and explain the difference between CLAUDE.md guidance and permission deny rules — including where those rules can and cannot be enforced
 4. Write a `PostToolUse` hook and explain when hooks are the right tool versus CLAUDE.md rules
 5. Extract a reusable harness template another team could adopt on day one
 6. Explain the harness as an engineering asset — something teams own, review, and evolve
@@ -24,13 +24,13 @@ By the end of this module participants should be able to:
 | Segment | Duration |
 |---------|----------|
 | Recap of Modules 1–3 + intro to team context | 5 min |
-| Exercise 1 | 25 min |
+| Exercise 1 | 30 min |
 | Debrief Exercise 1 | 5 min |
 | Exercise 2 | 20 min |
 | Debrief Exercise 2 | 5 min |
 | Exercise 3 | 15 min |
 | Debrief + wrap-up | 5 min |
-| **Total** | **~80 min** |
+| **Total** | **~85 min** |
 
 ---
 
@@ -46,7 +46,11 @@ No external setup needed. Participants work in their own workshop repo throughou
 
 Ask participants: "Could you write a prompt that would make Claude run `git push --force` anyway?" The answer should be no — and that is the point.
 
-**Common confusion:** participants sometimes add deny rules but forget to restart Claude Code. Hooks and permissions are loaded at session start. Remind them that editing `settings.json` mid-session requires a restart.
+**Extend with the file-edit test.** Once participants have seen the Bash deny rule work, ask: "What if you asked Claude to *edit* `.claude/settings.json` to remove the deny rule?" Let them test it if they want the visceral version. With the initial config, Claude can do it if the user approves the edit: the rule blocked a Bash command, but it did not block the Edit tool. Crucially, settings reload mid-session, so the change takes effect immediately. All tool calls are visible in the Claude Code UI, so the edit would be observable, but observability is not prevention.
+
+**Close the loop with Edit deny rules.** Have participants add `Edit(.claude/settings.json)` and `Edit(.claude/settings.local.json)` to the deny list, then repeat the edit request. Now Claude Code blocks the edit. This is the correct trust model: project permissions are tool-enforced collaborative constraints, not an OS-level or cryptographic firewall. For genuinely non-circumventable rules, the settings file needs to be outside Claude's write access — deployed via OS-managed policy (`/etc/claude-code/managed-settings.json` on Linux, managed preferences on macOS), or protected by filesystem permissions.
+
+**Common confusion:** participants sometimes add deny rules but expect them to affect every possible path to the same outcome. Permissions match specific tool calls. A Bash deny does not imply an Edit deny, and an Edit deny is not the same as OS-level sandboxing.
 
 ---
 

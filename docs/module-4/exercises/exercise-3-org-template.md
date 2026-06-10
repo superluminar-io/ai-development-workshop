@@ -83,7 +83,9 @@ These rules apply to every engineer working in this repo.
       "Bash(git push --force*)",
       "Bash(git push -f*)",
       "Bash(rm -rf*)",
-      "Bash(npx * --yes)"
+      "Bash(npx * --yes)",
+      "Edit(.claude/settings.json)",
+      "Edit(.claude/settings.local.json)"
     ]
   },
   "hooks": {
@@ -124,7 +126,8 @@ Drop this into your `.claude/` directory.
 
 **Permissions:** The allow list pre-approves common safe commands so Claude
 doesn't prompt for each one. The deny list blocks operations no Claude session
-should perform — force-pushing, bulk deletion, running untrusted packages.
+should perform — force-pushing, bulk deletion, running untrusted packages, and
+editing Claude's own project/local permission files.
 Adapt both lists to your project's tooling.
 
 **Hooks:** The `PostToolUse` hook runs `npm test` after every file write.
@@ -142,7 +145,9 @@ If your test suite is slow, replace with a faster check:
 
 Treat this like any other shared configuration. Changes go through code review.
 Breaking changes (removing a permission, tightening a rule) warrant a team
-discussion before merging.
+discussion before merging. Because the template denies Claude edits to
+`.claude/settings.json` and `.claude/settings.local.json`, humans should change
+those files directly through the normal review process.
 ```
 
 ---
@@ -159,7 +164,7 @@ git commit -m "feat: add claude-harness org template"
 Now read through what you have built across all three exercises. You started with a repo where six engineers used Claude Code however they liked. You now have:
 
 - **CLAUDE.md** — team standards every session reads
-- **Permissions** — hard limits no prompt can override
+- **Permissions** — tool-level limits no prompt can override
 - **Hooks** — automated enforcement that runs without being asked
 - **A template** — so the next project starts with all of this on day one
 

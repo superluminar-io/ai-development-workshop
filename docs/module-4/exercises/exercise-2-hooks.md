@@ -47,7 +47,9 @@ Use CLAUDE.md for standards that require judgment — things Claude needs to rea
 
 ## Step 1 — Add a PostToolUse hook (~12 min)
 
-Open `.claude/settings.json`. Add a `hooks` section alongside the existing `permissions`:
+Open `.claude/settings.json` yourself. Because Exercise 1 protected this file with `Edit` deny rules, do not ask Claude to make this edit for you.
+
+Add a `hooks` section alongside the existing `permissions`:
 
 ```json
 {
@@ -64,7 +66,9 @@ Open `.claude/settings.json`. Add a `hooks` section alongside the existing `perm
       "Bash(git push --force*)",
       "Bash(git push -f*)",
       "Bash(rm -rf*)",
-      "Bash(npx * --yes)"
+      "Bash(npx * --yes)",
+      "Edit(.claude/settings.json)",
+      "Edit(.claude/settings.local.json)"
     ]
   },
   "hooks": {
@@ -90,7 +94,7 @@ What this does:
 
 The `2>&1 | tail -20` keeps the output readable. Without it, the full test output appears in the session after every edit.
 
-Save the file and restart Claude Code.
+Save the file. Current Claude Code versions watch settings files and reload hooks during a session; if you do not see the hook fire in the next step, run `/clear` or restart Claude Code.
 
 ---
 
@@ -120,7 +124,7 @@ The hook fires again. This time tests fail. Claude sees the failure in its own o
 Check that:
 1. The `settings.json` is at `.claude/settings.json` (not `~/.claude/settings.json` or elsewhere)
 2. The JSON is valid — malformed JSON silently disables the hooks block
-3. You restarted Claude Code after saving the file — hooks are loaded at session start
+3. Claude Code has reloaded settings — run `/clear` or restart Claude Code if in doubt
 
 Validate the JSON with: `cat .claude/settings.json | python3 -m json.tool`
 
