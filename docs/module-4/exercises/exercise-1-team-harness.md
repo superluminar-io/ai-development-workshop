@@ -26,7 +26,7 @@ Open `CLAUDE.md` at the repo root. You wrote parts of this in Module 1 to docume
 
 In a real team, this file would be committed with the project, reviewed like any other engineering change, and updated through pull requests when the team learns a better way of working. Every engineer who clones the repo gets the same project instructions when they run Claude Code from that repo.
 
-For a larger organisation, the same idea usually becomes a starter template. A platform or engineering-practices team might keep a `CLAUDE.md` template in a shared GitHub repository, copy it into new projects, and adapt the project-specific sections: architecture, test commands, protected files, release rules. Exercise 3 turns the harness you build here into exactly that kind of reusable template.
+For a larger organisation, the same idea usually becomes part of a starter kit. A platform or engineering-practices team might keep a `CLAUDE.md` template in a shared GitHub repository, copy it into new projects, and adapt the project-specific sections: architecture, test commands, protected files, release rules. Exercise 3 turns the harness you build here into that kind of repeatable adoption process.
 
 The repo already has useful project instructions: test commands, code structure, review summaries, and small-change discipline. Do not duplicate those. Add team-level rules that are about collaboration boundaries: when Claude should stop, when it should ask, and which shared project surfaces need extra care.
 
