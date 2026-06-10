@@ -80,14 +80,6 @@ Claude Code permissions are rules over tool calls:
 
 There is an important caveat: `.claude/settings.json` is itself a regular file. If Claude can edit that file, it can be asked to remove or weaken the rules that govern it, and Claude Code reloads settings during the current session. All tool calls are visible in the Claude Code UI, so the edit can be caught and reviewed. But visibility is not the same as prevention.
 
-### Plan
-
-1. Add an initial permissions block that allows common safe commands and denies risky Bash commands.
-2. Ask Claude to run a denied command and observe that Claude Code blocks it.
-3. Optionally ask Claude to edit `.claude/settings.json` and remove a deny rule, so you can see the weakness.
-4. Add explicit `Edit` deny rules for Claude's permission files.
-5. Ask Claude to edit the settings again and observe that the edit is now blocked.
-
 ### Step 1 — Add the initial permission rules
 
 Create `.claude/settings.json` if it does not exist, and add this permissions block:
