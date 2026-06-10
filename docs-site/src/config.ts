@@ -212,6 +212,34 @@ const allModules: Module[] = [
       },
     ],
   },
+  {
+    id: 'module-5',
+    number: '05',
+    title: 'AI Security & Guardrails',
+    description:
+      'Defend against prompt injection, lock down file access with deny rules, and run Claude safely in automated pipelines.',
+    status: 'ready',
+    participantGuide: '/docs/module-5/participant-guide.md',
+    level: 'advanced',
+    audience: 'engineer',
+    exercises: [
+      {
+        slug: 'exercise-1-prompt-injection',
+        title: 'Prompt Injection in the Engineering Loop',
+        file: '/docs/module-5/exercises/exercise-1-prompt-injection.md',
+      },
+      {
+        slug: 'exercise-2-secrets-permissions',
+        title: 'Secrets and the Permission Layer',
+        file: '/docs/module-5/exercises/exercise-2-secrets-permissions.md',
+      },
+      {
+        slug: 'exercise-3-safe-agentic-patterns',
+        title: 'Safe Agentic Patterns',
+        file: '/docs/module-5/exercises/exercise-3-safe-agentic-patterns.md',
+      },
+    ],
+  },
 ]
 
 export const tracks: Track[] = resolveTracks(workshopConfig, allModules)
