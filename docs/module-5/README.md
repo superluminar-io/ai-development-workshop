@@ -1,6 +1,6 @@
 # Module 5: AI Security & Guardrails
 
-**Duration:** ~60 minutes
+**Duration:** ~60–85 minutes
 **Level:** Advanced
 **Prerequisites:** Module 4 (The AI Harness) — you should have a working `.claude/settings.json` before starting.
 

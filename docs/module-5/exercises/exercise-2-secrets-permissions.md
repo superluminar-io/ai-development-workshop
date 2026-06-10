@@ -119,7 +119,7 @@ To confirm the wildcard rule: rename `.env` to `.env.local` and ask Claude to re
 By the end of Exercise 2 you should have:
 - [ ] `.env` created with fake credentials (not committed)
 - [ ] Observed Claude reading `.env` without any restrictions
-- [ ] Observed CLAUDE.md guidance being (at minimum) non-deterministically reliable under a persuasive prompt
+- [ ] Observed CLAUDE.md guidance being bypassable or inconsistently enforced under a persuasive prompt
 - [ ] `.claude/settings.json` updated with deny rules for `.env` and `secrets/**`
 - [ ] Verified Claude cannot read `.env` with a debug-framed request after deny rules are active
 

@@ -70,7 +70,7 @@ claude -p "Run npm test. If any tests fail due to TypeScript errors, fix them us
   --output-format json
 ```
 
-`--max-turns 10` limits the total number of tool calls. If Claude has not finished after 10 turns, it stops and reports what it did. This prevents runaway agents.
+`--max-turns 10` limits the number of agentic turns (model invocations). If Claude has not finished after 10 turns, it stops and reports what it did. This prevents runaway agents.
 
 `--output-format json` makes the output machine-parseable. Inspect the structure:
 
@@ -104,8 +104,7 @@ RESULT=$(claude -p \
   --allowedTools "Bash(npm run lint),Edit" \
   --permission-mode dontAsk \
   --max-turns 8 \
-  --output-format json \
-  2>&1)
+  --output-format json)
 
 STATUS=$?
 
