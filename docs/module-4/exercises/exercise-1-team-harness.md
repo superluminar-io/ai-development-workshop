@@ -28,32 +28,27 @@ In a real team, this file would be committed with the project, reviewed like any
 
 For a larger organisation, the same idea usually becomes a starter template. A platform or engineering-practices team might keep a `CLAUDE.md` template in a shared GitHub repository, copy it into new projects, and adapt the project-specific sections: architecture, test commands, protected files, release rules. Exercise 3 turns the harness you build here into exactly that kind of reusable template.
 
+The repo already has useful project instructions: test commands, code structure, review summaries, and small-change discipline. Do not duplicate those. Add team-level rules that are about collaboration boundaries: when Claude should stop, when it should ask, and which shared project surfaces need extra care.
+
 Add a new section at the bottom of `CLAUDE.md`:
 
 ```markdown
-## Scope
-- Keep changes focused on the requested task.
-- Do not refactor unrelated code unless the user explicitly asks for it.
-- If you notice unrelated cleanup, mention it in the final summary instead of changing it.
-- Do not modify `.github/`, CI/CD configuration, deployment files, Dockerfiles, or infrastructure files unless the task explicitly requires it.
+## Team workflow
 
-### Before making changes
-- For small, local changes, proceed directly.
+These rules protect shared team workflows. They apply in addition to the project instructions above.
+
+### Planning and approval
 - If asked for a plan or approach, do not edit files. List the likely files or areas involved and wait for confirmation.
-- Before broad changes, list the files or areas you expect to touch and explain why.
-- Ask for confirmation before changing public APIs, data models, migrations, auth logic, billing logic, routing rules, or more than three files.
+- Ask for confirmation before changing shared contracts: `Ticket`, `TicketResult`, classification rules, routing rules, CLI behaviour, or example input formats.
+- Ask for confirmation before modifying more than three files in one response.
 
-### While making changes
-- Preserve existing style, naming, and architecture.
-- Prefer the smallest change that solves the problem.
+### Protected project areas
+- Do not modify `.github/`, CI/CD configuration, deployment files, Dockerfiles, or infrastructure files unless the task explicitly asks for those files.
+- Do not change package manager files, dependency versions, or build configuration unless explicitly asked.
+
+### Collaboration safety
 - Do not overwrite or revert user changes unless explicitly instructed.
-- Do not create commits, push branches, or open PRs unless asked.
-
-### After making changes
-- Summarise what changed.
-- List the tests or checks you ran.
-- If tests were not run, say why.
-- Call out any remaining risks, follow-up work, or assumptions.
+- Do not create commits, branches, tags, pushes, or pull requests unless explicitly asked.
 ```
 
 Save the file. Open a fresh Claude Code session and ask Claude:
