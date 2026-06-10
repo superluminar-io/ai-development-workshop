@@ -19,6 +19,16 @@ export function ModuleCard({ module }: ModuleCardProps) {
           <span className={`module-card__badge module-card__badge--${module.status}`}>
             {isReady ? 'Ready' : 'Coming soon'}
           </span>
+          <span className={`module-card__badge module-card__badge--${module.level}`}>
+            {module.level === 'foundations' ? 'Foundations' : 'Advanced'}
+          </span>
+          <span className="module-card__badge module-card__badge--audience">
+            {module.audience === 'engineer'
+              ? 'Engineer'
+              : module.audience === 'business'
+                ? 'Business'
+                : 'All'}
+          </span>
         </div>
         <p className="module-card__desc">{module.description}</p>
         {isReady && (

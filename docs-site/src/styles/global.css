@@ -164,6 +164,21 @@ body {
   color: var(--text-muted);
   border: 1px solid var(--bdr);
 }
+.module-card__badge--foundations {
+  background: var(--ac-dim);
+  color: var(--ac);
+  border: 1px solid var(--ac-bdr);
+}
+.module-card__badge--advanced {
+  background: rgba(255,255,255,0.05);
+  color: var(--text-muted);
+  border: 1px solid var(--bdr);
+}
+.module-card__badge--audience {
+  background: rgba(255,255,255,0.05);
+  color: var(--text-muted);
+  border: 1px solid var(--bdr);
+}
 .module-card__desc {
   font-size: 0.875rem;
   color: var(--text-muted);

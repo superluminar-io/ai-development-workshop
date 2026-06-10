@@ -45,4 +45,26 @@ describe('ModuleCard', () => {
     render(<MemoryRouter><ModuleCard module={comingSoonModule} /></MemoryRouter>)
     expect(screen.getByText('Coming soon')).toBeInTheDocument()
   })
+
+  it('renders the level badge as "Foundations"', () => {
+    render(<MemoryRouter><ModuleCard module={readyModule} /></MemoryRouter>)
+    expect(screen.getByText('Foundations')).toBeInTheDocument()
+  })
+
+  it('renders the audience badge as "Engineer"', () => {
+    render(<MemoryRouter><ModuleCard module={readyModule} /></MemoryRouter>)
+    expect(screen.getByText('Engineer')).toBeInTheDocument()
+  })
+
+  it('renders audience badge as "All" for audience "both"', () => {
+    const bothModule: Module = { ...readyModule, audience: 'both' }
+    render(<MemoryRouter><ModuleCard module={bothModule} /></MemoryRouter>)
+    expect(screen.getByText('All')).toBeInTheDocument()
+  })
+
+  it('renders "Advanced" level badge for advanced modules', () => {
+    const advModule: Module = { ...readyModule, level: 'advanced' }
+    render(<MemoryRouter><ModuleCard module={advModule} /></MemoryRouter>)
+    expect(screen.getByText('Advanced')).toBeInTheDocument()
+  })
 })
