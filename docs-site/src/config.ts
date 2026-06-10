@@ -1,4 +1,4 @@
-import workshopConfig from '../../workshop.json'
+import workshopConfigJson from '../../workshop.json'
 
 export interface Exercise {
   slug: string
@@ -19,6 +19,28 @@ export interface Module {
   audience: 'engineer' | 'business' | 'both'
 }
 
+export interface Track {
+  id: string
+  label: string
+  audience: 'engineer' | 'business' | 'both'
+  modules: Module[]
+  summary?: string
+}
+
+type RawTrack = {
+  id: string
+  label: string
+  audience: 'engineer' | 'business' | 'both'
+  modules: string[]
+  summary?: string
+}
+
+type WorkshopConfig =
+  | { modules: string[] }
+  | { tracks: RawTrack[] }
+
+const workshopConfig = workshopConfigJson as unknown as WorkshopConfig
+
 export function filterModules(all: Module[], enabledIds: string[]): Module[] {
   return all.filter((m) => enabledIds.includes(m.id))
 }
@@ -28,6 +50,41 @@ export function assignDisplayNumbers(mods: Module[]): Module[] {
   return mods.map((m) => ({
     ...m,
     number: m.id === 'setup' ? m.number : String(++counter).padStart(2, '0'),
+  }))
+}
+
+export function filterExercises(
+  exercises: Exercise[],
+  audience: 'engineer' | 'business' | 'both'
+): Exercise[] {
+  if (audience === 'both') return exercises
+  return exercises.filter(
+    (ex) => !ex.audience || ex.audience === audience || ex.audience === 'both'
+  )
+}
+
+export function resolveTracks(config: WorkshopConfig, allMods: Module[]): Track[] {
+  if ('modules' in config) {
+    return [
+      {
+        id: 'default',
+        label: 'Workshop',
+        audience: 'both',
+        modules: assignDisplayNumbers(filterModules(allMods, config.modules)),
+      },
+    ]
+  }
+  return config.tracks.map((raw) => ({
+    id: raw.id,
+    label: raw.label,
+    audience: raw.audience,
+    summary: raw.summary,
+    modules: assignDisplayNumbers(
+      filterModules(allMods, raw.modules).map((m) => ({
+        ...m,
+        exercises: filterExercises(m.exercises, raw.audience),
+      }))
+    ),
   }))
 }
 
@@ -157,6 +214,6 @@ const allModules: Module[] = [
   },
 ]
 
-export const modules: Module[] = assignDisplayNumbers(
-  filterModules(allModules, workshopConfig.modules)
-)
+export const tracks: Track[] = resolveTracks(workshopConfig, allModules)
+export const activeTrack: Track | null = tracks[0] ?? null
+export const modules: Module[] = activeTrack?.modules ?? []
