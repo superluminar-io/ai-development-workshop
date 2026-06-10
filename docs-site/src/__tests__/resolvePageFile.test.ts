@@ -9,6 +9,8 @@ const mod: Module = {
   description: 'desc',
   status: 'ready',
   participantGuide: '/docs/module-1/participant-guide.md',
+  level: 'foundations',
+  audience: 'engineer',
   exercises: [
     {
       slug: 'exercise-1-orientation',

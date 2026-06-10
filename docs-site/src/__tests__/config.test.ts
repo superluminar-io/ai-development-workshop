@@ -10,6 +10,8 @@ const makeModule = (id: string): Module => ({
   status: 'ready',
   participantGuide: `/docs/${id}/participant-guide.md`,
   exercises: [],
+  level: 'foundations',
+  audience: 'engineer',
 })
 
 describe('filterModules', () => {

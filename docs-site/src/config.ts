@@ -4,6 +4,7 @@ export interface Exercise {
   slug: string
   title: string
   file: string // Vite-served URL path, e.g. /docs/module-1/exercises/exercise-1-orientation.md
+  audience?: 'engineer' | 'business' | 'both'
 }
 
 export interface Module {
@@ -14,6 +15,8 @@ export interface Module {
   status: 'ready' | 'coming-soon'
   participantGuide: string // Vite-served URL path, e.g. /docs/module-1/participant-guide.md
   exercises: Exercise[]
+  level: 'foundations' | 'advanced'
+  audience: 'engineer' | 'business' | 'both'
 }
 
 export function filterModules(all: Module[], enabledIds: string[]): Module[] {
@@ -37,6 +40,8 @@ const allModules: Module[] = [
     status: 'ready',
     participantGuide: '/docs/setup/participant-guide.md',
     exercises: [],
+    level: 'foundations',
+    audience: 'both',
   },
   {
     id: 'module-1',
@@ -46,6 +51,8 @@ const allModules: Module[] = [
       'Explore a codebase, refactor safely, write tests, and prepare a PR summary — all with Claude.',
     status: 'ready',
     participantGuide: '/docs/module-1/participant-guide.md',
+    level: 'foundations',
+    audience: 'engineer',
     exercises: [
       {
         slug: 'exercise-1-orientation',
@@ -77,6 +84,8 @@ const allModules: Module[] = [
       'Configure GitHub MCP, review PRs with full context, and build reusable slash commands.',
     status: 'ready',
     participantGuide: '/docs/module-2/participant-guide.md',
+    level: 'foundations',
+    audience: 'engineer',
     exercises: [
       {
         slug: 'exercise-1-review-without-context',
@@ -98,6 +107,8 @@ const allModules: Module[] = [
       'Install the Superpowers plugin, explore community-built skills, and use spec-driven development to take a feature from idea to implementation plan.',
     status: 'ready',
     participantGuide: '/docs/module-3/participant-guide.md',
+    level: 'foundations',
+    audience: 'engineer',
     exercises: [
       {
         slug: 'exercise-1-plugins-and-superpowers',
@@ -124,6 +135,8 @@ const allModules: Module[] = [
       'Configure team governance, permissions, and hooks. Build a reusable org template for Claude Code standards.',
     status: 'ready',
     participantGuide: '/docs/module-4/participant-guide.md',
+    level: 'foundations',
+    audience: 'engineer',
     exercises: [
       {
         slug: 'exercise-1-team-harness',
