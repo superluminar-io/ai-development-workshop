@@ -1,4 +1,4 @@
-# Exercise 3: Head of AI Engineering Practices — Build the Org Starter Kit
+# Exercise 3: Head of AI Engineering Practices — Write the Adoption Plan
 
 ---
 
@@ -15,7 +15,7 @@
 
 ---
 
-**Goal:** Turn the practices from this workshop into a starter kit a smaller organisation could use to standardise AI-assisted development across projects.
+**Goal:** Turn what you learned in this module into a short adoption plan for standardising AI-assisted development across projects.
 
 **Duration:** ~15 minutes
 **Prerequisites:** Exercises 1 and 2 complete
@@ -28,191 +28,173 @@ You have now built a harness for this repo. It works here. But the organisation 
 
 Copying this repo's exact `CLAUDE.md`, permissions, and hook into every project would be too blunt. A ticket processor, a frontend app, a Terraform repo, and an SDK need different local instructions. What they do need is a shared process for deciding:
 
-- What should every project start with?
-- What must each team customise?
-- What should be centrally owned?
-- What is only a personal preference?
-- How do changes to the standard get reviewed?
+- What should be standardised across all repos?
+- What must stay project-specific?
+- What belongs in `CLAUDE.md`, permissions, hooks, MCP config, or managed policy?
+- Who owns the standard?
+- How do teams adopt it without breaking their workflows?
 
-This exercise is about that process. You are not building a perfect enterprise governance platform. You are creating a practical starting point for a small company or early platform team: shared defaults, version-controlled templates, and clear ownership.
+This exercise is about that process. You are not building a perfect enterprise governance platform. You are creating a practical starting point for a small company or early platform team.
 
-At enterprise scale, there is more to learn: managed settings, device policy deployment, approved MCP servers, plugin marketplace governance, audit requirements, and exception handling. Those topics belong in the advanced workshop.
+At enterprise scale, there is more to learn. Our advanced workshop covers this topic in greater breadth and depth: managed settings, device policy deployment, approved MCP servers, plugin marketplace governance, agent isolation, data governance, audit requirements, and exception handling.
 
-In a real organisation, this starter kit would live in its own repository — for example `ai-engineering-standard` or `developer-ai-standards` — not inside an individual product repo. Teams would open pull requests against that standards repo, and new projects would copy or generate their starting Claude Code setup from it. In this workshop, you will create the directory inside the current repo only so you can practise the structure without switching repositories.
+In a real organisation, this plan would usually live in a dedicated standards repo or engineering handbook, not inside an individual product repo. In this workshop, you will create it inside the current repo so you can practise the thinking without switching repositories.
 
 ---
 
-## Step 1 — Sort the pieces by scope (~5 min)
+## Step 1 — Create the plan (~2 min)
 
-Create a directory at the repo root to represent that separate standards repository:
+Create a file at the repo root:
 
 ```bash
-mkdir ai-engineering-standard
+touch ai-adoption-plan.md
 ```
 
-Inside it, create `ai-engineering-standard/adoption-plan.md`:
+Add this structure:
 
 ```markdown
-# AI Engineering Standard — Adoption Plan
+# AI-Assisted Development Adoption Plan
 
-## Scope decisions
+## 1. What we will standardise
 
-| Practice | Scope | Why |
+<!-- Which AI development practices should every repo start with? -->
+
+## 2. What stays project-specific
+
+<!-- Which practices need to be adapted per repo or team? -->
+
+## 3. Where each control belongs
+
+| Control | Where it belongs | Why |
 |---|---|---|
-| Project architecture and test commands | Project `CLAUDE.md` | Specific to each repo |
-| Team workflow rules | Project `CLAUDE.md` | Shared by everyone working in that repo |
-| Deny `git push --force` | Project or managed permissions | Safe default for teams; managed if non-negotiable |
-| Protect `.claude/settings.json` from Claude edits | Project permissions | Prevents Claude from weakening repo-local rules |
-| Run tests after Claude edits files | Project hook | Test command differs by repo |
-| Approved MCP servers | Organisation policy, then project config | Access depends on company security rules |
-| Personal editor or prompt preferences | User or local settings | Should not be forced on the team |
+|  |  |  |
 
-## Baseline rollout
+## 4. Ownership and change process
 
-1. Start with one pilot repo.
-2. Add a project `CLAUDE.md`, project permissions, and one lightweight hook.
-3. Keep repo-specific details in the repo, not in the global template.
-4. Review the first week of friction with the team.
-5. Update the starter kit before rolling it out to more projects.
+<!-- Who owns the standard? How do teams propose changes? -->
 
-## Ownership
+## 5. Rollout plan
 
-- The platform or engineering-practices team owns the starter kit.
-- Each product team owns its repo-specific `CLAUDE.md`, hooks, and project settings.
-- Security owns non-negotiable restrictions that should eventually move to managed settings.
+<!-- How would you introduce this across several repos? -->
 
-## Advanced workshop topics
+## 6. Not covered in this workshop
 
-This starter kit is not the whole enterprise model. For larger organisations, continue with managed settings, central MCP governance, plugin marketplace policy, audit requirements, and exception workflows.
-```
-
-This document is the main learning artifact. It shows that standardisation is not "copy one config everywhere"; it is deciding what belongs at each level.
-
----
-
-## Step 2 — Create starter templates (~7 min)
-
-Create a `templates/` directory:
-
-```bash
-mkdir ai-engineering-standard/templates
-```
-
-Create `ai-engineering-standard/templates/PROJECT_CLAUDE.md`:
-
-```markdown
-# [Project Name] — Claude Code Instructions
-
-These instructions apply to Claude Code sessions in this repository.
-
-## Project context
-
-- Main source directories:
-- Test directories:
-- Important domain concepts:
-- Commands Claude should know:
-
-## Team workflow
-
-- If asked for a plan or approach, do not edit files. List the likely files or areas involved and wait for confirmation.
-- Ask for confirmation before changing shared contracts, public APIs, data models, release behaviour, auth, billing, or infrastructure.
-- Do not create commits, branches, tags, pushes, or pull requests unless explicitly asked.
-
-## Verification
-
-- Test command:
-- Typecheck command:
-- Lint command:
-- If a check cannot be run locally, explain why in the final summary.
-```
-
-Create `ai-engineering-standard/templates/project-settings.json`:
-
-```json
-{
-  "permissions": {
-    "allow": [
-      "Bash(git status)",
-      "Bash(git diff*)",
-      "Bash(git log*)"
-    ],
-    "deny": [
-      "Bash(git push --force*)",
-      "Bash(git push -f*)",
-      "Bash(rm -rf*)",
-      "Edit(.claude/settings.json)",
-      "Edit(.claude/settings.local.json)"
-    ]
-  }
-}
-```
-
-Create `ai-engineering-standard/templates/hook-notes.md`:
-
-```markdown
-# Hook Notes
-
-Every project should choose one fast feedback hook.
-
-Examples:
-
-- TypeScript library: `npm test 2>&1 | tail -20`
-- Frontend app: `npm run lint 2>&1 | tail -20`
-- Python service: `pytest -q 2>&1 | tail -20`
-
-Do not blindly copy another repo's hook. The hook should be fast enough that developers do not disable it.
+<!-- What belongs in a future advanced or enterprise rollout? -->
 ```
 
 ---
 
-## Step 3 — Add the adoption README (~3 min)
+## Step 2 — Fill in the plan (~10 min)
 
-Create `ai-engineering-standard/README.md`:
+Answer the prompts in your own words. Keep it practical: imagine your organisation wants to start next week, not after a six-month platform programme.
 
-```markdown
-# AI Engineering Standard Starter Kit
+### 1. What we will standardise
 
-This starter kit helps teams adopt consistent Claude Code practices across projects.
+Write 3-5 defaults every project should start with.
 
-## What every new project gets
+<details>
+<summary>Hint: possible answers</summary>
 
-- A project `CLAUDE.md` adapted from `templates/PROJECT_CLAUDE.md`
-- A project `.claude/settings.json` adapted from `templates/project-settings.json`
-- One fast feedback hook chosen from `templates/hook-notes.md`
-- A short review from the owning team before the standard is merged
+- Every repo has a project `CLAUDE.md` committed to version control.
+- Every repo documents its test, lint, and typecheck commands for Claude.
+- Every repo has a small deny list for obviously risky commands like force-push and bulk deletion.
+- Every repo protects `.claude/settings.json` and `.claude/settings.local.json` from Claude edits.
+- Every repo chooses one fast feedback hook, such as tests, linting, or typechecking.
 
-## What each team must customise
+</details>
 
-- Project architecture and domain language
-- Test, lint, and typecheck commands
-- Protected files and risky workflows
-- Which MCP servers are appropriate for the repo
-- Which checks are fast enough to run in hooks
+### 2. What stays project-specific
 
-## What this starter kit does not solve
+List the things that should not be copied blindly between repos.
 
-- Enterprise-wide enforcement
-- Device policy deployment
-- Central MCP allowlists
-- Plugin marketplace governance
-- Audit and exception workflows
+<details>
+<summary>Hint: possible answers</summary>
 
-Those are advanced workshop topics.
+- Architecture notes and domain language in `CLAUDE.md`.
+- Test and lint commands.
+- Hook commands and when they run.
+- Protected paths such as infrastructure, generated code, migrations, or release files.
+- Which MCP servers a project actually needs.
+- Which files Claude should avoid unless explicitly asked.
 
-## Change process
+</details>
 
-Changes to this starter kit go through code review. If a team finds a better default, they propose it here so the next project benefits too.
-```
+### 3. Where each control belongs
+
+Fill in the table. Use the categories `CLAUDE.md`, project permissions, hooks, MCP config, user/local settings, or future managed policy.
+
+<details>
+<summary>Hint: possible answers</summary>
+
+| Control | Where it belongs | Why |
+|---|---|---|
+| Explain project architecture | `CLAUDE.md` | Claude needs this context while coding |
+| Run tests after file edits | Hook | It is an automatic check, not a guideline |
+| Deny `git push --force` | Project permissions; later managed policy | Useful team guardrail; may become non-negotiable |
+| Approved GitHub access | MCP config plus org policy | Access depends on company security rules |
+| Personal tone or planning preference | User/local settings | Should not be forced on the team |
+| Protect `.claude/settings.json` | Project permissions | Prevents Claude from weakening repo-local rules |
+
+</details>
+
+### 4. Ownership and change process
+
+Decide who owns the standard and how changes are reviewed.
+
+<details>
+<summary>Hint: possible answers</summary>
+
+- A platform, enablement, or engineering-practices group owns the starter standard.
+- Product teams own their repo-specific `CLAUDE.md`, hooks, and settings.
+- Security reviews changes to permissions, MCP access, and managed policies.
+- Changes go through pull requests in a dedicated standards repo.
+- Teams can propose improvements after trying the standard in real work.
+
+</details>
+
+### 5. Rollout plan
+
+Write a short rollout plan.
+
+<details>
+<summary>Hint: possible answers</summary>
+
+1. Pilot the standard in one repo.
+2. Collect friction for one week.
+3. Adjust the defaults.
+4. Roll out to two or three more repos.
+5. Add the standard to new-project setup.
+6. Move non-negotiable security controls into managed settings later.
+
+</details>
+
+### 6. Not covered in this workshop
+
+Name the topics that should be handled in the advanced workshop or enterprise rollout.
+
+<details>
+<summary>Hint: possible answers</summary>
+
+- Managed settings and OS/device policy deployment.
+- Central MCP allowlists and approval workflows.
+- Plugin marketplace governance.
+- Agent isolation and safe execution environments.
+- Data governance: what context agents may access, retain, or send to external systems.
+- Audit logging and compliance evidence.
+- Exception processes for teams with unusual needs.
+- Measuring adoption across many repos.
+
+</details>
 
 ---
 
 ## Commit and reflect
 
-Commit the starter kit:
+Commit the plan:
 
 ```bash
-git add ai-engineering-standard/
-git commit -m "feat: add AI engineering standard starter kit"
+git add ai-adoption-plan.md
+git commit -m "docs: add AI-assisted development adoption plan"
 ```
 
 Now look back at the module. You combined:
@@ -221,9 +203,65 @@ Now look back at the module. You combined:
 - **Permissions** for tool-level limits
 - **Hooks** for automatic checks
 - **MCP thinking** from earlier modules for approved external context
-- **A rollout plan** so this becomes a shared organisational process
+- **An adoption plan** so this becomes a shared organisational process
 
 That is the shift from individual AI usage to organisational AI practice.
+
+---
+
+## Bonus — Sketch your standards repo
+
+If you want to take this further after the workshop, turn your adoption plan into a dedicated standards repository. In a real organisation this would usually be a separate internal repo, not a folder inside a product codebase.
+
+This is a useful next step, but it is not the end of the journey. A standards repo helps smaller teams share good defaults; it does not replace enterprise controls for agent isolation, data governance, central policy enforcement, auditability, or exception handling. Those are covered in greater breadth and depth in the advanced workshop.
+
+One possible structure:
+
+```text
+standards-repo/
+├── README.md
+├── templates/
+│   ├── node-service/
+│   │   ├── CLAUDE.md
+│   │   └── settings.json
+│   ├── frontend-app/
+│   │   ├── CLAUDE.md
+│   │   └── settings.json
+│   └── infrastructure/
+│       ├── CLAUDE.md
+│       └── settings.json
+└── rollout.md
+```
+
+This can become a final showcase of everything you have learned:
+
+- **CLAUDE.md templates** for repo-specific context, team workflow, verification commands, and protected areas.
+- **Settings templates** for baseline permissions, deny rules, hooks, and safe defaults.
+- **Commands** for repeatable workflows such as review, test generation, release checks, or PR preparation.
+- **Skills** for reusable practices that need instructions, examples, or supporting files.
+- **MCP guidance** for which external systems teams may connect to, and what approvals are needed.
+- **Rollout notes** for pilot projects, ownership, review process, and how teams propose changes.
+
+<details>
+<summary>Hint: what might differ by repo type?</summary>
+
+- `node-service`: test/typecheck commands, API contract rules, logging/error-handling expectations.
+- `frontend-app`: design-system rules, accessibility checks, browser test commands, component boundaries.
+- `infrastructure`: stricter permissions, plan-before-apply workflow, protected Terraform state and deployment files.
+
+</details>
+
+<details>
+<summary>Hint: what belongs in the standards repo README?</summary>
+
+- Who owns the standard.
+- How a new project adopts it.
+- Which files are copied into each repo.
+- Which parts teams must customise.
+- Which restrictions are recommendations now but may become managed policy later.
+- How teams request exceptions or propose improvements.
+
+</details>
 
 ---
 
@@ -231,11 +269,7 @@ That is the shift from individual AI usage to organisational AI practice.
 
 By the end of Exercise 3 you should have:
 
-- [ ] `ai-engineering-standard/adoption-plan.md` — scope decisions, rollout, and ownership
-- [ ] `ai-engineering-standard/templates/PROJECT_CLAUDE.md` — reusable project instruction template
-- [ ] `ai-engineering-standard/templates/project-settings.json` — baseline project permissions
-- [ ] `ai-engineering-standard/templates/hook-notes.md` — guidance for choosing repo-specific hooks
-- [ ] `ai-engineering-standard/README.md` — adoption guide for other teams
+- [ ] `ai-adoption-plan.md` with standardised practices, project-specific decisions, control placement, ownership, rollout, and advanced-workshop topics
 
 ---
 
@@ -244,5 +278,5 @@ By the end of Exercise 3 you should have:
 - Which parts of your team's AI workflow should be standardised across every repo?
 - Which parts must remain project-specific?
 - Which rules are important enough to become managed enterprise policy later?
-- Who should review changes to the starter kit?
+- Who should review changes to the standard?
 - How would you know three months from now whether the standard is helping?
