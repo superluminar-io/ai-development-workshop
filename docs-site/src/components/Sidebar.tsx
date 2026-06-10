@@ -1,8 +1,10 @@
-import { Link, NavLink, useParams } from 'react-router-dom'
+import { Link, NavLink, useLocation, useParams } from 'react-router-dom'
 import { modules } from '../config'
 
 export function Sidebar() {
   const { moduleId } = useParams<{ moduleId: string }>()
+  const { pathname } = useLocation()
+  const isSummaryActive = pathname === '/summary'
   const readyModules = modules.filter((m) => m.status === 'ready')
 
   const exerciseLinkClass = ({ isActive }: { isActive: boolean }) =>
@@ -44,6 +46,14 @@ export function Sidebar() {
           </div>
         )
       })}
+      <div className="sidebar__module">
+        <Link
+          to="/summary"
+          className={`sidebar__module-header${isSummaryActive ? ' sidebar__module-header--active' : ''}`}
+        >
+          <span className="sidebar__module-number">Summary</span>
+        </Link>
+      </div>
     </aside>
   )
 }
