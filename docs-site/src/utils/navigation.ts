@@ -1,7 +1,7 @@
 import type { Module } from '../config'
 
 export type NextPage =
-  | { kind: 'module'; moduleId: string; pageSlug: string }
+  | { kind: 'module'; moduleId: string; pageSlug: string; title: string }
   | { kind: 'summary' }
 
 export function getNextPage(
@@ -11,11 +11,11 @@ export function getNextPage(
 ): NextPage | null {
   const ready = modules.filter((m) => m.status === 'ready')
 
-  const pages: Array<{ moduleId: string; pageSlug: string }> = []
+  const pages: Array<{ moduleId: string; pageSlug: string; title: string }> = []
   for (const m of ready) {
-    pages.push({ moduleId: m.id, pageSlug: 'participant-guide' })
+    pages.push({ moduleId: m.id, pageSlug: 'participant-guide', title: m.title })
     for (const ex of m.exercises) {
-      pages.push({ moduleId: m.id, pageSlug: ex.slug })
+      pages.push({ moduleId: m.id, pageSlug: ex.slug, title: ex.title })
     }
   }
 
