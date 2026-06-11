@@ -16,7 +16,7 @@ A plugin is an installable package that extends Claude Code. Plugins can add:
 
 Plugins are distributed through the Claude plugin registry and installed once per user. They are not project-specific — once installed, a plugin's skills and commands are available in every Claude Code session.
 
-Superpowers is an official plugin maintained by Anthropic. It adds a library of skills for common engineering tasks: brainstorming feature ideas, writing specs, creating implementation plans, debugging systematically, reviewing code, and more.
+Superpowers is a third-party plugin by Jesse Vincent (Prime Radiant), listed on Anthropic's plugin marketplace. It adds a library of skills for common engineering tasks: brainstorming feature ideas, writing specs, creating implementation plans, debugging systematically, reviewing code, and more.
 
 ---
 
