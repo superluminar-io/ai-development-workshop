@@ -103,4 +103,4 @@ If any of these fail, ask for help before starting Module 1.
 
 ## You're ready
 
-Go to Module 1 in the sidebar to begin.
+Click below to continue.
