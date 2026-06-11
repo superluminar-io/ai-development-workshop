@@ -165,6 +165,13 @@ If you want Claude to continue prompting for approval on unlisted commands (rath
 
 </details>
 
+<details>
+<summary>Hint: Permissions aren't blocking the command I denied</summary>
+
+Check that `settings.json` is in the `.claude/` directory at the repo root (not a subdirectory), and that the JSON is valid: `cat .claude/settings.json | python3 -m json.tool`. Restart Claude Code after editing the file — permissions are loaded at session start.
+
+</details>
+
 ---
 
 ## Deliverable

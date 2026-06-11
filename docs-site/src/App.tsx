@@ -2,6 +2,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { Nav } from './components/Nav'
 import { HomePage } from './pages/HomePage'
 import { ModulePage } from './pages/ModulePage'
+import { SummaryPage } from './pages/SummaryPage'
 
 export function App() {
   return (
@@ -11,6 +12,7 @@ export function App() {
         <div className="app-content">
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/summary" element={<SummaryPage />} />
             <Route path="/module/:moduleId/:pageSlug" element={<ModulePage />} />
             <Route path="/module/:moduleId" element={<ModulePage />} />
             <Route path="*" element={<Navigate to="/" replace />} />

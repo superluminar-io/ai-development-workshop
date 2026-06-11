@@ -13,6 +13,8 @@ const readyModule: Module = {
   exercises: [
     { slug: 'ex-1', title: 'Orientation', file: '/docs/module-1/exercises/ex-1.md' },
   ],
+  level: 'foundations',
+  audience: 'engineer',
 }
 
 const comingSoonModule: Module = {
@@ -43,4 +45,5 @@ describe('ModuleCard', () => {
     render(<MemoryRouter><ModuleCard module={comingSoonModule} /></MemoryRouter>)
     expect(screen.getByText('Coming soon')).toBeInTheDocument()
   })
+
 })

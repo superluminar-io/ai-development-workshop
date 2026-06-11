@@ -24,15 +24,11 @@ GitHub provides an official MCP server. So do Slack, Linear, Jira, and many othe
 
 ---
 
-## Overview
+## What will you do in this module?
 
-In this module you will configure the GitHub MCP server, use it to do a thorough PR review, and encode that process as a reusable command.
-
-By the end you will have:
-- configured GitHub MCP for a project
-- used it to review a real PR with full context — PR description, linked issue, and all
-- understood why MCP servers exist and what they save you from building
-- written a reusable `/review-pr` command your team could use
+- **Exercise 1 — Configure GitHub MCP (~25 min):** Set up the GitHub MCP server and run a PR review with full context — PR description, linked issue, and all.
+- **Exercise 2 — Integrate GitHub MCP into the Project (~25 min):** Move the MCP config to the repo and upgrade the review command.
+- **Exercise 3 — Build a Reusable Command (~18 min):** Complete the `/review-pr` command skeleton with precise review logic.
 
 ---
 
@@ -85,6 +81,13 @@ bash scripts/setup-module-2.sh
 
 Expected output: two URLs — one for the issue and one for the PR. The script prints your repo name at the end; note it down, you will use it in the exercises.
 
+<details>
+<summary>The setup script fails</summary>
+
+Check that `gh auth status` shows you are authenticated and that you have pushed `demo/vip-routing` to your remote: `git push origin demo/vip-routing`.
+
+</details>
+
 ### 4 — Set your GitHub token
 
 ```bash
@@ -94,6 +97,13 @@ echo $GITHUB_PERSONAL_ACCESS_TOKEN | head -c 10   # should be non-empty
 
 > This variable must be set **before** launching Claude Code. If Claude Code is already running when you set it, restart Claude Code.
 
+<details>
+<summary>GitHub MCP is not activating</summary>
+
+Check that `GITHUB_PERSONAL_ACCESS_TOKEN` is set in the terminal where you launch Claude Code: `echo $GITHUB_PERSONAL_ACCESS_TOKEN`. If empty, run `export GITHUB_PERSONAL_ACCESS_TOKEN=$(gh auth token)` then relaunch Claude Code.
+
+</details>
+
 ### 5 — Verify
 
 ```bash
@@ -101,21 +111,3 @@ npm test          # 15 tests passing
 gh auth status    # authenticated to GitHub
 ```
 
----
-
-## Common issues
-
-**GitHub MCP is not activating**
-Check that `GITHUB_PERSONAL_ACCESS_TOKEN` is set in the terminal where you launch Claude Code: `echo $GITHUB_PERSONAL_ACCESS_TOKEN`. If empty, run `export GITHUB_PERSONAL_ACCESS_TOKEN=$(gh auth token)` then relaunch Claude Code.
-
-**Claude cannot find your repo**
-Make sure you are using the correct repo name (the one printed at the end of `setup-module-2.sh`). Your token must belong to the same GitHub account that owns the repo.
-
-**`/review-pr` produces vague output**
-The command skeleton has placeholder instructions `[...]`. If you have not replaced them yet, do so in Exercise 2. Vague prompts produce vague output — be specific about what to look for.
-
-**Claude does not fetch the linked issue**
-Add an explicit instruction to your command: "Fetch all GitHub issues linked in the PR description before reviewing any code." Claude will not fetch linked issues unless asked.
-
-**The setup script fails**
-Check that `gh auth status` shows you are authenticated and that you have pushed `demo/vip-routing` to your remote: `git push origin demo/vip-routing`.

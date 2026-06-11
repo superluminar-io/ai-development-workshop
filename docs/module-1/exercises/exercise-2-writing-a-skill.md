@@ -126,6 +126,13 @@ Read Claude's response. Did it apply your skill? You can tell by whether Claude'
 
 If the skill did not trigger, read your `description` again. Is it specific enough? Does it match the language you used when describing the task? Adjust and try again.
 
+<details>
+<summary>Hint: My skill isn't triggering automatically</summary>
+
+Check that `.claude/skills/safe-refactoring/SKILL.md` is saved. Re-read the `description` field — is it specific enough to match the task you described? Try starting a fresh session (or run `/clear`) after editing.
+
+</details>
+
 ---
 
 ## Deliverable

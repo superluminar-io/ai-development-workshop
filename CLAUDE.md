@@ -33,6 +33,18 @@ npm run typecheck  # TypeScript strict check (tsc --noEmit)
 Tests must pass before a change is considered complete.
 Always run tests after making changes, not before reporting the change as done.
 
+## Creating new modules or workshop content
+
+When adding a new module or any workshop content, always read the latest versions of the following before writing anything:
+
+- `docs/superpowers/specs/2026-06-10-advanced-workshop-tracks-design.md` — authoritative spec for module structure, audience/level fields, and track configuration
+- An existing module (e.g. `docs/module-1/`) — use it as the canonical template for folder layout, file naming, and writing style
+- `docs-site/src/config.ts` — to understand the current Module type and how to register a new module
+
+Do not infer module structure from memory or earlier sessions. Always read current files first.
+
+When referencing third-party tools, APIs, or frameworks in module content (e.g. Claude Code CLI, GitHub MCP, Anthropic APIs), always fetch the latest official documentation before writing exercises or instructions. Do not rely on training data — versions, flags, and behaviour change. Use the most current documentation available at the time of writing.
+
 ## Code structure
 
 - Domain types: `src/domain/ticket.ts`

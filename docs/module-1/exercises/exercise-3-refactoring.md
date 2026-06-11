@@ -17,6 +17,13 @@ npm test && npm run typecheck
 
 Expected: all tests passing, 0 TypeScript errors.
 
+<details>
+<summary>Hint: npm test fails after a Claude change</summary>
+
+Read the failure message before doing anything else. If Claude changed a function signature, the tests may need to be updated to match the new behaviour. Run `git diff` to see exactly what changed, then decide whether the test or the code needs fixing.
+
+</details>
+
 ---
 
 ## Step 1 — Describe the task, let the skill do its job (~3 min)
