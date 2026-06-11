@@ -44,15 +44,59 @@ Each module has a facilitator guide with learning goals, timing, and common part
 
 ### Configuring modules for a workshop
 
-Edit `workshop.json` at the repo root before participants clone the repo:
+Edit `workshop.json` at the repo root before participants clone the repo. Configure one or more tracks — each track is a named session with its own module list.
+
+**Single-session workshop:**
 
 ```json
-{ "modules": ["setup", "module-1", "module-2"] }
+{
+  "tracks": [
+    {
+      "id": "session",
+      "label": "Workshop",
+      "audience": "both",
+      "modules": ["setup", "module-1", "module-2"]
+    }
+  ]
+}
 ```
 
-List the module IDs you want to include. Participants who clone the repo will only see those modules in the docs site. The default includes all modules.
+**Two-session workshop (engineers and business/leadership separately):**
 
-Available module IDs: `setup`, `module-1`, `module-2`, `module-3`, `module-4`.
+```json
+{
+  "tracks": [
+    {
+      "id": "engineers",
+      "label": "Engineering Session",
+      "audience": "engineer",
+      "modules": ["setup", "module-1", "module-2", "module-5", "module-8"]
+    },
+    {
+      "id": "leadership",
+      "label": "Leadership Session",
+      "audience": "business",
+      "modules": ["bridge", "module-6", "module-7"]
+    }
+  ]
+}
+```
+
+Configure the session before participants clone the repo. Each session (engineer vs. leadership) is a separate clone — there is no in-browser track switching.
+
+**Optional: custom summary page**
+
+Add a `"summary"` field to any track pointing to a markdown file served by Vite:
+
+```json
+{ ..., "summary": "/docs/summaries/my-session.md" }
+```
+
+If omitted, the default summary at `docs/summaries/default.md` is shown.
+
+**Available module IDs:** `setup`, `module-1`, `module-2`, `module-3`, `module-4`, `bridge`, `module-5`, `module-6`, `module-7`, `module-8`
+
+> Note: `bridge` and `module-5` through `module-8` are advanced modules. Their content is added in a separate workstream.
 
 The participant-facing workshop frontend is started with `npm run docs` from the repo root. Participants run it locally on their own machines — there is nothing to host or deploy.
 

@@ -101,6 +101,15 @@ body {
   flex-direction: column;
   gap: 16px;
 }
+.home__section-heading {
+  font-family: var(--font-headline);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 8px 0 4px;
+}
 
 /* ── Module card ── */
 .module-card__link { text-decoration: none; display: block; }
@@ -164,6 +173,7 @@ body {
   color: var(--text-muted);
   border: 1px solid var(--bdr);
 }
+
 .module-card__desc {
   font-size: 0.875rem;
   color: var(--text-muted);
@@ -359,4 +369,46 @@ body {
   border: none;
   border-top: 1px solid var(--bdr);
   margin: 2em 0;
+}
+
+/* ── Page navigation (Next / End buttons) ── */
+.page-nav {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid var(--bdr);
+  display: flex;
+  justify-content: flex-end;
+}
+.btn-next {
+  font-family: var(--font-headline);
+  font-weight: 600;
+  font-size: 13px;
+  padding: 8px 20px;
+  border-radius: 4px;
+  background: var(--ac-dim);
+  color: var(--ac);
+  border: 1px solid var(--ac-bdr);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.btn-next:hover {
+  border-color: var(--ac);
+}
+.btn-end {
+  font-family: var(--font-headline);
+  font-weight: 600;
+  font-size: 13px;
+  padding: 8px 20px;
+  border-radius: 4px;
+  background: var(--ac);
+  color: var(--bg);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.btn-end:hover {
+  opacity: 0.9;
 }
