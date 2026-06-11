@@ -49,6 +49,13 @@ The brainstorming skill is designed to be thorough. For this exercise, you do no
 
 </details>
 
+<details>
+<summary>Hint: The brainstorming skill is taking a long time</summary>
+
+The brainstorming skill is conversational. If it asks you a question, answer it concisely and keep moving. The goal is a spec file, not an exhaustive exploration. You can redirect at any point: "Please produce a draft spec now based on what we have discussed."
+
+</details>
+
 ---
 
 ## Step 2 — Review the spec (~3 min)

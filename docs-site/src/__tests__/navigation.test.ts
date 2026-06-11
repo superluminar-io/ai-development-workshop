@@ -30,6 +30,7 @@ describe('getNextPage', () => {
       kind: 'module',
       moduleId: 'module-1',
       pageSlug: 'participant-guide',
+      title: 'T',
     })
   })
 
@@ -38,6 +39,7 @@ describe('getNextPage', () => {
       kind: 'module',
       moduleId: 'module-1',
       pageSlug: 'ex-1',
+      title: 'ex-1',
     })
   })
 
@@ -46,6 +48,7 @@ describe('getNextPage', () => {
       kind: 'module',
       moduleId: 'module-1',
       pageSlug: 'ex-2',
+      title: 'ex-2',
     })
   })
 
@@ -54,6 +57,7 @@ describe('getNextPage', () => {
       kind: 'module',
       moduleId: 'module-2',
       pageSlug: 'participant-guide',
+      title: 'T',
     })
   })
 
@@ -67,6 +71,7 @@ describe('getNextPage', () => {
       kind: 'module',
       moduleId: 'module-1',
       pageSlug: 'participant-guide',
+      title: 'T',
     })
   })
 
@@ -84,6 +89,7 @@ describe('getNextPage', () => {
       kind: 'module',
       moduleId: 'module-2',
       pageSlug: 'participant-guide',
+      title: 'T',
     })
   })
 })

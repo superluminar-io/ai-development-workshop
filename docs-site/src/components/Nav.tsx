@@ -1,9 +1,6 @@
-import { Link, NavLink } from 'react-router-dom'
-import { modules } from '../config'
+import { Link } from 'react-router-dom'
 
 export function Nav() {
-  const readyModules = modules.filter((m) => m.status === 'ready')
-
   return (
     <nav className="nav">
       <Link to="/" className="nav-logo">

@@ -30,16 +30,8 @@ Together these three form a harness: not a cage, but a set of rails that keep Cl
 
 ---
 
-## Troubleshooting
+## What will you do in this module?
 
-**My CLAUDE.md changes don't seem to affect Claude's behaviour**
-Start a fresh Claude Code session after editing CLAUDE.md — changes take effect at session start, not mid-session.
-
-**Permissions aren't blocking the command I denied**
-Check that your `settings.json` is in the `.claude/` directory at the repo root (not in a subdirectory), and that the JSON is valid. Run `cat .claude/settings.json | python3 -m json.tool` to validate.
-
-**The hook isn't firing**
-Verify the hook is in `.claude/settings.json` (not `settings.local.json`). The event name must be exactly `PostToolUse` (case-sensitive). Restart Claude Code after editing settings.
-
-**`npm test` is too slow for a hook**
-That is a valid concern — and worth raising in the debrief. For the purposes of this exercise, it demonstrates the mechanism. In production you might hook a faster check (linter only) and run full tests in CI.
+- **Exercise 1 — Team Harness (~25 min):** Extend CLAUDE.md with team governance rules and add hard permission limits.
+- **Exercise 2 — Automate the Enforcement (~20 min):** Write a PostToolUse hook that runs tests automatically after every Claude edit.
+- **Exercise 3 — Org Template (~15 min):** Extract the harness into a reusable template any team could copy into a new repo.
