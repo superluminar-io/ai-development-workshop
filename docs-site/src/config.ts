@@ -88,7 +88,7 @@ export function resolveTracks(config: WorkshopConfig, allMods: Module[]): Track[
   }))
 }
 
-const allModules: Module[] = [
+export const allModules: Module[] = [
   {
     id: 'setup',
     number: '00',
@@ -237,6 +237,39 @@ const allModules: Module[] = [
         slug: 'exercise-3-safe-agentic-patterns',
         title: 'Safe Agentic Patterns',
         file: '/docs/module-5/exercises/exercise-3-safe-agentic-patterns.md',
+      },
+    ],
+  },
+  {
+    id: 'module-prompting',
+    number: '01',
+    title: 'Communicating with AI',
+    description:
+      'Learn how LLMs process text, practise the core prompt patterns, and iterate on prompts that don\'t work.',
+    status: 'ready',
+    participantGuide: '/docs/module-prompting/participant-guide.md',
+    level: 'foundations',
+    audience: 'engineer',
+    exercises: [
+      {
+        slug: 'exercise-1-vague-to-precise',
+        title: 'From Vague to Precise',
+        file: '/docs/module-prompting/exercises/exercise-1-vague-to-precise.md',
+      },
+      {
+        slug: 'exercise-2-few-shot',
+        title: 'Teaching by Example',
+        file: '/docs/module-prompting/exercises/exercise-2-few-shot.md',
+      },
+      {
+        slug: 'exercise-3-chain-of-thought',
+        title: 'Asking for Reasoning',
+        file: '/docs/module-prompting/exercises/exercise-3-chain-of-thought.md',
+      },
+      {
+        slug: 'exercise-4-structured-output',
+        title: 'Structured Output',
+        file: '/docs/module-prompting/exercises/exercise-4-structured-output.md',
       },
     ],
   },
