@@ -37,7 +37,7 @@ export function ModulePage() {
         {nextHref && (
           <div className="page-nav">
             <Link to={nextHref} className="btn-next">
-              {nextPage?.kind === 'summary' ? 'Workshop Summary' : nextPage?.title} →
+              {nextPage?.kind === 'summary' ? 'Workshop Summary' : nextPage?.title}
             </Link>
           </div>
         )}
