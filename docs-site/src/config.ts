@@ -242,7 +242,7 @@ export const allModules: Module[] = [
   },
   {
     id: 'module-prompting',
-    number: '01',
+    number: '06',
     title: 'Communicating with AI',
     description:
       'Learn how LLMs process text, practise the core prompt patterns, and iterate on prompts that don\'t work.',
