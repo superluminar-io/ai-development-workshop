@@ -117,10 +117,10 @@ This is identical to how your `safe-refactoring.md` works. When you tell Claude 
 ## Deliverable
 
 By the end of Exercise 1 you should have:
-- [ ] Superpowers installed and verified
-- [ ] A list of available skills from the plugin
-- [ ] A side-by-side comparison of your Module 1 skill and a Superpowers skill
-- [ ] A clear understanding that all skills — yours and Superpowers — trigger the same way: through natural language, not explicit invocation
+- Superpowers installed and verified
+- A list of available skills from the plugin
+- A side-by-side comparison of your Module 1 skill and a Superpowers skill
+- A clear understanding that all skills — yours and Superpowers — trigger the same way: through natural language, not explicit invocation
 
 ---
 

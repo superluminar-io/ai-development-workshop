@@ -143,9 +143,9 @@ For this exercise, `npm test` is fast enough to demonstrate the mechanism.
 ## Deliverable
 
 By the end of Exercise 2 you should have:
-- [ ] A `PostToolUse` hook in `.claude/settings.json` that runs `npm test` after file edits
-- [ ] Observed the hook firing automatically after a Claude edit
-- [ ] Observed the hook catching a test failure without being asked
+- A `PostToolUse` hook in `.claude/settings.json` that runs `npm test` after file edits
+- Observed the hook firing automatically after a Claude edit
+- Observed the hook catching a test failure without being asked
 
 Commit your changes:
 

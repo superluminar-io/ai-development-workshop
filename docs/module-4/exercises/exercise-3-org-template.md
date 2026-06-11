@@ -170,10 +170,10 @@ The harness is not locked. It should evolve as the team learns. Add it to your t
 ## Deliverable
 
 By the end of Exercise 3 you should have:
-- [ ] `claude-harness/CLAUDE.md` — team standards template with explanatory comments
-- [ ] `claude-harness/settings.json` — permissions and hooks pre-configured
-- [ ] `claude-harness/README.md` — adoption guide explaining each decision
-- [ ] Everything committed to the repo
+- `claude-harness/CLAUDE.md` — team standards template with explanatory comments
+- `claude-harness/settings.json` — permissions and hooks pre-configured
+- `claude-harness/README.md` — adoption guide explaining each decision
+- Everything committed to the repo
 
 ---
 
