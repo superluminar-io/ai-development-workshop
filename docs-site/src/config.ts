@@ -49,7 +49,7 @@ export function assignDisplayNumbers(mods: Module[]): Module[] {
   let counter = 0
   return mods.map((m) => ({
     ...m,
-    number: m.id === 'setup' ? m.number : String(++counter).padStart(2, '0'),
+    number: m.id === 'setup' || m.id === 'module-prompting' ? m.number : String(++counter).padStart(2, '0'),
   }))
 }
 
@@ -242,7 +242,7 @@ export const allModules: Module[] = [
   },
   {
     id: 'module-prompting',
-    number: '06',
+    number: '00',
     title: 'Communicating with AI',
     description:
       'Learn how LLMs process text, practise the core prompt patterns, and iterate on prompts that don\'t work.',

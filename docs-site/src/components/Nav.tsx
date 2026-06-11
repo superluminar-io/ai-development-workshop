@@ -19,7 +19,7 @@ export function Nav() {
               'nav-module-link' + (isActive ? ' nav-module-link--active' : '')
             }
           >
-            {m.number === '00' ? 'Setup' : `Module ${m.number}`}
+            {m.id === 'setup' ? 'Setup' : m.number === '00' ? m.title : `Module ${m.number}`}
           </NavLink>
         ))}
       </div>
