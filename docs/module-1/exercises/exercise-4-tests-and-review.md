@@ -53,6 +53,8 @@ If Claude does not mention the `amount` field, ask it directly in the chat:
 
 **Checkpoint:** Did Claude identify any edge cases involving high-value billing tickets?
 
+> **Important:** If Claude offers to write tests for you at this point, decline. The goal here is to read Claude's analysis and understand the gap â€” you will write the tests yourself in Step 2. Accepting Claude's changes now would conflict with the manual steps that follow.
+
 <details>
 <summary>Hint: I cannot find the bug</summary>
 
@@ -169,12 +171,12 @@ Claude will read the diff and produce a PR description. Review what it writes â€
 ## Deliverable
 
 By the end of Exercise 4 you should have:
-- [ ] Two new tests in `test/domain/classifier.test.ts`
-- [ ] The billing escalation bug fixed in `src/domain/classifier.ts`
-- [ ] All tests passing
-- [ ] A review note from `/review-diff`
-- [ ] A PR summary from `/prepare-pr-summary`
-- [ ] A list of remaining risks or follow-up tasks
+- Two new tests in `test/domain/classifier.test.ts`
+- The billing escalation bug fixed in `src/domain/classifier.ts`
+- All tests passing
+- A review note from `/review-diff`
+- A PR summary from `/prepare-pr-summary`
+- A list of remaining risks or follow-up tasks
 
 ---
 
