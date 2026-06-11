@@ -25,6 +25,13 @@ claude -p "Run npm test and report which tests pass and which fail."
 
 Observe what Claude does. Note which tools it used (Read, Bash, etc.). With no restrictions and no `--permission-mode`, Claude has access to any tool and will ask you to approve each one.
 
+<details>
+<summary>Hint: claude -p is not found</summary>
+
+Run `which claude` — if the binary is not in your PATH, authenticate first with `claude`. Then confirm non-interactive mode works: `claude -p "say hello"`.
+
+</details>
+
 ---
 
 ## Step 2 — Restrict tools and set permission mode (~5 min)
@@ -56,6 +63,13 @@ Expected: Claude attempts `git push`, the client denies it, and Claude reports i
 
 </details>
 
+<details>
+<summary>Hint: --permission-mode flag is not recognised</summary>
+
+Confirm your Claude Code version: `claude --version`. The `--permission-mode` flag requires a recent version. Update if needed: `npm install -g @anthropic-ai/claude-code`.
+
+</details>
+
 ---
 
 ## Step 3 — Add a turn cap and JSON output (~4 min)
@@ -82,6 +96,13 @@ claude -p "Run npm test." \
 ```
 
 You will see fields including `result`, `costUsd`, `durationMs`, and `totalTurns`.
+
+<details>
+<summary>Hint: --max-turns stops Claude mid-edit and leaves the repo in a dirty state</summary>
+
+This is expected. `--max-turns` is a hard cap — Claude stops but does not roll back changes. Always run `npm test` after a headless Claude run to verify the repo is in a good state. In CI, treat a mid-run stop as a failure and reset the working tree before retrying.
+
+</details>
 
 ---
 

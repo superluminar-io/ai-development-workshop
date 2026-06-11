@@ -112,6 +112,13 @@ Expected: same refusal. The deny rule is evaluated before Claude's reasoning. No
 
 To confirm the wildcard rule: rename `.env` to `.env.local` and ask Claude to read it. It should still be blocked by `Read(./.env.*)`.
 
+<details>
+<summary>Hint: Deny rule is not blocking the file</summary>
+
+Check that the path in the deny rule matches the actual file location. `Read(./.env)` matches `.env` at the project root. Use `Read(./.env.*)` to also cover `.env.local`, `.env.production`, etc. Restart Claude Code after editing `settings.json`.
+
+</details>
+
 ---
 
 ## Deliverable

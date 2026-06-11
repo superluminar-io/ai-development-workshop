@@ -77,6 +77,20 @@ Read the output. Check:
 
 If the output is vague or misses the planted issues, refine your Step 3 instructions and run again.
 
+<details>
+<summary>Hint: /review-pr produces vague output</summary>
+
+The command has placeholder instructions `[...]` in Step 3. If you have not replaced them, do so now — vague prompts produce vague output. Be specific: name the files to check, the evidence to look for, and how to report findings.
+
+</details>
+
+<details>
+<summary>Hint: Claude does not fetch the linked issue</summary>
+
+Add an explicit instruction to your command: "Fetch all GitHub issues linked in the PR description before reviewing any code." Claude will not follow links unless explicitly told to.
+
+</details>
+
 ---
 
 ## Step 4 — Commit and reflect (~3 min)
