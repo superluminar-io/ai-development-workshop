@@ -36,7 +36,7 @@ Verify the installation:
 /plugin list
 ```
 
-Expected: `superpowers` appears in the list with its version.
+Expected: `superpowers` appears in the **Installed** list with its version.
 
 <details>
 <summary>Hint: /plugin install command not found</summary>
