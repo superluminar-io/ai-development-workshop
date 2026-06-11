@@ -53,16 +53,18 @@ You need your own copy of this repository on GitHub. Having your own remote mean
 5. **Do not** initialise with a README, .gitignore, or licence — the repository must be empty
 6. Click **Create repository** and note the URL shown on the next page
 
-### 2 — Switch the remote to your repository
+### 2 — Replace the remote with your own repository
 
-The cloned repo's `origin` points to the superluminar organisation. Replace it with your own ([GitHub docs](https://docs.github.com/en/get-started/getting-started-with-git/managing-remote-repositories#changing-a-remote-repositorys-url)):
+Remove the existing `origin` (which points to the superluminar organisation) and add your own ([GitHub docs](https://docs.github.com/en/get-started/getting-started-with-git/managing-remote-repositories)):
 
 ```bash
+git remote remove origin
+
 # SSH (recommended if your GitHub account uses SSH keys)
-git remote set-url origin git@github.com:<your-username>/<your-repo-name>.git
+git remote add origin git@github.com:<your-username>/<your-repo-name>.git
 
 # HTTPS (if unsure, use this)
-git remote set-url origin https://github.com/<your-username>/<your-repo-name>.git
+git remote add origin https://github.com/<your-username>/<your-repo-name>.git
 ```
 
 Verify the change:
@@ -71,7 +73,7 @@ Verify the change:
 git remote -v
 ```
 
-Both `fetch` and `push` should now point to your repository.
+`origin` should now point to your repository only.
 
 ### 3 — Push to your repository
 
