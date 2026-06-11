@@ -38,6 +38,20 @@ Verify the installation:
 
 Expected: `superpowers` appears in the list with its version.
 
+<details>
+<summary>Hint: /plugin install command not found</summary>
+
+Run `claude --version` to check your version. The `/plugin` command requires Claude Code 1.x or later. If the command is unrecognised, update Claude Code: `npm install -g @anthropic-ai/claude-code`.
+
+</details>
+
+<details>
+<summary>Hint: Superpowers skills are not appearing</summary>
+
+Restart Claude Code after installing. Then ask: "What Superpowers skills do you have access to?" If the list is empty, the plugin may not have loaded — check with the facilitator.
+
+</details>
+
 ---
 
 ## Step 2 — Explore available skills (~5 min)
@@ -59,7 +73,14 @@ Ask about one that interests you:
 
 ## Step 3 — Compare to your Module 1 skill (~8 min)
 
-Open `.claude/skills/safe-refactoring.md` in your editor. Then ask Claude to show you the content of the `brainstorming` Superpowers skill:
+Open `.claude/skills/safe-refactoring.md` in your editor (or `.claude/skills/safe-refactoring/SKILL.md` depending on how you created it). Then ask Claude to show you the content of the `brainstorming` Superpowers skill:
+
+<details>
+<summary>Hint: I cannot find my safe-refactoring skill from Module 1</summary>
+
+Check `.claude/skills/` in your workshop repo. If you did not complete Exercise 2 in Module 1, write a minimal version now: create `.claude/skills/safe-refactoring/SKILL.md` with a `name`, `description`, and a numbered list of steps.
+
+</details>
 
 > "Show me the content of the brainstorming skill file."
 

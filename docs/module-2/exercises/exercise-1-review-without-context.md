@@ -107,6 +107,20 @@ Then ask:
 
 Expected: Claude lists the open PR(s) by number and title. If it cannot find the repo, check that your token belongs to the same GitHub account that owns the repo.
 
+<details>
+<summary>Hint: GitHub MCP is not activating</summary>
+
+Check that `GITHUB_PERSONAL_ACCESS_TOKEN` is set in the terminal where you launched Claude Code: `echo $GITHUB_PERSONAL_ACCESS_TOKEN`. If empty, run `export GITHUB_PERSONAL_ACCESS_TOKEN=$(gh auth token)` then relaunch Claude Code.
+
+</details>
+
+<details>
+<summary>Hint: Claude cannot find my repo</summary>
+
+Make sure you are using the exact repo name printed at the end of `setup-module-2.sh`. Your token must belong to the same GitHub account that owns the repo.
+
+</details>
+
 ---
 
 ## Step 5 — Review the PR with full GitHub context (~10 min)

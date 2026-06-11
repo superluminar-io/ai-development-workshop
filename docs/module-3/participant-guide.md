@@ -22,16 +22,8 @@ Superpowers is an official plugin that adds a library of structured skills for c
 
 ---
 
-## Troubleshooting
+## What will you do in this module?
 
-**`/plugin install` command not found**  
-Make sure you are running Claude Code version 1.x or later. Run `claude --version` to check.
-
-**Superpowers skills are not appearing**  
-After installing, restart Claude Code. Then ask: "What Superpowers skills do you have access to?" If the list is empty, the plugin may not have loaded — check with the facilitator.
-
-**The brainstorming skill is taking a long time**  
-The brainstorming skill is conversational. If it asks you a question, answer it concisely and keep moving. The goal is a spec file, not an exhaustive exploration.
-
-**I cannot find my `safe-refactoring.md` from Module 1**  
-Check `.claude/skills/` in your workshop repo. If you did not complete Exercise 2 in Module 1, write a minimal version now: create the file with `name`, `description`, and a numbered list of steps.
+- **Exercise 1 — Plugins and Superpowers (~20 min):** Install Superpowers, discover what it adds, compare to your Module 1 skill.
+- **Exercise 2 — Spec-Driven Development (~25 min):** Use brainstorming and writing-plans skills to take a feature from idea to implementation plan.
+- **Exercise 3 — Build a Feature (~30 min):** Use the full spec-driven process to add exercise completion tracking to the workshop site.
