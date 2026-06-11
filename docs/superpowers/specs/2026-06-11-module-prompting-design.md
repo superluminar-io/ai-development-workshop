@@ -39,12 +39,12 @@ No fictional scenario. This module is explicitly about learning fundamentals. Th
 
 ### Participant Guide (~5 min)
 
-A reading-only primer covering three concepts:
+A concept primer covering three topics, followed by one bullet-point summary per exercise. No troubleshooting section — troubleshooting belongs in each exercise file.
+
+**Concept primer topics:**
 - **Tokens** — what they are, why prompt length matters, rough intuition for cost and limits
 - **Context window** — what the model "sees" during a conversation, why earlier context can be forgotten or compressed
 - **Probabilistic output** — why the same prompt can produce different outputs, and what this means for how you write and test prompts
-
-No exercises are embedded in the guide.
 
 ### Exercise 1 — From Vague to Precise (~15 min)
 
@@ -167,7 +167,7 @@ Example:
 
 | File | Change |
 |------|--------|
-| `docs/module-prompting/README.md` | New — module overview, learning goals, exercise list |
+| `docs/module-prompting/README.md` | New — module overview, learning goals, exercise list. Prerequisites: Claude Code CLI only, no codebase familiarity required |
 | `docs/module-prompting/participant-guide.md` | New — mental model primer + exercise summaries |
 | `docs/module-prompting/facilitator-guide.md` | New — learning goals, timing, debrief questions, common mistakes |
 | `docs/module-prompting/exercises/exercise-1-vague-to-precise.md` | New |
