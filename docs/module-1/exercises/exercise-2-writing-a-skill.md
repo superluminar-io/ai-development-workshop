@@ -2,7 +2,7 @@
 
 **Goal:** Write a skill that Claude recognises and applies automatically when the situation calls for it — without you having to ask.
 
-**Duration:** ~12 minutes  
+**Duration:** ~8 minutes  
 **Prerequisites:** Exercise 1 complete
 
 ---
@@ -116,32 +116,12 @@ When the task is complete:
 
 ---
 
-## Step 2 — Test whether the skill triggers (~4 min)
-
-Start a fresh Claude Code session (or run `/clear` to reset context). Then describe a task that should match your skill:
-
-> "I want to improve the TypeScript types in this codebase. I didn't write this code and I want to be careful."
-
-Read Claude's response. Did it apply your skill? You can tell by whether Claude's approach matches the steps you wrote — does it mention running tests first? Does it propose one change at a time?
-
-If the skill did not trigger, read your `description` again. Is it specific enough? Does it match the language you used when describing the task? Adjust and try again.
-
-<details>
-<summary>Hint: My skill isn't triggering automatically</summary>
-
-Check that `.claude/skills/safe-refactoring/SKILL.md` is saved. Re-read the `description` field — is it specific enough to match the task you described? Try starting a fresh session (or run `/clear`) after editing.
-
-</details>
-
----
-
 ## Deliverable
 
 By the end of Exercise 2 you should have:
-- [ ] `.claude/skills/safe-refactoring/SKILL.md` with frontmatter and numbered steps
-- [ ] Observed Claude applying the skill automatically — or iterated on the description until it does
+- `.claude/skills/safe-refactoring/SKILL.md` with frontmatter and numbered steps
 
-You have not changed any source or test files.
+You have not changed any source or test files. Move on to Exercise 3 — that is where you will see your skill in action for the first time.
 
 ---
 

@@ -176,10 +176,10 @@ This means: in CI, the only controls are the ones you set explicitly with `--all
 ## Deliverable
 
 By the end of Exercise 3 you should have:
-- [ ] Run `claude -p` without restrictions and noted which tools it accessed
-- [ ] Added `--allowedTools` and `--permission-mode dontAsk` and confirmed enforcement
-- [ ] Added `--max-turns` and observed the turn-cap behaviour
-- [ ] Created `.claude/ci-fix-lint.sh` with all four safety flags
+- Run `claude -p` without restrictions and noted which tools it accessed
+- Added `--allowedTools` and `--permission-mode dontAsk` and confirmed enforcement
+- Added `--max-turns` and observed the turn-cap behaviour
+- Created `.claude/ci-fix-lint.sh` with all four safety flags
 
 Commit the wrapper script:
 

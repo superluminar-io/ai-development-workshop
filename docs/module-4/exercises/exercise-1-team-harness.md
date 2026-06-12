@@ -177,11 +177,9 @@ Check that `settings.json` is in the `.claude/` directory at the repo root (not 
 ## Deliverable
 
 By the end of Exercise 1 you should have:
-- [ ] A team governance section added to `CLAUDE.md`
-- [ ] `.claude/settings.json` with an allow list and deny list committed to the repo
-- [ ] Observed Claude refusing a denied command and accepting an allowed one
-- [ ] Optional: observed that Claude can edit an unprotected settings file if asked
-- [ ] Added `Edit` deny rules for `.claude/settings.json` and `.claude/settings.local.json`
+- A team governance section added to `CLAUDE.md`
+- `.claude/settings.json` with an allow list and deny list committed to the repo
+- Observed Claude refusing a denied command and accepting an allowed one
 
 Commit your changes before moving on:
 

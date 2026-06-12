@@ -42,6 +42,13 @@ Only once that baseline is established should Claude propose what to change.
 
 **If Claude skips straight to making changes,** the skill did not trigger. Check your `description` field — does it match the language you used? Adjust it and try again with `/clear`.
 
+<details>
+<summary>Hint: My skill isn't triggering automatically</summary>
+
+Check that `.claude/skills/safe-refactoring/SKILL.md` is saved. Re-read the `description` field — is it specific enough to match the task you described? Try starting a fresh session (or run `/clear`) after editing.
+
+</details>
+
 When the skill has established the baseline and scoped the work, proceed to the next steps one at a time.
 
 ---
@@ -158,12 +165,12 @@ git commit -m "refactor: separate input parsing from domain logic in handler"
 ## Deliverable
 
 By the end of Exercise 3 you should have:
-- [ ] Observed your `safe-refactoring` skill trigger automatically before any code changed
-- [ ] Stronger TypeScript types in `src/domain/ticket.ts`
-- [ ] Zod validation in the handler with explicit error throwing
-- [ ] Cleaner separation between parsing and domain logic
-- [ ] All tests passing (some updated to match new behaviour)
-- [ ] 3 focused commits in `git log`
+- Observed your `safe-refactoring` skill trigger automatically before any code changed
+- Stronger TypeScript types in `src/domain/ticket.ts`
+- Zod validation in the handler with explicit error throwing
+- Cleaner separation between parsing and domain logic
+- All tests passing (some updated to match new behaviour)
+- 3 focused commits in `git log`
 
 ---
 
@@ -193,7 +200,7 @@ Expected: no output. (`priority` still appears in `TicketResult` — that is cor
 grep "category" src/domain/ticket.ts
 ```
 
-Expected output includes `'support' | 'billing' | 'incident' | 'security'`.
+Expected output includes `category: 'support' | 'billing' | 'incident' | 'security'`.
 
 **4. Zod is used in the handler and `parseTicketInput` exists:**
 

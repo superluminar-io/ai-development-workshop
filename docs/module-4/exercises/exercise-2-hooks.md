@@ -112,6 +112,34 @@ Test Files  2 passed (2)
 Tests  14 passed (14)
 ```
 
+<details>
+<summary>Hint: Claude refuses to add the comment</summary>
+
+Claude may push back because `CLAUDE.md` instructs it not to add comments to code. This is a good reminder that CLAUDE.md rules apply here too. Tell Claude this is an exception to test a hook mechanism, not a real code change — it should comply. You can also use any other small, safe edit instead of a comment.
+
+</details>
+
+<details>
+<summary>Hint: The hook fired but Claude didn't show the output</summary>
+
+This is a known behaviour in recent versions of Claude Code. When the hook succeeds (tests pass), Claude may silently suppress the output rather than surfacing it in the response. Failures are more likely to be summarised.
+
+To confirm the hook is actually firing, ask Claude to write a log entry each time it runs:
+
+```json
+"command": "npm test 2>&1 | tail -20 | tee -a /tmp/hook-log.txt"
+```
+
+Restart Claude Code, trigger the hook again, then check the log:
+
+```bash
+cat /tmp/hook-log.txt
+```
+
+You should see the test output there, confirming the hook ran even though Claude didn't mention it.
+
+</details>
+
 Now ask Claude to make a change that *would* break tests — but stop Claude before it commits:
 
 > "Change the `'escalate'` priority string in `src/domain/classifier.ts` to `'escalated'`."
@@ -147,9 +175,9 @@ For this exercise, `npm test` is fast enough to demonstrate the mechanism.
 ## Deliverable
 
 By the end of Exercise 2 you should have:
-- [ ] A `PostToolUse` hook in `.claude/settings.json` that runs `npm test` after file edits
-- [ ] Observed the hook firing automatically after a Claude edit
-- [ ] Observed the hook catching a test failure without being asked
+- A `PostToolUse` hook in `.claude/settings.json` that runs `npm test` after file edits
+- Observed the hook firing automatically after a Claude edit
+- Observed the hook catching a test failure without being asked
 
 Commit your changes:
 

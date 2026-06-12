@@ -152,7 +152,7 @@ git commit -m "feat: upgrade review-pr command with GitHub MCP"
 ## Deliverable
 
 By the end of Exercise 2 you should have:
-- [ ] `.mcp.json` created and committed to the workshop repo
-- [ ] `.claude/commands/review-pr.md` upgraded and committed
-- [ ] A before/after: at least one finding that came from the linked issue, not the diff
-- [ ] A view on what "team-ready" means for a shared command
+- `.mcp.json` created and committed to the workshop repo
+- `.claude/commands/review-pr.md` upgraded and committed
+- A before/after: at least one finding that came from the linked issue, not the diff
+- A view on what "team-ready" means for a shared command

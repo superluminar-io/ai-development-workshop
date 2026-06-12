@@ -53,10 +53,10 @@ This three-tier structure is essential. Tiers 1–2 are findable without the lin
 
 ### Pre-session checklist
 
-- [ ] Run `scripts/setup-module-2.sh` against your own fork to verify it works end-to-end
-- [ ] Confirm the PR is open, linked to the issue, and the three-tier bugs are present
-- [ ] Your own `GITHUB_PERSONAL_ACCESS_TOKEN` is set for the live demo
-- [ ] Participants have push access to their own GitHub accounts (no special permissions needed)
+- Run `scripts/setup-module-2.sh` against your own fork to verify it works end-to-end
+- Confirm the PR is open, linked to the issue, and the three-tier bugs are present
+- Your own `GITHUB_PERSONAL_ACCESS_TOKEN` is set for the live demo
+- Participants have push access to their own GitHub accounts (no special permissions needed)
 
 ---
 

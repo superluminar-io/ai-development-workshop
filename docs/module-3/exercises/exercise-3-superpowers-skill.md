@@ -96,11 +96,11 @@ If something is not working, check the browser console for errors.
 ## Deliverable
 
 By the end of Exercise 3 you should have:
-- [ ] A spec for the completion tracking feature
-- [ ] An implementation plan
-- [ ] A working implementation in the `docs-site/` frontend
-- [ ] Progress visible in both the sidebar and the home page
-- [ ] State persisting across page reloads
+- A spec for the completion tracking feature
+- An implementation plan
+- A working implementation in the `docs-site/` frontend
+- Progress visible in both the sidebar and the home page
+- State persisting across page reloads
 
 ---
 

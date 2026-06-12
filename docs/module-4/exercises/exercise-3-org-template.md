@@ -268,8 +268,10 @@ This can become a final showcase of everything you have learned:
 ## Deliverable
 
 By the end of Exercise 3 you should have:
-
-- [ ] `ai-adoption-plan.md` with standardised practices, project-specific decisions, control placement, ownership, rollout, and advanced-workshop topics
+- `claude-harness/CLAUDE.md` — team standards template with explanatory comments
+- `claude-harness/settings.json` — permissions and hooks pre-configured
+- `claude-harness/README.md` — adoption guide explaining each decision
+- Everything committed to the repo
 
 ---
 
