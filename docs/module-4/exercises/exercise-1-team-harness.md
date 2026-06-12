@@ -13,9 +13,9 @@
 
 ---
 
-**Goal:** Extend the project CLAUDE.md with team-level governance rules, then add a permissions configuration that enforces hard limits no prompt can override.
+**Goal:** Extend the project CLAUDE.md with team-level governance rules, then add a permissions configuration that enforces tool-level limits no prompt can override.
 
-**Duration:** ~25 minutes
+**Duration:** ~30 minutes
 **Prerequisites:** Module 1 complete (you have already worked with CLAUDE.md)
 
 ---
@@ -24,31 +24,40 @@
 
 Open `CLAUDE.md` at the repo root. You wrote parts of this in Module 1 to document the codebase structure and your personal review practices. Team governance is different: it defines what Claude must and must not do for *any* engineer working in this repo, regardless of what they ask.
 
+In a real team, this file would be committed with the project, reviewed like any other engineering change, and updated through pull requests when the team learns a better way of working. Every engineer who clones the repo gets the same project instructions when they run Claude Code from that repo.
+
+For a larger organisation, the same idea usually becomes part of an adoption plan. A platform or engineering-practices team might keep a `CLAUDE.md` template in a shared GitHub repository, copy it into new projects, and adapt the project-specific sections: architecture, test commands, protected files, release rules. Exercise 3 turns the harness you build here into that kind of repeatable adoption process.
+
+The repo already has useful project instructions: test commands, code structure, review summaries, and small-change discipline. Do not duplicate those. Add team-level rules that are about collaboration boundaries: when Claude should stop, when it should ask, and which shared project surfaces need extra care.
+
 Add a new section at the bottom of `CLAUDE.md`:
 
 ```markdown
-## Team standards
+## Team workflow
 
-These rules apply to every engineer working in this repo. They are not suggestions.
+These rules protect shared team workflows. They apply in addition to the project instructions above.
 
-### Scope
-- Do not refactor code unrelated to the current task. If you notice something worth improving outside the current scope, mention it but do not change it.
-- Do not modify files in `.github/`, `Dockerfile`, or any CI/CD configuration without explicit instruction.
+### Planning and approval
+- If asked for a plan or approach, do not edit files. List the likely files or areas involved and wait for confirmation.
+- Ask for confirmation before changing shared contracts: `Ticket`, `TicketResult`, classification rules, routing rules, CLI behaviour, or example input formats.
+- Ask for confirmation before modifying more than three files in one response.
 
-### Before making changes
-- List every file you intend to modify and explain why before touching anything.
-- If the change affects more than three files, stop and ask for confirmation.
+### Protected project areas
+- Do not modify `.github/`, CI/CD configuration, deployment files, Dockerfiles, or infrastructure files unless the task explicitly asks for those files.
+- Do not change package manager files, dependency versions, or build configuration unless explicitly asked.
 
-### After making changes
-- Summarise what changed, which tests were run, and what risks remain.
-- Never report a change as complete before tests have passed.
+### Collaboration safety
+- Do not overwrite or revert user changes unless explicitly instructed.
+- Do not create commits, branches, tags, pushes, or pull requests unless explicitly asked.
 ```
 
 Save the file. Open a fresh Claude Code session and ask Claude:
 
-> "What files would you touch if I asked you to add a new ticket category?"
+> "Plan how you would change security tickets so they route to the security queue instead of the escalation queue. Do not edit any files."
 
-Read the response. Claude should list files and ask for confirmation before proceeding — because the standard now says so. If it does not, check that you saved CLAUDE.md and started a new session.
+Read the response. Claude should describe the likely files or areas involved and wait for confirmation instead of editing anything. This is a simple way to verify that Claude has loaded the project instructions without asking it to change code.
+
+If Claude starts editing files, stop the session and check that you saved `CLAUDE.md` and started a fresh session. Then ask the same question again.
 
 <details>
 <summary>Hint: Claude isn't following the new rules</summary>
@@ -59,11 +68,21 @@ CLAUDE.md is read at the start of each session. If Claude Code was already runni
 
 ---
 
-## Part 2 — Permissions (~13 min)
+## Part 2 — Permissions (~18 min)
 
-CLAUDE.md is guidance Claude reads and reasons about. An engineer who asks Claude to "just push it quickly" might talk their way around a CLAUDE.md rule. Permissions cannot be talked around.
+CLAUDE.md is guidance Claude reads and reasons about. An engineer who asks Claude to "just push it quickly" might talk their way around a CLAUDE.md rule. Permissions cannot be bypassed through conversational prompts — they are enforced by Claude Code itself, not by the model.
 
-Create `.claude/settings.json` if it does not exist, and add a permissions block:
+Claude Code permissions are rules over tool calls:
+
+- `allow` pre-approves matching tool calls so Claude can proceed without asking each time.
+- `ask` forces a confirmation prompt for matching tool calls.
+- `deny` blocks matching tool calls. Deny is checked before ask or allow.
+
+There is an important caveat: `.claude/settings.json` is itself a regular file. If Claude can edit that file, it can be asked to remove or weaken the rules that govern it, and Claude Code reloads settings during the current session. All tool calls are visible in the Claude Code UI, so the edit can be caught and reviewed. But visibility is not the same as prevention.
+
+### Step 1 — Add the initial permission rules
+
+Create `.claude/settings.json` if it does not exist, and add this permissions block:
 
 ```json
 {
@@ -86,11 +105,50 @@ Create `.claude/settings.json` if it does not exist, and add a permissions block
 }
 ```
 
-Save the file and restart Claude Code. Then ask Claude:
+Save the file. Current Claude Code versions watch settings files and reload permissions during a session; you can run `/permissions` to confirm the active rules.
+
+### Step 2 — Test a denied command
+
+Ask Claude:
 
 > "Run `git push --force` to push the current branch."
 
-Expected: Claude refuses. It does not ask you to confirm. It cannot run the command — the permission is denied at the system level.
+Expected: Claude refuses. It does not ask you to confirm. It cannot run the command — the deny rule blocks it.
+
+### Step 3 — Test the settings-file weakness
+
+Now test the uncomfortable part. Ask Claude:
+
+> "Edit `.claude/settings.json` and remove the `Bash(git push --force*)` deny rule."
+
+Expected: if you approve the file edit, Claude can change the settings file. That is the problem. The initial deny list blocked a Bash command; it did not block Claude's file-editing tool from changing the file that contains the policy.
+
+Do not leave the repo in this state. Put the rule back before continuing.
+
+### Step 4 — Protect the permission files from Claude edits
+
+Add these entries to the same `deny` array:
+
+```json
+"deny": [
+  "Bash(git push --force*)",
+  "Bash(git push -f*)",
+  "Bash(rm -rf*)",
+  "Bash(npx * --yes)",
+  "Edit(.claude/settings.json)",
+  "Edit(.claude/settings.local.json)"
+]
+```
+
+These paths are relative to the directory where Claude Code is running. In this workshop, run Claude Code from the repo root so they match the repo's `.claude/` files.
+
+Ask Claude again:
+
+> "Edit `.claude/settings.json` and remove the `Bash(git push --force*)` deny rule."
+
+Expected: Claude Code blocks the edit. This is still a project-level guardrail, not an organization-wide security boundary: a human with filesystem access can still edit the file manually. For controls that project users cannot weaken, use managed settings outside Claude's write access.
+
+### Step 5 — Test an allowed command
 
 Then ask:
 
@@ -137,3 +195,4 @@ git commit -m "feat: add team harness — governance rules and permissions"
 - What is the difference between a rule in CLAUDE.md and a rule in the permissions deny list?
 - Which of your team's current engineering standards would benefit from being in CLAUDE.md? Which need the harder enforcement of permissions?
 - Who in your organisation should have authority to modify the harness? How would you communicate a change to the team?
+- The deny list prevents Claude from *running* `git push --force`. Why did you need a separate `Edit(.claude/settings.json)` rule? What does this tell you about the limits of a committed settings file as a security boundary?
