@@ -78,7 +78,8 @@ Add a `hooks` section alongside the existing `permissions`:
         "hooks": [
           {
             "type": "command",
-            "command": "npm test 2>&1 | tail -20"
+            "command": "OUTPUT=$(npm test 2>&1 | tail -20); RC=${PIPESTATUS[0]}; echo \"$OUTPUT\" | jq -Rs --argjson rc \"$RC\" '{\"systemMessage\":(\"Tests (exit \" + ($rc|tostring) + \"):\\n\" + .),\"hookSpecificOutput\":{\"hookEventName\":\"PostToolUse\",\"additionalContext\":(\"Test results (exit \" + ($rc|tostring) + \"):\\n\" + .)}}'"
+
           }
         ]
       }
@@ -94,7 +95,7 @@ What this does:
 
 The `2>&1 | tail -20` keeps the output readable. Without it, the full test output appears in the session after every edit.
 
-Save the file. Current Claude Code versions watch settings files and reload hooks during a session; if you do not see the hook fire in the next step, run `/clear` or restart Claude Code.
+Save the file. Restart Claude Code so that Claude can read and use the new hook in the settings file.
 
 ---
 

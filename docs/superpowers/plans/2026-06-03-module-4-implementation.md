@@ -424,7 +424,7 @@ Tests  14 passed (14)
 
 Now ask Claude to make a change that *would* break tests — but stop Claude before it commits:
 
-> "Change the `'escalate'` priority string in `src/domain/classifier.ts` to `'escalated'`."
+> "Change the `'escalate'` priority string in `src/domain/classifier.ts` to `'escalated'`. Do not touch any other file."
 
 The hook fires again. This time tests fail. Claude sees the failure in its own output and should offer to fix it.
 
