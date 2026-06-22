@@ -11,4 +11,5 @@ describe('Nav', () => {
     )
     expect(screen.getByText('AI Development Workshop')).toBeInTheDocument()
   })
+
 })

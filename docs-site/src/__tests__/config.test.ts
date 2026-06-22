@@ -66,13 +66,13 @@ describe('assignDisplayNumbers', () => {
     expect(assignDisplayNumbers(mods).map((m) => m.number)).toEqual(['00', '01', '02'])
   })
 
-  it('module-prompting keeps its assigned number and does not consume a counter slot', () => {
+  it('module-prompting gets a sequential counter number like any other non-setup module', () => {
     const mods = [
-      { ...makeModule('module-prompting'), number: '00' },
+      makeModule('module-prompting'),
       makeModule('module-1'),
       makeModule('module-2'),
     ]
-    expect(assignDisplayNumbers(mods).map((m) => m.number)).toEqual(['00', '01', '02'])
+    expect(assignDisplayNumbers(mods).map((m) => m.number)).toEqual(['01', '02', '03'])
   })
 })
 

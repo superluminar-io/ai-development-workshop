@@ -42,14 +42,17 @@ type WorkshopConfig =
 const workshopConfig = workshopConfigJson as unknown as WorkshopConfig
 
 export function filterModules(all: Module[], enabledIds: string[]): Module[] {
-  return all.filter((m) => enabledIds.includes(m.id))
+  return enabledIds.flatMap((id) => {
+    const m = all.find((m) => m.id === id)
+    return m ? [m] : []
+  })
 }
 
 export function assignDisplayNumbers(mods: Module[]): Module[] {
   let counter = 0
   return mods.map((m) => ({
     ...m,
-    number: m.id === 'setup' || m.id === 'module-prompting' ? m.number : String(++counter).padStart(2, '0'),
+    number: m.id === 'setup' ? m.number : String(++counter).padStart(2, '0'),
   }))
 }
 
