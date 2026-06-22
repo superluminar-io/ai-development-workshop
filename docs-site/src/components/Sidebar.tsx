@@ -12,8 +12,9 @@ export function Sidebar() {
 
   return (
     <aside className="sidebar">
-      {readyModules.map((m) => {
+      {readyModules.map((m, i) => {
         const isExpanded = m.id === moduleId
+        const sidebarLabel = m.id === 'setup' ? 'Setup' : `Module ${i}`
 
         return (
           <div key={m.id} className="sidebar__module">
@@ -21,7 +22,7 @@ export function Sidebar() {
               to={`/module/${m.id}`}
               className={`sidebar__module-header${isExpanded ? ' sidebar__module-header--active' : ''}`}
             >
-              <span className="sidebar__module-number">Module {m.number}</span>
+              <span className="sidebar__module-number">{sidebarLabel}</span>
             </Link>
 
             {isExpanded && (

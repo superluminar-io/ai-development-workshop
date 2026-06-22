@@ -76,7 +76,7 @@ git push origin demo/vip-routing
 This creates the issue and PR you will review in the exercises:
 
 ```bash
-bash scripts/setup-module-2.sh
+bash scripts/setup-mcp.sh
 ```
 
 Expected output: two URLs — one for the issue and one for the PR. The script prints your repo name at the end; note it down, you will use it in the exercises.

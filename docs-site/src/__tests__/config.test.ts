@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { filterModules, assignDisplayNumbers, resolveTracks, filterExercises } from '../config'
+import { filterModules, assignDisplayNumbers, resolveTracks, filterExercises, allModules } from '../config'
 import type { Module, Exercise } from '../config'
 
 const makeModule = (id: string): Module => ({
@@ -64,6 +64,15 @@ describe('assignDisplayNumbers', () => {
       makeModule('module-4'),
     ]
     expect(assignDisplayNumbers(mods).map((m) => m.number)).toEqual(['00', '01', '02'])
+  })
+
+  it('prompting gets a sequential counter number like any other non-setup module', () => {
+    const mods = [
+      makeModule('prompting'),
+      makeModule('assisted-dev'),
+      makeModule('mcp'),
+    ]
+    expect(assignDisplayNumbers(mods).map((m) => m.number)).toEqual(['01', '02', '03'])
   })
 })
 
@@ -142,5 +151,20 @@ describe('resolveTracks', () => {
     const config = { tracks: [{ id: 't', label: 'T', audience: 'both' as const, modules: [] }] }
     const tracks = resolveTracks(config, all)
     expect(tracks[0].modules).toHaveLength(0)
+  })
+})
+
+describe('allModules', () => {
+  it('includes prompting module with correct metadata', () => {
+    const mod = allModules.find((m) => m.id === 'prompting')
+    expect(mod).toBeDefined()
+    expect(mod?.title).toBe('Communicating with AI')
+    expect(mod?.level).toBe('foundations')
+    expect(mod?.audience).toBe('engineer')
+    expect(mod?.exercises).toHaveLength(4)
+    expect(mod?.exercises[0].slug).toBe('exercise-1-vague-to-precise')
+    expect(mod?.exercises[1].slug).toBe('exercise-2-few-shot')
+    expect(mod?.exercises[2].slug).toBe('exercise-3-chain-of-thought')
+    expect(mod?.exercises[3].slug).toBe('exercise-4-structured-output')
   })
 })

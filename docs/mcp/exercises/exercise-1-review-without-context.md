@@ -117,7 +117,7 @@ Check that `GITHUB_PERSONAL_ACCESS_TOKEN` is set in the terminal where you launc
 <details>
 <summary>Hint: Claude cannot find my repo</summary>
 
-Make sure you are using the exact repo name printed at the end of `setup-module-2.sh`. Your token must belong to the same GitHub account that owns the repo.
+Make sure you are using the exact repo name printed at the end of `setup-mcp.sh`. Your token must belong to the same GitHub account that owns the repo.
 
 </details>
 
