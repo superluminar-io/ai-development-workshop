@@ -89,18 +89,6 @@ The more specific your prompt, the more specific Claude's output. Vague instruct
 
 </details>
 
-<details>
-<summary>Hint: My command isn't showing up when I type /find-weaknesses</summary>
-
-Check/try the following:
-1. The file is saved at exactly `.claude/commands/find-weaknesses.md` — not in a subdirectory, and with the `.md` extension
-1. You may need to refresh the Claude Code terminal after creating the file. Try closing and reopening it.
-1. You are running Claude Code from the repository root (the same directory that contains `CLAUDE.md`)
-
-You can confirm commands are loading by running `/explain-codebase` — if that works, Claude Code is reading the commands directory correctly.
-
-</details>
-
 ---
 
 ## Step 5 — Run your command (~2 min)
@@ -115,14 +103,26 @@ Review the output and make a list of what Claude identified. For each finding, c
 
 **Checkpoint:** Does the list seem credible? Can you find each issue Claude named in the code?
 
+<details>
+<summary>Hint: My command isn't showing up when I type /find-weaknesses</summary>
+
+Check/try the following:
+1. The file is saved at exactly `.claude/commands/find-weaknesses.md` — not in a subdirectory, and with the `.md` extension
+1. You may need to refresh the Claude Code terminal after creating the file. Try closing and reopening it.
+1. You are running Claude Code from the repository root (the same directory that contains `CLAUDE.md`)
+
+You can confirm commands are loading by running `/explain-codebase` — if that works, Claude Code is reading the commands directory correctly.
+
+</details>
+
 ---
 
 ## Deliverable
 
 By the end of Exercise 1 you should have:
-- [ ] A short note (2–4 sentences) describing what the ticket processor does
-- [ ] A list of 3–5 suspected improvement areas
-- [ ] `.claude/commands/find-weaknesses.md` saved or committed
+- A short note (2–4 sentences) describing what the ticket processor does
+- A list of 3–5 suspected improvement areas
+- `.claude/commands/find-weaknesses.md` saved or committed
 
 You have not changed any source or test files yet.
 

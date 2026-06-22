@@ -16,7 +16,7 @@ A plugin is an installable package that extends Claude Code. Plugins can add:
 
 Plugins are distributed through the Claude plugin registry and installed once per user. They are not project-specific — once installed, a plugin's skills and commands are available in every Claude Code session.
 
-Superpowers is an official plugin maintained by Anthropic. It adds a library of skills for common engineering tasks: brainstorming feature ideas, writing specs, creating implementation plans, debugging systematically, reviewing code, and more.
+Superpowers is a third-party plugin by Jesse Vincent (Prime Radiant), listed on Anthropic's plugin marketplace. It adds a library of skills for common engineering tasks: brainstorming feature ideas, writing specs, creating implementation plans, debugging systematically, reviewing code, and more.
 
 ---
 
@@ -36,7 +36,7 @@ Verify the installation:
 /plugin list
 ```
 
-Expected: `superpowers` appears in the list with its version.
+Expected: `superpowers` appears in the **Installed** list with its version.
 
 <details>
 <summary>Hint: /plugin install command not found</summary>
@@ -117,10 +117,10 @@ This is identical to how your `safe-refactoring.md` works. When you tell Claude 
 ## Deliverable
 
 By the end of Exercise 1 you should have:
-- [ ] Superpowers installed and verified
-- [ ] A list of available skills from the plugin
-- [ ] A side-by-side comparison of your Module 1 skill and a Superpowers skill
-- [ ] A clear understanding that all skills — yours and Superpowers — trigger the same way: through natural language, not explicit invocation
+- Superpowers installed and verified
+- A list of available skills from the plugin
+- A side-by-side comparison of your Module 1 skill and a Superpowers skill
+- A clear understanding that all skills — yours and Superpowers — trigger the same way: through natural language, not explicit invocation
 
 ---
 

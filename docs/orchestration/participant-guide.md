@@ -18,7 +18,7 @@ A colleague mentions Superpowers — a plugin that formalises exactly this. You 
 
 A Claude Code plugin is an installable package that extends what Claude can do in your project. Plugins can add skills, commands, tools, and configuration. They are distributed through the Claude plugin registry and installed with a single command.
 
-Superpowers is an official plugin that adds a library of structured skills for common engineering tasks — brainstorming, spec writing, implementation planning, code review, debugging, and more. These skills are the professional version of the skill you wrote in Module 1: same concept, richer structure, and built by people who have thought carefully about what good AI-assisted engineering looks like.
+Superpowers is a third-party plugin by Jesse Vincent (Prime Radiant), listed on Anthropic's plugin marketplace. It adds a library of structured skills for common engineering tasks — brainstorming, spec writing, implementation planning, code review, debugging, and more. These skills are the professional version of the skill you wrote in Module 1: same concept, richer structure, and built by people who have thought carefully about what good AI-assisted engineering looks like.
 
 ---
 

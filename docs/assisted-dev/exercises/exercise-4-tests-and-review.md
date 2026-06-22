@@ -53,10 +53,12 @@ If Claude does not mention the `amount` field, ask it directly in the chat:
 
 **Checkpoint:** Did Claude identify any edge cases involving high-value billing tickets?
 
+> **Important:** If Claude offers to write tests for you at this point, decline. The goal here is to read Claude's analysis and understand the gap — you will write the tests yourself in Step 2. Accepting Claude's changes now would conflict with the manual steps that follow.
+
 <details>
 <summary>Hint: I cannot find the bug</summary>
 
-Run `npm run process:example` and look at the output. Then read `docs/module-1/README.md` — it shows the routing table the service is supposed to implement. Compare what the table says should happen for high-value billing tickets against what the code actually does.
+Run `npm run process:example` and look at the output. Then read `docs/assisted-dev/README.md` — it shows the routing table the service is supposed to implement. Compare what the table says should happen for high-value billing tickets against what the code actually does.
 
 </details>
 
@@ -169,12 +171,12 @@ Claude will read the diff and produce a PR description. Review what it writes �
 ## Deliverable
 
 By the end of Exercise 4 you should have:
-- [ ] Two new tests in `test/domain/classifier.test.ts`
-- [ ] The billing escalation bug fixed in `src/domain/classifier.ts`
-- [ ] All tests passing
-- [ ] A review note from `/review-diff`
-- [ ] A PR summary from `/prepare-pr-summary`
-- [ ] A list of remaining risks or follow-up tasks
+- Two new tests in `test/domain/classifier.test.ts`
+- The billing escalation bug fixed in `src/domain/classifier.ts`
+- All tests passing
+- A review note from `/review-diff`
+- A PR summary from `/prepare-pr-summary`
+- A list of remaining risks or follow-up tasks
 
 ---
 

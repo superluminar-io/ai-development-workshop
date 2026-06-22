@@ -112,9 +112,9 @@ Then discuss with the group:
 ## Deliverable
 
 By the end of Exercise 3 you should have:
-- [ ] A completed `.claude/commands/review-pr.md` committed to the workshop repo
-- [ ] A PR review produced by your command that found at least the first two planted issues
-- [ ] A list of refinements you would make before using this command on your own repos
+- A completed `.claude/commands/review-pr.md` committed to the workshop repo
+- A PR review produced by your command that found at least the first two planted issues
+- A list of refinements you would make before using this command on your own repos
 
 ---
 

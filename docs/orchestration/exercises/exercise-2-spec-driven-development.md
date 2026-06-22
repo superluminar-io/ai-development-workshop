@@ -98,9 +98,9 @@ This workshop was built using exactly this process. The specs and plans are what
 ## Deliverable
 
 By the end of Exercise 2 you should have:
-- [ ] A spec for the `feedback` ticket category produced by the brainstorming skill
-- [ ] An implementation plan produced by the writing-plans skill
-- [ ] An understanding of why the plan is a deliverable, not just a step on the way to code
+- A spec for the `feedback` ticket category produced by the brainstorming skill
+- An implementation plan produced by the writing-plans skill
+- An understanding of why the plan is a deliverable, not just a step on the way to code
 
 You have not changed any source files. That is intentional.
 

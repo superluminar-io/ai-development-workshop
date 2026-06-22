@@ -195,11 +195,11 @@ Check:
 ## Deliverable
 
 By the end of Exercise 1 you should have:
-- [ ] `examples/tickets/injection-attempt.json` created (do not commit)
-- [ ] Observed the difference between the safe service path and the unsafe agentic path
-- [ ] Observed the effect of `--allowedTools` on the injection surface
-- [ ] `.claude/hooks/validate-bash.sh` created, executable, and producing correct deny JSON when tested directly
-- [ ] Hook registered in `.claude/settings.json` and verified in a live Claude Code session
+- `examples/tickets/injection-attempt.json` created (do not commit)
+- Observed the difference between the safe service path and the unsafe agentic path
+- Observed the effect of `--allowedTools` on the injection surface
+- `.claude/hooks/validate-bash.sh` created, executable, and producing correct deny JSON when tested directly
+- Hook registered in `.claude/settings.json` and verified in a live Claude Code session
 
 Clean up: Remove `examples/tickets/injection-attempt.json` before the next exercise.
 
