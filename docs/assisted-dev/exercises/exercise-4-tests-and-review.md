@@ -63,7 +63,7 @@ Run `npm run process:example` and look at the output. Then read `docs/module-1/R
 <details>
 <summary>Hint: I don't understand what "edge case" means here</summary>
 
-The routing table in `docs/module-1/README.md` shows that billing tickets with `amount > 1000` should be treated differently from billing tickets with `amount ≤ 1000`. Look at the test file `test/domain/classifier.test.ts` — what billing amounts are currently tested? Is the high-value case (`amount: 2400`) covered?
+The routing table in `docs/assisted-dev/README.md` shows that billing tickets with `amount > 1000` should be treated differently from billing tickets with `amount ≤ 1000`. Look at the test file `test/domain/classifier.test.ts` — what billing amounts are currently tested? Is the high-value case (`amount: 2400`) covered?
 
 </details>
 
@@ -115,7 +115,7 @@ If you are not sure about the `base` fixture, look at how the existing billing t
 
 Open `src/domain/classifier.ts` in your editor. Find the section that classifies billing ticket priority.
 
-Compare what the code does for high-value billing tickets against the routing table in `docs/module-1/README.md`. The fix is a single word — the wrong priority value.
+Compare what the code does for high-value billing tickets against the routing table in `docs/assisted-dev/README.md`. The fix is a single word — the wrong priority value.
 
 Make the change directly in your editor, then run:
 

@@ -135,9 +135,9 @@ Participants often find that a schema alone does not produce consistent output. 
 
 ## Connecting to the broader workshop arc
 
-Use the wrap-up to preview module-1:
+Use the wrap-up to preview Module 1:
 
-"Everything you practised here — specificity, constraints, output format, iteration — is what you will use in module-1 when you are working inside a real codebase. The context is larger and the stakes are higher. The same principles apply."
+"Everything you practised here — specificity, constraints, output format, iteration — is what you will use in Module 1 when you are working inside a real codebase. The context is larger and the stakes are higher. The same principles apply."
 
 ---
 

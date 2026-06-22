@@ -66,11 +66,11 @@ describe('assignDisplayNumbers', () => {
     expect(assignDisplayNumbers(mods).map((m) => m.number)).toEqual(['00', '01', '02'])
   })
 
-  it('module-prompting gets a sequential counter number like any other non-setup module', () => {
+  it('prompting gets a sequential counter number like any other non-setup module', () => {
     const mods = [
-      makeModule('module-prompting'),
-      makeModule('module-1'),
-      makeModule('module-2'),
+      makeModule('prompting'),
+      makeModule('assisted-dev'),
+      makeModule('mcp'),
     ]
     expect(assignDisplayNumbers(mods).map((m) => m.number)).toEqual(['01', '02', '03'])
   })
@@ -155,8 +155,8 @@ describe('resolveTracks', () => {
 })
 
 describe('allModules', () => {
-  it('includes module-prompting with correct metadata', () => {
-    const mod = allModules.find((m) => m.id === 'module-prompting')
+  it('includes prompting module with correct metadata', () => {
+    const mod = allModules.find((m) => m.id === 'prompting')
     expect(mod).toBeDefined()
     expect(mod?.title).toBe('Communicating with AI')
     expect(mod?.level).toBe('foundations')

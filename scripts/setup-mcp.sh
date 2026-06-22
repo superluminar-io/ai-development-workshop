@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Creates the GitHub issue and PR used in Module 2 exercises.
+# Creates the GitHub issue and PR used in MCP module exercises.
 # Run this once after pushing the workshop repo to your own GitHub account.
 #
 # Prerequisites:
 #   - gh auth login completed
 #   - run from the root of the workshop repo
 
-echo "Setting up Module 2 demo scenario..."
+echo "Setting up MCP module demo scenario..."
 
 REPO=$(gh repo view --json nameWithOwner -q .nameWithOwner 2>/dev/null)
 if [ -z "$REPO" ]; then
@@ -74,5 +74,5 @@ Added a test confirming that platinum VIP tickets are routed to \`vip-queue\`. A
 
 echo "Created PR: $PR_URL"
 echo ""
-echo "Setup complete. Use this repo in your Module 2 exercises:"
+echo "Setup complete. Use this repo in your MCP module exercises:"
 echo "  $REPO"

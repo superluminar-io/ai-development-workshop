@@ -37,7 +37,7 @@ By the end of this module participants should be able to:
 
 ## Before the session
 
-The demo scenario is built into the workshop repo itself — no separate repo to maintain. Participants push the workshop repo to their own GitHub account and run `scripts/setup-module-2.sh`, which creates the issue and PR they will review.
+The demo scenario is built into the workshop repo itself — no separate repo to maintain. Participants push the workshop repo to their own GitHub account and run `scripts/setup-mcp.sh`, which creates the issue and PR they will review.
 
 ### The scenario
 
@@ -53,7 +53,7 @@ This three-tier structure is essential. Tiers 1–2 are findable without the lin
 
 ### Pre-session checklist
 
-- [ ] Run `scripts/setup-module-2.sh` against your own fork to verify it works end-to-end
+- [ ] Run `scripts/setup-mcp.sh` against your own fork to verify it works end-to-end
 - [ ] Confirm the PR is open, linked to the issue, and the three-tier bugs are present
 - [ ] Your own `GITHUB_PERSONAL_ACCESS_TOKEN` is set for the live demo
 - [ ] Participants have push access to their own GitHub accounts (no special permissions needed)

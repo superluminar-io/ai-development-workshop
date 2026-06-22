@@ -44,7 +44,7 @@ By the end of this module participants should be able to:
 1. Confirm Node.js 20+ is installed on participant machines.
 2. Confirm Claude Code CLI is installed and authenticated (`claude --version`).
 3. Run `npm install && npm test` in the repo to confirm it works on your machine.
-4. Read `docs/module-1/KNOWN-IMPERFECTIONS.md` — know all 8 issues and their file locations.
+4. Read `docs/assisted-dev/KNOWN-IMPERFECTIONS.md` — know all 8 issues and their file locations.
 5. Run `npm run process:example` and note the (buggy) output — `billing-queue` instead of `escalation-queue`.
 
 ---
