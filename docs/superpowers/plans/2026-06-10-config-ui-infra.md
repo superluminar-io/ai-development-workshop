@@ -65,7 +65,7 @@ export interface Module {
   status: 'ready' | 'coming-soon'
   participantGuide: string
   exercises: Exercise[]
-  level: 'foundations' | 'advanced'
+  level: 'essentials' | 'advanced'
   audience: 'engineer' | 'business' | 'both'
 }
 ```
@@ -87,11 +87,11 @@ Update the `allModules` array so every module has the two new fields. Apply thes
 
 | id | level | audience |
 |----|-------|----------|
-| `setup` | `foundations` | `both` |
-| `module-1` | `foundations` | `engineer` |
-| `module-2` | `foundations` | `engineer` |
-| `module-3` | `foundations` | `engineer` |
-| `module-4` | `foundations` | `engineer` |
+| `setup` | `essentials` | `both` |
+| `module-1` | `essentials` | `engineer` |
+| `module-2` | `essentials` | `engineer` |
+| `module-3` | `essentials` | `engineer` |
+| `module-4` | `essentials` | `engineer` |
 
 Example for the first entry (replicate pattern for all):
 
@@ -104,7 +104,7 @@ Example for the first entry (replicate pattern for all):
   status: 'ready',
   participantGuide: '/docs/setup/participant-guide.md',
   exercises: [],
-  level: 'foundations',
+  level: 'essentials',
   audience: 'both',
 },
 ```
@@ -120,7 +120,7 @@ const makeModule = (id: string): Module => ({
   status: 'ready',
   participantGuide: `/docs/${id}/participant-guide.md`,
   exercises: [],
-  level: 'foundations',
+  level: 'essentials',
   audience: 'engineer',
 })
 ```
@@ -138,7 +138,7 @@ const readyModule: Module = {
   exercises: [
     { slug: 'ex-1', title: 'Orientation', file: '/docs/module-1/exercises/ex-1.md' },
   ],
-  level: 'foundations',
+  level: 'essentials',
   audience: 'engineer',
 }
 
@@ -175,7 +175,7 @@ const mod: Module = {
       file: '/docs/module-1/exercises/exercise-2-refactoring.md',
     },
   ],
-  level: 'foundations',
+  level: 'essentials',
   audience: 'engineer',
 }
 ```
@@ -241,7 +241,7 @@ describe('filterExercises', () => {
 
 describe('resolveTracks', () => {
   const all = [
-    { ...makeModule('setup'), number: '00', level: 'foundations' as const, audience: 'both' as const },
+    { ...makeModule('setup'), number: '00', level: 'essentials' as const, audience: 'both' as const },
     makeModule('module-1'),
     makeModule('module-2'),
   ]
@@ -450,7 +450,7 @@ const makeModule = (id: string, exerciseSlugs: string[] = []): Module => ({
     title: slug,
     file: `/docs/${id}/exercises/${slug}.md`,
   })),
-  level: 'foundations',
+  level: 'essentials',
   audience: 'engineer',
 })
 
@@ -600,7 +600,7 @@ Add these tests to `ModuleCard.test.tsx` inside the existing `describe('ModuleCa
 ```ts
 it('renders the level badge', () => {
   render(<MemoryRouter><ModuleCard module={readyModule} /></MemoryRouter>)
-  expect(screen.getByText('Foundations')).toBeInTheDocument()
+  expect(screen.getByText('Essentials')).toBeInTheDocument()
 })
 
 it('renders the audience badge as "Engineer"', () => {
@@ -639,7 +639,7 @@ Replace the `module-card__meta` div inside the component:
     {isReady ? 'Ready' : 'Coming soon'}
   </span>
   <span className={`module-card__badge module-card__badge--${module.level}`}>
-    {module.level === 'foundations' ? 'Foundations' : 'Advanced'}
+    {module.level === 'essentials' ? 'Essentials' : 'Advanced'}
   </span>
   <span className="module-card__badge module-card__badge--audience">
     {module.audience === 'engineer'
@@ -656,7 +656,7 @@ Replace the `module-card__meta` div inside the component:
 Append after the existing `.module-card__badge--coming-soon` rule:
 
 ```css
-.module-card__badge--foundations {
+.module-card__badge--essentials {
   background: var(--ac-dim);
   color: var(--ac);
   border: 1px solid var(--ac-bdr);
@@ -713,9 +713,9 @@ import { modules } from '../config'
 import { ModuleCard } from '../components/ModuleCard'
 
 export function HomePage() {
-  const foundations = modules.filter((m) => m.level === 'foundations')
+  const essentials = modules.filter((m) => m.level === 'essentials')
   const advanced = modules.filter((m) => m.level === 'advanced')
-  const showHeadings = foundations.length > 0 && advanced.length > 0
+  const showHeadings = essentials.length > 0 && advanced.length > 0
 
   return (
     <div className="home">
@@ -727,10 +727,10 @@ export function HomePage() {
         </p>
       </div>
       <div className="home__modules">
-        {showHeadings && foundations.length > 0 && (
-          <h2 className="home__section-heading">Foundations</h2>
+        {showHeadings && essentials.length > 0 && (
+          <h2 className="home__section-heading">Essentials</h2>
         )}
-        {foundations.map((m) => (
+        {essentials.map((m) => (
           <ModuleCard key={m.id} module={m} />
         ))}
         {showHeadings && advanced.length > 0 && (
@@ -772,7 +772,7 @@ Expected: all tests pass (existing Nav test checks for ready modules, unaffected
 
 ```bash
 git add docs-site/src/pages/HomePage.tsx docs-site/src/styles/global.css
-git commit -m "feat(ui): group modules by level with Foundations / Advanced headings on home page"
+git commit -m "feat(ui): group modules by level with Essentials / Advanced headings on home page"
 ```
 
 ---

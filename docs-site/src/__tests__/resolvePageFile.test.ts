@@ -9,7 +9,7 @@ const mod: Module = {
   description: 'desc',
   status: 'ready',
   participantGuide: '/docs/module-1/participant-guide.md',
-  level: 'foundations',
+  level: 'essentials',
   audience: 'engineer',
   exercises: [
     {

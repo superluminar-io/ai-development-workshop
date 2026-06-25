@@ -2,9 +2,9 @@ import { modules } from '../config'
 import { ModuleCard } from '../components/ModuleCard'
 
 export function HomePage() {
-  const foundations = modules.filter((m) => m.level === 'foundations')
+  const essentials = modules.filter((m) => m.level === 'essentials')
   const advanced = modules.filter((m) => m.level === 'advanced')
-  const showHeadings = foundations.length > 0 && advanced.length > 0
+  const showHeadings = essentials.length > 0 && advanced.length > 0
 
   return (
     <div className="home">
@@ -16,10 +16,10 @@ export function HomePage() {
         </p>
       </div>
       <div className="home__modules">
-        {showHeadings && foundations.length > 0 && (
-          <h2 className="home__section-heading">Foundations</h2>
+        {showHeadings && essentials.length > 0 && (
+          <h2 className="home__section-heading">Essentials</h2>
         )}
-        {foundations.map((m) => (
+        {essentials.map((m) => (
           <ModuleCard key={m.id} module={m} />
         ))}
         {showHeadings && advanced.length > 0 && (

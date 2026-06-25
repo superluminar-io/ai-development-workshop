@@ -14,7 +14,7 @@ const makeModule = (id: string, exerciseSlugs: string[] = []): Module => ({
     title: slug,
     file: `/docs/${id}/exercises/${slug}.md`,
   })),
-  level: 'foundations',
+  level: 'essentials',
   audience: 'engineer',
 })
 
