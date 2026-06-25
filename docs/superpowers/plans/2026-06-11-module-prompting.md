@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Add a new `module-prompting` foundations module covering LLM mental model, core prompt patterns, and prompt iteration — slotted before module-1 in the foundations track.
+**Goal:** Add a new `module-prompting` essentials module covering LLM mental model, core prompt patterns, and prompt iteration — slotted before module-1 in the essentials track.
 
 **Architecture:** One entry added to `config.ts`'s `allModules` array (with `allModules` exported for testability); seven new markdown files under `docs/module-prompting/`. No changes to existing module content or workshop config.
 
@@ -58,7 +58,7 @@ describe('allModules', () => {
     const mod = allModules.find((m) => m.id === 'module-prompting')
     expect(mod).toBeDefined()
     expect(mod?.title).toBe('Communicating with AI')
-    expect(mod?.level).toBe('foundations')
+    expect(mod?.level).toBe('essentials')
     expect(mod?.audience).toBe('engineer')
     expect(mod?.exercises).toHaveLength(4)
     expect(mod?.exercises[0].slug).toBe('exercise-1-vague-to-precise')
@@ -90,7 +90,7 @@ In `docs-site/src/config.ts`, add this entry after the `module-5` entry (before 
       'Learn how LLMs process text, practise the core prompt patterns, and iterate on prompts that don\'t work.',
     status: 'ready',
     participantGuide: '/docs/module-prompting/participant-guide.md',
-    level: 'foundations',
+    level: 'essentials',
     audience: 'engineer',
     exercises: [
       {

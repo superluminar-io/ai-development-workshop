@@ -15,7 +15,7 @@ Also improve the participant navigation: replace the current open-ended sidebar-
 
 ## Approach
 
-One workshop, one repo, two tracks. Modules are tagged with a level (`foundations` or `advanced`) and an audience (`engineer`, `business`, or `both`). Facilitators configure tracks in `workshop.json` before participants clone the repo. The docs site renders the configured module list — there is no track selector in the UI. Participants navigate linearly through the workshop via "Next" buttons.
+One workshop, one repo, two tracks. Modules are tagged with a level (`essentials` or `advanced`) and an audience (`engineer`, `business`, or `both`). Facilitators configure tracks in `workshop.json` before participants clone the repo. The docs site renders the configured module list — there is no track selector in the UI. Participants navigate linearly through the workshop via "Next" buttons.
 
 ---
 
@@ -61,7 +61,7 @@ export interface Module {
   participantGuide: string
   exercises: Exercise[]
   // new fields
-  level: 'foundations' | 'advanced'
+  level: 'essentials' | 'advanced'
   audience: 'engineer' | 'business' | 'both'
 }
 ```
@@ -99,12 +99,12 @@ export interface Track {
 
 | ID | Title | Level | Audience | Duration |
 |----|-------|-------|----------|----------|
-| `setup` | Environment Setup | foundations | both | ~15 min |
-| `module-1` | Claude Code in the Engineering Loop | foundations | engineer | ~60 min |
-| `module-2` | Code Review, Context, and Commands | foundations | engineer | ~50 min |
-| `module-3` | Plugins, Superpowers, and Spec-Driven Development | foundations | engineer | ~60 min |
-| `module-4` | The AI Harness — Claude Code for Teams and Organisations | foundations | engineer | ~60 min |
-| `bridge` | AI Tools Baseline | foundations | both | ~30 min |
+| `setup` | Environment Setup | essentials | both | ~15 min |
+| `module-1` | Claude Code in the Engineering Loop | essentials | engineer | ~60 min |
+| `module-2` | Code Review, Context, and Commands | essentials | engineer | ~50 min |
+| `module-3` | Plugins, Superpowers, and Spec-Driven Development | essentials | engineer | ~60 min |
+| `module-4` | The AI Harness — Claude Code for Teams and Organisations | essentials | engineer | ~60 min |
+| `bridge` | AI Tools Baseline | essentials | both | ~30 min |
 | `module-5` | AI Security & Guardrails | advanced | engineer | ~60 min |
 | `module-6` | Cost, Governance & Compliance | advanced | both | ~60 min |
 | `module-7` | Organisational AI Strategy | advanced | business | ~60 min |
@@ -113,7 +113,7 @@ export interface Track {
 ### New module briefs
 
 **`bridge` — AI Tools Baseline**
-Fast-tracks an experienced team to the Claude Code baseline: CLAUDE.md, skills, harness basics. For enterprise customers who don't need the full foundations sequence. Optional — facilitator includes it or not.
+Fast-tracks an experienced team to the Claude Code baseline: CLAUDE.md, skills, harness basics. For enterprise customers who don't need the full essentials sequence. Optional — facilitator includes it or not.
 
 **`module-5` — AI Security & Guardrails**
 Hands-on, engineer-facing. Topics: prompt injection, secrets leaking through context, tool permission boundaries, safe agentic patterns. Exercises use the existing TypeScript service and Claude Code config.
@@ -143,13 +143,13 @@ The docs site does not show a track selector. The facilitator configures `worksh
 
 Each module card displays:
 - Module number (renumbered within the track, as today)
-- Level badge (`Foundations` or `Advanced`) — using existing badge CSS
+- Level badge (`Essentials` or `Advanced`) — using existing badge CSS
 - Audience badge (`Engineer`, `Business`, or `All`) — using existing badge CSS
 - Title and description
 
 ### Module grouping
 
-On the homepage, modules are grouped under two headings: **Foundations** and **Advanced**. When only one level is present (e.g. an all-advanced session), no headings are shown.
+On the homepage, modules are grouped under two headings: **Essentials** and **Advanced**. When only one level is present (e.g. an all-advanced session), no headings are shown.
 
 ### Step-by-step navigation
 
@@ -276,7 +276,7 @@ Recommend two separate implementation plans.
 | `docs-site/src/config.ts` | Add `Track` type, `level`/`audience` fields on `Module`/`Exercise`, multi-track resolution, backwards-compat shim |
 | `docs-site/src/pages/ModulePage.tsx` | Add "Next" button; compute next destination from linear page sequence (including summary) |
 | `docs-site/src/pages/SummaryPage.tsx` | New page — renders track summary markdown, shows "End" button leading to `/` |
-| `docs-site/src/pages/HomePage.tsx` | Group modules by level (Foundations / Advanced headings) |
+| `docs-site/src/pages/HomePage.tsx` | Group modules by level (Essentials / Advanced headings) |
 | `docs-site/src/components/ModuleCard.tsx` | Add level and audience badges using existing badge CSS |
 | `docs-site/src/__tests__/config.test.ts` | Extend for multi-track, backwards-compat, and exercise-filtering cases |
 | `docs/module-1/participant-guide.md` | Remove "Full instructions →" links |

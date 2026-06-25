@@ -15,7 +15,7 @@ export interface Module {
   status: 'ready' | 'coming-soon'
   participantGuide: string // Vite-served URL path, e.g. /docs/assisted-dev/participant-guide.md
   exercises: Exercise[]
-  level: 'foundations' | 'advanced'
+  level: 'essentials' | 'advanced'
   audience: 'engineer' | 'business' | 'both'
 }
 
@@ -49,11 +49,12 @@ export function filterModules(all: Module[], enabledIds: string[]): Module[] {
 }
 
 export function assignDisplayNumbers(mods: Module[]): Module[] {
-  let counter = 0
-  return mods.map((m) => ({
-    ...m,
-    number: m.id === 'setup' ? m.number : String(++counter).padStart(2, '0'),
-  }))
+  const counters: Partial<Record<Module['level'], number>> = {}
+  return mods.map((m) => {
+    if (m.id === 'setup') return m
+    counters[m.level] = (counters[m.level] ?? 0) + 1
+    return { ...m, number: String(counters[m.level]).padStart(2, '0') }
+  })
 }
 
 export function filterExercises(
@@ -100,7 +101,7 @@ export const allModules: Module[] = [
     status: 'ready',
     participantGuide: '/docs/setup/participant-guide.md',
     exercises: [],
-    level: 'foundations',
+    level: 'essentials',
     audience: 'both',
   },
   {
@@ -111,7 +112,7 @@ export const allModules: Module[] = [
       'Explore a codebase, refactor safely, write tests, and prepare a PR summary — all with Claude.',
     status: 'ready',
     participantGuide: '/docs/assisted-dev/participant-guide.md',
-    level: 'foundations',
+    level: 'essentials',
     audience: 'engineer',
     exercises: [
       {
@@ -144,7 +145,7 @@ export const allModules: Module[] = [
       'Configure GitHub MCP, review PRs with full context, and build reusable slash commands.',
     status: 'ready',
     participantGuide: '/docs/mcp/participant-guide.md',
-    level: 'foundations',
+    level: 'essentials',
     audience: 'engineer',
     exercises: [
       {
@@ -160,30 +161,30 @@ export const allModules: Module[] = [
     ],
   },
   {
-    id: 'orchestration',
+    id: 'spec-driven',
     number: '03',
     title: 'Plugins, Superpowers, and Spec-Driven Development',
     description:
       'Install the Superpowers plugin, explore community-built skills, and use spec-driven development to take a feature from idea to implementation plan.',
     status: 'ready',
-    participantGuide: '/docs/orchestration/participant-guide.md',
-    level: 'foundations',
+    participantGuide: '/docs/spec-driven/participant-guide.md',
+    level: 'essentials',
     audience: 'engineer',
     exercises: [
       {
         slug: 'exercise-1-plugins-and-superpowers',
         title: 'Plugins and Superpowers',
-        file: '/docs/orchestration/exercises/exercise-1-plugins-and-superpowers.md',
+        file: '/docs/spec-driven/exercises/exercise-1-plugins-and-superpowers.md',
       },
       {
         slug: 'exercise-2-spec-driven-development',
         title: 'Spec-Driven Development',
-        file: '/docs/orchestration/exercises/exercise-2-spec-driven-development.md',
+        file: '/docs/spec-driven/exercises/exercise-2-spec-driven-development.md',
       },
       {
         slug: 'exercise-3-superpowers-skill',
         title: 'Build a Feature on the Workshop Website',
-        file: '/docs/orchestration/exercises/exercise-3-superpowers-skill.md',
+        file: '/docs/spec-driven/exercises/exercise-3-superpowers-skill.md',
       },
     ],
   },
@@ -195,7 +196,7 @@ export const allModules: Module[] = [
       'Configure team governance, permissions, and hooks. Build a reusable org template for Claude Code standards.',
     status: 'ready',
     participantGuide: '/docs/governance/participant-guide.md',
-    level: 'foundations',
+    level: 'essentials',
     audience: 'engineer',
     exercises: [
       {
@@ -244,6 +245,62 @@ export const allModules: Module[] = [
     ],
   },
   {
+    id: 'custom-mcp',
+    number: '07',
+    title: 'Building an Internal MCP Server',
+    description:
+      'Build a custom TypeScript MCP server backed by AWS DynamoDB and S3, giving Claude direct access to your company\'s internal systems.',
+    status: 'ready',
+    participantGuide: '/docs/custom-mcp/participant-guide.md',
+    level: 'advanced',
+    audience: 'engineer',
+    exercises: [
+      {
+        slug: 'exercise-1-scaffold-server',
+        title: 'Scaffold a Local MCP Server',
+        file: '/docs/custom-mcp/exercises/exercise-1-scaffold-server.md',
+      },
+      {
+        slug: 'exercise-2-connect-to-aws',
+        title: 'Connect to AWS',
+        file: '/docs/custom-mcp/exercises/exercise-2-connect-to-aws.md',
+      },
+      {
+        slug: 'exercise-3-team-adoption',
+        title: 'Make It Team-Ready',
+        file: '/docs/custom-mcp/exercises/exercise-3-team-adoption.md',
+      },
+    ],
+  },
+  {
+    id: 'agent-orchestration',
+    number: '08',
+    title: 'Agent Orchestration and Workload Isolation',
+    description:
+      'Build a multi-agent code quality pipeline using the Claude Agent SDK. Enforce workload isolation through scoped tool access and hook-based policy enforcement.',
+    status: 'ready',
+    participantGuide: '/docs/agent-orchestration/participant-guide.md',
+    level: 'advanced',
+    audience: 'engineer',
+    exercises: [
+      {
+        slug: 'exercise-1-first-subagent',
+        title: 'Your First Isolated Subagent',
+        file: '/docs/agent-orchestration/exercises/exercise-1-first-subagent.md',
+      },
+      {
+        slug: 'exercise-2-pipeline-and-hooks',
+        title: 'Pipeline with Hooks',
+        file: '/docs/agent-orchestration/exercises/exercise-2-pipeline-and-hooks.md',
+      },
+      {
+        slug: 'exercise-3-full-pipeline',
+        title: 'Full Pipeline and Production Patterns',
+        file: '/docs/agent-orchestration/exercises/exercise-3-full-pipeline.md',
+      },
+    ],
+  },
+  {
     id: 'prompting',
     number: '00',
     title: 'Communicating with AI',
@@ -251,7 +308,7 @@ export const allModules: Module[] = [
       'Learn how LLMs process text, practise the core prompt patterns, and iterate on prompts that don\'t work.',
     status: 'ready',
     participantGuide: '/docs/prompting/participant-guide.md',
-    level: 'foundations',
+    level: 'essentials',
     audience: 'engineer',
     exercises: [
       {

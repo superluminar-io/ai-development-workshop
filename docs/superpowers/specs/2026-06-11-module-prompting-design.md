@@ -7,7 +7,7 @@
 
 ## Goal
 
-Add a new foundations module that teaches developers the fundamentals of prompting: how LLMs process text, the core prompt patterns, and how to iterate on prompts that don't work. This module slots in before module-1 in the foundations track so participants arrive at the Claude Code exercises with a working mental model of how to communicate with AI.
+Add a new essentials module that teaches developers the fundamentals of prompting: how LLMs process text, the core prompt patterns, and how to iterate on prompts that don't work. This module slots in before module-1 in the essentials track so participants arrive at the Claude Code exercises with a working mental model of how to communicate with AI.
 
 ---
 
@@ -17,7 +17,7 @@ Add a new foundations module that teaches developers the fundamentals of prompti
 |-------|-------|
 | ID | `module-prompting` |
 | Title | Communicating with AI |
-| Level | `foundations` |
+| Level | `essentials` |
 | Audience | `engineer` |
 | Duration | ~65 min |
 | Position | After Setup, before module-1 |
@@ -114,7 +114,7 @@ docs/module-prompting/
   description: 'Learn how LLMs process text, practise the core prompt patterns, and iterate on prompts that don\'t work.',
   status: 'ready',
   participantGuide: '/docs/module-prompting/participant-guide.md',
-  level: 'foundations',
+  level: 'essentials',
   audience: 'engineer',
   exercises: [
     {

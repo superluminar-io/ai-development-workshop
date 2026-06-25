@@ -10,7 +10,7 @@ const makeModule = (id: string): Module => ({
   status: 'ready',
   participantGuide: `/docs/${id}/participant-guide.md`,
   exercises: [],
-  level: 'foundations',
+  level: 'essentials',
   audience: 'engineer',
 })
 
@@ -159,7 +159,7 @@ describe('allModules', () => {
     const mod = allModules.find((m) => m.id === 'prompting')
     expect(mod).toBeDefined()
     expect(mod?.title).toBe('Communicating with AI')
-    expect(mod?.level).toBe('foundations')
+    expect(mod?.level).toBe('essentials')
     expect(mod?.audience).toBe('engineer')
     expect(mod?.exercises).toHaveLength(4)
     expect(mod?.exercises[0].slug).toBe('exercise-1-vague-to-precise')
