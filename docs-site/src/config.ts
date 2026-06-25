@@ -245,6 +245,34 @@ export const allModules: Module[] = [
     ],
   },
   {
+    id: 'custom-mcp',
+    number: '07',
+    title: 'Building an Internal MCP Server',
+    description:
+      'Build a custom TypeScript MCP server backed by AWS DynamoDB and S3, giving Claude direct access to your company\'s internal systems.',
+    status: 'ready',
+    participantGuide: '/docs/custom-mcp/participant-guide.md',
+    level: 'advanced',
+    audience: 'engineer',
+    exercises: [
+      {
+        slug: 'exercise-1-scaffold-server',
+        title: 'Scaffold a Local MCP Server',
+        file: '/docs/custom-mcp/exercises/exercise-1-scaffold-server.md',
+      },
+      {
+        slug: 'exercise-2-connect-to-aws',
+        title: 'Connect to AWS',
+        file: '/docs/custom-mcp/exercises/exercise-2-connect-to-aws.md',
+      },
+      {
+        slug: 'exercise-3-team-adoption',
+        title: 'Make It Team-Ready',
+        file: '/docs/custom-mcp/exercises/exercise-3-team-adoption.md',
+      },
+    ],
+  },
+  {
     id: 'prompting',
     number: '00',
     title: 'Communicating with AI',

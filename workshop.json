@@ -4,7 +4,7 @@
       "id": "default",
       "label": "Workshop",
       "audience": "both",
-      "modules": ["setup", "prompting", "assisted-dev", "mcp", "spec-driven", "governance", "red-teaming"]
+      "modules": ["setup", "prompting", "assisted-dev", "mcp", "spec-driven", "governance", "custom-mcp", "red-teaming"]
     }
   ]
 }
