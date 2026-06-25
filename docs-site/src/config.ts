@@ -273,6 +273,34 @@ export const allModules: Module[] = [
     ],
   },
   {
+    id: 'agent-orchestration',
+    number: '08',
+    title: 'Agent Orchestration and Workload Isolation',
+    description:
+      'Build a multi-agent code quality pipeline using the Claude Agent SDK. Enforce workload isolation through scoped tool access and hook-based policy enforcement.',
+    status: 'ready',
+    participantGuide: '/docs/agent-orchestration/participant-guide.md',
+    level: 'advanced',
+    audience: 'engineer',
+    exercises: [
+      {
+        slug: 'exercise-1-first-subagent',
+        title: 'Your First Isolated Subagent',
+        file: '/docs/agent-orchestration/exercises/exercise-1-first-subagent.md',
+      },
+      {
+        slug: 'exercise-2-pipeline-and-hooks',
+        title: 'Pipeline with Hooks',
+        file: '/docs/agent-orchestration/exercises/exercise-2-pipeline-and-hooks.md',
+      },
+      {
+        slug: 'exercise-3-full-pipeline',
+        title: 'Full Pipeline and Production Patterns',
+        file: '/docs/agent-orchestration/exercises/exercise-3-full-pipeline.md',
+      },
+    ],
+  },
+  {
     id: 'prompting',
     number: '00',
     title: 'Communicating with AI',
